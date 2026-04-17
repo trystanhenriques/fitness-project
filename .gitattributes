@@ -1,0 +1,25 @@
+# Set default behavior for text files
+* text=auto
+
+# Java source files
+*.java text eol=lf
+
+# XML files (Android/mobile configs)
+*.xml text eol=lf
+
+# Gradle/build files
+*.gradle text eol=lf
+*.properties text eol=lf
+
+# Scripts
+*.sh text eol=lf
+*.bat text eol=crlf
+
+# Binary files - don't convert line endings
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.jar binary
+*.keystore binary
+*.apk binary
