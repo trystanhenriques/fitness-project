@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.fitnessproject.ui.main;
 
 import android.os.Bundle;
 import android.widget.TextView;

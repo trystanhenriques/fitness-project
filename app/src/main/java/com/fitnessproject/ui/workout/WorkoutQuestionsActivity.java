@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.fitnessproject.ui.workout;
 
 import android.content.Intent;
 import android.os.Bundle;

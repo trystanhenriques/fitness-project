@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.fitnessproject.ui.history;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;

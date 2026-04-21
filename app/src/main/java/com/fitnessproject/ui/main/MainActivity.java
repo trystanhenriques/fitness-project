@@ -1,10 +1,12 @@
-package com.example.myapplication;
+package com.fitnessproject.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.fitnessproject.R;
+import com.fitnessproject.ui.formcheck.FormCheckStartActivity;
+import com.fitnessproject.ui.workout.WorkoutTrackerActivity;
 
 public class MainActivity extends AppCompatActivity {
     @Override

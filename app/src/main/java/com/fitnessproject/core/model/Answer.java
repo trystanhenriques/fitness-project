@@ -1,4 +1,4 @@
-package com.example.myapplication.model;
+package com.fitnessproject.core.model;
 
 public class Answer {
     private final String questionId;

@@ -1,4 +1,4 @@
-package com.example.myapplication.engine;
+package com.fitnessproject.core.engine;
 
 import com.example.myapplication.model.Answer;
 import com.example.myapplication.model.EvaluationResult;

@@ -1,4 +1,4 @@
-package com.example.myapplication.model;
+package com.fitnessproject.core.model;
 
 import java.util.List;
 
