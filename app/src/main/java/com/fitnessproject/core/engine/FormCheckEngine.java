@@ -1,31 +1,37 @@
 package com.fitnessproject.core.engine;
 
+import android.content.Context;
+import com.fitnessproject.core.data.DataLoader;
 import com.fitnessproject.core.model.Answer;
 import com.fitnessproject.core.model.EvaluationResult;
-
+import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FormCheckEngine {
 
-    public EvaluationResult evaluate(String exerciseId, List<Answer> answers) {
+    public EvaluationResult evaluate(Context context, String exerciseId, List<Answer> answers) {
         List<String> cues = new ArrayList<>();
+        JSONObject rules = DataLoader.getRules(context);
 
-        // MVP v0: one question for bench
-        if ("bench".equals(exerciseId)) {
-            for (Answer a : answers) {
-                if ("bench_q1_discomfort_location".equals(a.getQuestionId())
-                        && "shoulders".equals(a.getChoiceId())) {
-                    cues.add("Tuck elbows (about 45°) and keep shoulders set back.");
-                } else if ("bench_q1_discomfort_location".equals(a.getQuestionId())
-                        && "wrists".equals(a.getChoiceId())) {
-                    cues.add("Stack wrists over elbows and keep knuckles up.");
+        try {
+            if (rules.has(exerciseId)) {
+                JSONObject exerciseRules = rules.getJSONObject(exerciseId);
+                for (Answer a : answers) {
+                    if (exerciseRules.has(a.getQuestionId())) {
+                        JSONObject questionRules = exerciseRules.getJSONObject(a.getQuestionId());
+                        if (questionRules.has(a.getChoiceId())) {
+                            cues.add(questionRules.getString(a.getChoiceId()));
+                        }
+                    }
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         if (cues.isEmpty()) {
-            cues.add("Reduce weight slightly and focus on control and steady tempo.");
+            cues.add("Keep focusing on steady tempo and full range of motion.");
         }
 
         return new EvaluationResult(exerciseId, cues);

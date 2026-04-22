@@ -1,0 +1,7 @@
+[
+  {"id": "bench", "name": "Bench Press"},
+  {"id": "squat", "name": "Squat"},
+  {"id": "deadlift", "name": "Deadlift"},
+  {"id": "ohp", "name": "Overhead Press"},
+  {"id": "row", "name": "Row"}
+]

@@ -1,0 +1,35 @@
+{
+  "bench": [
+    {
+      "id": "bench_q1_discomfort_location",
+      "text": "Where do you feel discomfort?",
+      "options": [
+        {"id": "shoulders", "text": "Shoulders"},
+        {"id": "wrists", "text": "Wrists"},
+        {"id": "none", "text": "No discomfort"}
+      ]
+    }
+  ],
+  "squat": [
+    {
+      "id": "squat_q1_discomfort_location",
+      "text": "Where do you feel discomfort?",
+      "options": [
+        {"id": "lower_back", "text": "Lower Back"},
+        {"id": "knees", "text": "Knees"},
+        {"id": "none", "text": "No discomfort"}
+      ]
+    }
+  ],
+  "deadlift": [
+    {
+      "id": "deadlift_q1_discomfort_location",
+      "text": "Where do you feel discomfort?",
+      "options": [
+        {"id": "lower_back", "text": "Lower Back"},
+        {"id": "grip", "text": "Grip / Hands"},
+        {"id": "none", "text": "No discomfort"}
+      ]
+    }
+  ]
+}

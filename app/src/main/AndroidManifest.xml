@@ -13,25 +13,39 @@
 
         <activity
             android:name=".ui.progress.ProgressActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Progress"
+            android:parentActivityName=".ui.workout.WorkoutTrackerActivity" />
         <activity
             android:name=".ui.history.WorkoutHistoryActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Workout History"
+            android:parentActivityName=".ui.workout.WorkoutTrackerActivity" />
         <activity
             android:name=".ui.workout.NewWorkoutActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Log Workout"
+            android:parentActivityName=".ui.workout.WorkoutTrackerActivity" />
         <activity
             android:name=".ui.workout.WorkoutTrackerActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Workout Tracker"
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
             android:name=".ui.main.ResultsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Evaluation Results"
+            android:parentActivityName=".ui.workout.WorkoutQuestionsActivity" />
         <activity
             android:name=".ui.workout.WorkoutQuestionsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Form Check"
+            android:parentActivityName=".ui.formcheck.FormCheckStartActivity" />
         <activity
             android:name=".ui.formcheck.FormCheckStartActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Select Exercise"
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">

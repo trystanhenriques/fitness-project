@@ -15,8 +15,15 @@ import com.fitnessproject.core.model.Answer;
 import com.fitnessproject.core.model.EvaluationResult;
 import com.fitnessproject.ui.main.ResultsActivity;
 
+import com.fitnessproject.core.data.DataLoader;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class WorkoutQuestionsActivity extends AppCompatActivity {
 
@@ -25,50 +32,61 @@ public class WorkoutQuestionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_questions);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         String incomingExerciseId = getIntent().getStringExtra("exercise_id");
         final String exerciseId = (incomingExerciseId == null) ? "bench" : incomingExerciseId;
 
         RadioGroup rg = findViewById(R.id.rgChoices);
         Button btnComplete = findViewById(R.id.btnComplete);
 
-        // For now: one question with three options
-        RadioButton rbShoulders = new RadioButton(this);
-        rbShoulders.setText("Shoulders");
-        rbShoulders.setId(1);
+        JSONObject questionObj = DataLoader.getQuestionsForExercise(this, exerciseId);
+        if (questionObj == null) {
+            Toast.makeText(this, "No questions found for this exercise.", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
 
-        RadioButton rbWrists = new RadioButton(this);
-        rbWrists.setText("Wrists");
-        rbWrists.setId(2);
+        try {
+            String questionId = questionObj.getString("id");
+            JSONArray options = questionObj.getJSONArray("options");
 
-        RadioButton rbNone = new RadioButton(this);
-        rbNone.setText("No discomfort");
-        rbNone.setId(3);
-
-        rg.addView(rbShoulders);
-        rg.addView(rbWrists);
-        rg.addView(rbNone);
-
-        btnComplete.setOnClickListener(v -> {
-            int checkedId = rg.getCheckedRadioButtonId();
-            if (checkedId == -1) {
-                Toast.makeText(this, "Please select an option.", Toast.LENGTH_SHORT).show();
-                return;
+            for (int i = 0; i < options.length(); i++) {
+                JSONObject option = options.getJSONObject(i);
+                RadioButton rb = new RadioButton(this);
+                rb.setText(option.getString("text"));
+                rb.setTag(option.getString("id"));
+                rb.setId(i + 100); // Unique IDs
+                rg.addView(rb);
             }
 
-            String choiceId = "none";
-            if (checkedId == 1) choiceId = "shoulders";
-            else if (checkedId == 2) choiceId = "wrists";
+            btnComplete.setOnClickListener(v -> {
+                int checkedId = rg.getCheckedRadioButtonId();
+                if (checkedId == -1) {
+                    Toast.makeText(this, "Please select an option.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-            FormCheckEngine engine = new FormCheckEngine();
-            EvaluationResult result = engine.evaluate(
-                    exerciseId,
-                    Arrays.asList(new Answer("bench_q1_discomfort_location", choiceId))
-            );
+                RadioButton selectedRb = findViewById(checkedId);
+                String choiceId = (String) selectedRb.getTag();
 
-            Intent i = new Intent(WorkoutQuestionsActivity.this, ResultsActivity.class);
-            i.putStringArrayListExtra("cues", new ArrayList<>(result.getCueIds()));
-            startActivity(i);
-        });
+                FormCheckEngine engine = new FormCheckEngine();
+                EvaluationResult result = engine.evaluate(
+                        this,
+                        exerciseId,
+                        Arrays.asList(new Answer(questionId, choiceId))
+                );
+
+                Intent i = new Intent(WorkoutQuestionsActivity.this, ResultsActivity.class);
+                i.putStringArrayListExtra("cues", new ArrayList<>(result.getCueIds()));
+                startActivity(i);
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error loading questions.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
 

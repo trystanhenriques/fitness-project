@@ -10,6 +10,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fitnessproject.R;
+import com.fitnessproject.core.data.DataLoader;
+
+import java.util.List;
 
 public class NewWorkoutActivity extends AppCompatActivity {
 
@@ -24,11 +27,11 @@ public class NewWorkoutActivity extends AppCompatActivity {
         EditText etSets = findViewById(R.id.etSets);
         Button btnSave = findViewById(R.id.btnSaveWorkout);
 
-        String[] exercises = {"Bench Press", "Squat", "Deadlift", "Overhead Press", "Row"};
+        List<String> exerciseList = DataLoader.getExerciseNames(this);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
-                exercises
+                exerciseList
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);

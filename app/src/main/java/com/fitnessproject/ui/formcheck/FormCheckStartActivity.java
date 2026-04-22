@@ -9,7 +9,10 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fitnessproject.R;
+import com.fitnessproject.core.data.DataLoader;
 import com.fitnessproject.ui.workout.WorkoutQuestionsActivity;
+
+import java.util.List;
 
 public class FormCheckStartActivity extends AppCompatActivity {
 
@@ -18,11 +21,14 @@ public class FormCheckStartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_check_start);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         Spinner spinner = findViewById(R.id.spinnerExercise);
         Button btnContinue = findViewById(R.id.btnContinue);
 
-        // Hardcoded list for now (we’ll move this to JSON later)
-        String[] exercises = {"Bench Press", "Squat", "Deadlift", "Overhead Press", "Row"};
+        List<String> exercises = DataLoader.getExerciseNames(this);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
@@ -34,20 +40,12 @@ public class FormCheckStartActivity extends AppCompatActivity {
 
         btnContinue.setOnClickListener(v -> {
             String selected = (String) spinner.getSelectedItem();
-            String exerciseId = mapNameToId(selected);
+            String exerciseId = DataLoader.mapNameToId(this, selected);
 
             //Next screen
             Intent i = new Intent(FormCheckStartActivity.this, WorkoutQuestionsActivity.class);
             i.putExtra("exercise_id", exerciseId);
             startActivity(i);
         });
-    }
-
-    private String mapNameToId(String name) {
-        if (name.equals("Bench Press")) return "bench";
-        if (name.equals("Squat")) return "squat";
-        if (name.equals("Deadlift")) return "deadlift";
-        if (name.equals("Overhead Press")) return "ohp";
-        return "row";
     }
 }
