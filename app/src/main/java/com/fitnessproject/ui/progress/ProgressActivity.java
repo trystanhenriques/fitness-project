@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.fitnessproject.R;
+
 import java.util.Arrays;
 import java.util.List;
 

@@ -8,6 +8,9 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.fitnessproject.R;
+import com.fitnessproject.ui.workout.WorkoutQuestionsActivity;
+
 public class FormCheckStartActivity extends AppCompatActivity {
 
     @Override
@@ -33,9 +36,8 @@ public class FormCheckStartActivity extends AppCompatActivity {
             String selected = (String) spinner.getSelectedItem();
             String exerciseId = mapNameToId(selected);
 
-            //Next screen (we’ll create it in Step 3)
+            //Next screen
             Intent i = new Intent(FormCheckStartActivity.this, WorkoutQuestionsActivity.class);
-            startActivity(i);
             i.putExtra("exercise_id", exerciseId);
             startActivity(i);
         });

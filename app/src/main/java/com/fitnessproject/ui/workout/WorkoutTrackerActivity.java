@@ -1,10 +1,15 @@
 package com.fitnessproject.ui.workout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.fitnessproject.R;
+import com.fitnessproject.ui.history.WorkoutHistoryActivity;
+import com.fitnessproject.ui.progress.ProgressActivity;
 
 public class WorkoutTrackerActivity extends AppCompatActivity {
     @Override
@@ -16,13 +21,13 @@ public class WorkoutTrackerActivity extends AppCompatActivity {
         Button btnProgress = findViewById(R.id.btnViewProgress);
         Button btnHistory = findViewById(R.id.btnWorkoutHistory);
 
-        // Temporary placeholders (we’ll create these screens next)
+        btnStartNew.setOnClickListener(v ->
+                startActivity(new Intent(this, NewWorkoutActivity.class)));
+
         btnProgress.setOnClickListener(v ->
-                startActivity(new android.content.Intent(this, ProgressActivity.class)));
-        btnProgress.setOnClickListener(v ->
-                Toast.makeText(this, "Progress screen next", Toast.LENGTH_SHORT).show());
+                startActivity(new Intent(this, ProgressActivity.class)));
 
         btnHistory.setOnClickListener(v ->
-                startActivity(new android.content.Intent(this, WorkoutHistoryActivity.class)));
+                startActivity(new Intent(this, WorkoutHistoryActivity.class)));
     }
 }

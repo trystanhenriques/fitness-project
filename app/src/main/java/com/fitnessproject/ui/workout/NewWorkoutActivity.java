@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.fitnessproject.R;
+
 public class NewWorkoutActivity extends AppCompatActivity {
 
     @Override

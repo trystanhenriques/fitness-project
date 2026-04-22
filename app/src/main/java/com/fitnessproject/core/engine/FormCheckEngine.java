@@ -1,7 +1,7 @@
 package com.fitnessproject.core.engine;
 
-import com.example.myapplication.model.Answer;
-import com.example.myapplication.model.EvaluationResult;
+import com.fitnessproject.core.model.Answer;
+import com.fitnessproject.core.model.EvaluationResult;
 
 import java.util.ArrayList;
 import java.util.List;

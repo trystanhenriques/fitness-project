@@ -9,9 +9,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.engine.FormCheckEngine;
-import com.example.myapplication.model.Answer;
-import com.example.myapplication.model.EvaluationResult;
+import com.fitnessproject.R;
+import com.fitnessproject.core.engine.FormCheckEngine;
+import com.fitnessproject.core.model.Answer;
+import com.fitnessproject.core.model.EvaluationResult;
+import com.fitnessproject.ui.main.ResultsActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
