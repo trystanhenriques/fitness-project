@@ -29,7 +29,7 @@ public class AuthRepository {
      * Conducts a registration using raw string credentials generating Salts locally,
      * failing predictably cleanly on constraint conflict gracefully wrapping a message.
      */
-    public AuthResult<UserSession> registerUser(Credentials credentials) {
+    public AuthResult<UserSession> register(Credentials credentials) {
         if (credentials.getUsername() == null || credentials.getUsername().trim().isEmpty()) {
             return AuthResult.error("Username cannot be empty");
         }
@@ -41,8 +41,7 @@ public class AuthRepository {
         String password = credentials.getPassword();
 
         // Check if user already exists
-        UserAccount existingUser = userDao.getUserByUsername(username);
-        if (existingUser != null) {
+        if (userDao.existsByUsername(username)) {
             return AuthResult.error("Username is already taken");
         }
 
@@ -74,7 +73,7 @@ public class AuthRepository {
     /**
      * Queries local user info mapping to hash check locally offline effectively securing usage.
      */
-    public AuthResult<UserSession> loginUser(Credentials credentials) {
+    public AuthResult<UserSession> login(Credentials credentials) {
         if (credentials.getUsername() == null || credentials.getPassword() == null) {
             return AuthResult.error("Invalid credentials.");
         }
@@ -96,8 +95,7 @@ public class AuthRepository {
         }
 
         // Update login info correctly tracked securely.
-        storedAccount.setLastLoginAt(System.currentTimeMillis());
-        userDao.updateUser(storedAccount);
+        userDao.updateLastLogin(storedAccount.getUserId(), System.currentTimeMillis());
 
         sessionManager.startUserSession(storedAccount.getUserId(), storedAccount.getUsername());
         return AuthResult.success(sessionManager.getCurrentSession());
@@ -106,7 +104,7 @@ public class AuthRepository {
     /**
      * Skips local saving securely directly logging cleanly using SharedPreferences default.
      */
-    public void startGuestSession() {
+    public void continueAsGuest() {
         sessionManager.startGuestSession();
     }
 
@@ -124,4 +122,3 @@ public class AuthRepository {
         sessionManager.clearSession();
     }
 }
-

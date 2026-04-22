@@ -27,6 +27,14 @@ public interface UserDao {
     UserAccount getUserById(Long userId);
 
     /**
+     * Efficiently check whether a user exists without fetching the entire entity.
+     * @param username String to search for
+     * @return true if the username exists
+     */
+    @Query("SELECT EXISTS(SELECT 1 FROM users WHERE username = :username)")
+    boolean existsByUsername(String username);
+
+    /**
      * Inserts a new user account into the local datastore. Room handles unique constraint errors.
      * @param account Model reference
      * @return Number showing rows affected, or exception if constraint breached
@@ -34,7 +42,14 @@ public interface UserDao {
     @Insert
     long insertUser(UserAccount account);
 
+    /**
+     * Efficiently updates only the last login timestamp instead of updating the whole user object.
+     * @param userId The ID of the user
+     * @param timestamp The new timestamp
+     */
+    @Query("UPDATE users SET lastLoginAt = :timestamp WHERE userId = :userId")
+    void updateLastLogin(Long userId, long timestamp);
+
     @Update
     void updateUser(UserAccount account);
 }
-
