@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.fitnessproject.R;
 import com.fitnessproject.core.data.DataLoader;
+import com.fitnessproject.core.data.DatabaseHelper;
 
 import java.util.List;
 
@@ -47,11 +48,10 @@ public class NewWorkoutActivity extends AppCompatActivity {
                 return;
             }
 
-            Toast.makeText(this,
-                    "Saved: " + exercise + " " + weight + " x " + reps + " (" + sets + " sets)",
-                    Toast.LENGTH_LONG).show();
+            DatabaseHelper db = new DatabaseHelper(this);
+            db.addWorkout(exercise, weight, reps, sets);
 
-            // Next step: save to SQLite (we’ll do that soon)
+            Toast.makeText(this, "Workout Saved!", Toast.LENGTH_SHORT).show();
             finish();
         });
     }
