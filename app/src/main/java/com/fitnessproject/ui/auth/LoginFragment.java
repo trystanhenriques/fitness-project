@@ -55,9 +55,9 @@ public class LoginFragment extends Fragment {
 
         // Map inputs directly delegating cleanly offline down the stream
         btnLogin.setOnClickListener(v -> {
-            String uname = editUsername.getText().toString();
-            String pwd = editPassword.getText().toString();
-            authViewModel.login(uname, pwd);
+            String username = editUsername.getText().toString();
+            String password = editPassword.getText().toString();
+            authViewModel.login(username, password);
         });
 
         btnGuest.setOnClickListener(v -> authViewModel.continueAsGuest());
@@ -80,4 +80,3 @@ public class LoginFragment extends Fragment {
         });
     }
 }
-

@@ -52,16 +52,11 @@ public class RegisterFragment extends Fragment {
         authViewModel = new ViewModelProvider(requireActivity(), factory).get(AuthViewModel.class);
 
         btnRegister.setOnClickListener(v -> {
-            String pwd = editPassword.getText().toString();
-            String confirm = editConfirmPassword.getText().toString();
+            String username = editUsername.getText().toString();
+            String password = editPassword.getText().toString();
+            String confirmPassword = editConfirmPassword.getText().toString();
 
-            if (!pwd.equals(confirm)) {
-                textError.setVisibility(View.VISIBLE);
-                textError.setText("Passwords do not match");
-                return;
-            }
-            String uname = editUsername.getText().toString();
-            authViewModel.register(uname, pwd);
+            authViewModel.register(username, password, confirmPassword);
         });
 
         btnBackToLogin.setOnClickListener(v -> authViewModel.navigateToLogin());
@@ -81,4 +76,3 @@ public class RegisterFragment extends Fragment {
         });
     }
 }
-

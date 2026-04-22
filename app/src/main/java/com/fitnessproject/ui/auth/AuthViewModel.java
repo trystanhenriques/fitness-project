@@ -69,8 +69,13 @@ public class AuthViewModel extends ViewModel {
     /**
      * Attempts to register a new user.
      */
-    public void register(String username, String password) {
+    public void register(String username, String password, String confirmPassword) {
         if (!validateInput(username, password)) return;
+
+        if (confirmPassword == null || !password.equals(confirmPassword)) {
+            uiState.setValue(AuthUiState.error("Passwords do not match"));
+            return;
+        }
 
         uiState.setValue(AuthUiState.loading());
 
@@ -146,4 +151,3 @@ public class AuthViewModel extends ViewModel {
         executorService.shutdown();
     }
 }
-
