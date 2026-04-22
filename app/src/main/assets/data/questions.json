@@ -31,5 +31,27 @@
         {"id": "none", "text": "No discomfort"}
       ]
     }
+  ],
+  "ohp": [
+    {
+      "id": "ohp_q1_discomfort_location",
+      "text": "Where do you feel discomfort?",
+      "options": [
+        {"id": "shoulders", "text": "Shoulders"},
+        {"id": "lower_back", "text": "Lower Back"},
+        {"id": "none", "text": "No discomfort"}
+      ]
+    }
+  ],
+  "row": [
+    {
+      "id": "row_q1_discomfort_location",
+      "text": "Where do you feel discomfort?",
+      "options": [
+        {"id": "lower_back", "text": "Lower Back"},
+        {"id": "elbows", "text": "Elbows"},
+        {"id": "none", "text": "No discomfort"}
+      ]
+    }
   ]
 }

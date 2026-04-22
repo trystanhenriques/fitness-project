@@ -19,5 +19,19 @@
       "grip": "Try using chalk or a mixed grip for heavier sets.",
       "none": "Solid lockout. Keep pulling through the heels."
     }
+  },
+  "ohp": {
+    "ohp_q1_discomfort_location": {
+      "shoulders": "Keep your core tight and avoid shrugging your shoulders at the start.",
+      "lower_back": "Avoid excessive arching; squeeze your glutes to stabilize your spine.",
+      "none": "Strong overhead position. Keep the bar path vertical."
+    }
+  },
+  "row": {
+    "row_q1_discomfort_location": {
+      "lower_back": "Maintain a flat back and pull the bar towards your lower stomach.",
+      "elbows": "Lead the pull with your elbows and avoid 'flailing' them out.",
+      "none": "Good squeeze at the top. Keep your neck in a neutral position."
+    }
   }
 }
