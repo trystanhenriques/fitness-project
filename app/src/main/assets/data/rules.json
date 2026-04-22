@@ -1,0 +1,23 @@
+{
+  "bench": {
+    "bench_q1_discomfort_location": {
+      "shoulders": "Tuck elbows (about 45°) and keep shoulders set back.",
+      "wrists": "Stack wrists over elbows and keep knuckles up.",
+      "none": "Form looks solid. Focus on driving through your feet."
+    }
+  },
+  "squat": {
+    "squat_q1_discomfort_location": {
+      "lower_back": "Brace your core harder and avoid 'butt wink' at the bottom.",
+      "knees": "Push your knees out and keep your weight on your mid-foot.",
+      "none": "Great depth. Maintain a proud chest throughout the lift."
+    }
+  },
+  "deadlift": {
+    "deadlift_q1_discomfort_location": {
+      "lower_back": "Hinge at the hips and keep the bar close to your shins.",
+      "grip": "Try using chalk or a mixed grip for heavier sets.",
+      "none": "Solid lockout. Keep pulling through the heels."
+    }
+  }
+}

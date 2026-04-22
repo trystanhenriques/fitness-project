@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication">
+
+        <activity
+            android:name=".ui.progress.ProgressActivity"
+            android:exported="false"
+            android:label="Progress"
+            android:parentActivityName=".ui.workout.WorkoutTrackerActivity" />
+        <activity
+            android:name=".ui.history.WorkoutHistoryActivity"
+            android:exported="false"
+            android:label="Workout History"
+            android:parentActivityName=".ui.workout.WorkoutTrackerActivity" />
+        <activity
+            android:name=".ui.workout.NewWorkoutActivity"
+            android:exported="false"
+            android:label="Log Workout"
+            android:parentActivityName=".ui.workout.WorkoutTrackerActivity" />
+        <activity
+            android:name=".ui.workout.WorkoutTrackerActivity"
+            android:exported="false"
+            android:label="Workout Tracker"
+            android:parentActivityName=".ui.main.MainActivity" />
+        <activity
+            android:name=".ui.main.ResultsActivity"
+            android:exported="false"
+            android:label="Evaluation Results"
+            android:parentActivityName=".ui.workout.WorkoutQuestionsActivity" />
+        <activity
+            android:name=".ui.workout.WorkoutQuestionsActivity"
+            android:exported="false"
+            android:label="Form Check"
+            android:parentActivityName=".ui.formcheck.FormCheckStartActivity" />
+        <activity
+            android:name=".ui.formcheck.FormCheckStartActivity"
+            android:exported="false"
+            android:label="Select Exercise"
+            android:parentActivityName=".ui.main.MainActivity" />
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
