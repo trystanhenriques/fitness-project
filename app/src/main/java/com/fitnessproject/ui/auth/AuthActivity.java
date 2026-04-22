@@ -28,7 +28,13 @@ public class AuthActivity extends AppCompatActivity {
         authViewModel = new ViewModelProvider(this, factory).get(AuthViewModel.class);
 
         // Preemptively check if someone is already logged in to skip this whole flow.
-        // For right now, let's let them always see login though to fulfill prompt requirements directly.
+        // If a session (guest or user) exists, immediately route to main.
+        com.fitnessproject.core.session.SessionManager sessionManager =
+            com.fitnessproject.core.session.SessionManager.getInstance(getApplicationContext());
+        if (sessionManager.hasActiveSession()) {
+            goToMain();
+            return;
+        }
 
         // Listen to state changes from our single source of truth across Login/Register screens.
         authViewModel.getCurrentScreen().observe(this, screen -> {
@@ -62,4 +68,3 @@ public class AuthActivity extends AppCompatActivity {
         finish(); // Close auth gracefully wiping traces out of backstack completely.
     }
 }
-
