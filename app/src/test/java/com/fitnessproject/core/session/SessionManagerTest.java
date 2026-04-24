@@ -116,6 +116,15 @@ public class SessionManagerTest {
     }
 
     @Test
+    public void logout_ClearsActiveSessionOnly() {
+        sessionManager.logout();
+
+        // Assert it clears the shared preferences (the session)
+        verify(mockEditor).clear();
+        verify(mockEditor).apply();
+    }
+
+    @Test
     public void clearSession_WipesAllPrefs() {
         sessionManager.clearSession();
         verify(mockEditor).clear();
