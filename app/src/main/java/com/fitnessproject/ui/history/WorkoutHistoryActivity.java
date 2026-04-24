@@ -7,8 +7,8 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fitnessproject.R;
+import com.fitnessproject.core.data.DatabaseHelper;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class WorkoutHistoryActivity extends AppCompatActivity {
@@ -19,12 +19,12 @@ public class WorkoutHistoryActivity extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.listHistory);
 
-        // Placeholder data (we’ll replace with SQLite)
-        List<String> items = Arrays.asList(
-                "Bench Press — 185 x 5 (3 sets)",
-                "Squat — 225 x 5 (3 sets)",
-                "Deadlift — 275 x 3 (2 sets)"
-        );
+        DatabaseHelper db = new DatabaseHelper(this);
+        List<String> items = db.getAllWorkouts();
+
+        if (items.isEmpty()) {
+            items.add("No workouts logged yet. Start training!");
+        }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
@@ -32,5 +32,9 @@ public class WorkoutHistoryActivity extends AppCompatActivity {
                 items
         );
         listView.setAdapter(adapter);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 }
