@@ -1,0 +1,47 @@
+{
+  "beginner_plan": {
+    "title": "Beginner Strength Plan",
+    "description": "A simple 3-day full-body routine to build a solid foundation.",
+    "days": [
+      {
+        "day": "Day 1",
+        "exercises": ["Squat: 3x5", "Bench Press: 3x5", "Row: 3x5"]
+      },
+      {
+        "day": "Day 2",
+        "exercises": ["Squat: 3x5", "Overhead Press: 3x5", "Deadlift: 1x5"]
+      },
+      {
+        "day": "Day 3",
+        "exercises": ["Squat: 3x5", "Bench Press: 3x5", "Row: 3x5"]
+      }
+    ]
+  },
+  "suggestions": {
+    "bench": {
+      "shoulders": ["Face Pulls: 3x12", "Incline DB Bench: 3x10"],
+      "wrists": ["Wrist Curls: 3x15", "Farmer Walks: 3 sets of 30s"],
+      "none": ["Paused Bench: 3x3", "Dips: 3xMax"]
+    },
+    "squat": {
+      "lower_back": ["Bird-Dogs: 3x10", "Plank: 3x60s"],
+      "knees": ["Goblet Squats: 3x10", "Bulgarian Split Squats: 3x8"],
+      "none": ["Pause Squats: 3x3", "Box Jumps: 3x5"]
+    },
+    "deadlift": {
+      "lower_back": ["Good Mornings: 3x10", "Hyperextensions: 3x12"],
+      "grip": ["Hang from Bar: 3 sets of 30s", "DB Shrugs: 3x12"],
+      "none": ["Deficit Deadlifts: 3x3", "Rack Pulls: 3x5"]
+    },
+    "ohp": {
+      "shoulders": ["Lateral Raises: 3x15", "Push Press: 3x5"],
+      "lower_back": ["Core Deadbugs: 3x10", "Ab Rollouts: 3x10"],
+      "none": ["Z-Press: 3x8", "Pull-ups: 3xMax"]
+    },
+    "row": {
+      "lower_back": ["Bent-over Flys: 3x12", "Cat-Cow Stretch: 10 reps"],
+      "elbows": ["Single Arm DB Row: 3x10", "Lat Pulldowns: 3x10"],
+      "none": ["Pendlay Rows: 3x5", "Face Pulls: 3x15"]
+    }
+  }
+}
