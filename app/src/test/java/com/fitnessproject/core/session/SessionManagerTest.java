@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.fitnessproject.core.data.model.UserSession;
+import com.fitnessproject.core.data.model.UserAccount;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -57,7 +58,7 @@ public class SessionManagerTest {
 
         UserSession session = sessionManager.getCurrentSession();
         assertNull("Session should be null when no active session flag is set", session);
-        assertFalse(sessionManager.hasActiveSession());
+        assertFalse(sessionManager.isLoggedIn());
     }
 
     @Test
@@ -67,7 +68,7 @@ public class SessionManagerTest {
 
         UserSession session = sessionManager.getCurrentSession();
 
-        assertTrue(sessionManager.hasActiveSession());
+        assertTrue(sessionManager.isLoggedIn());
         assertTrue(session.isGuest());
         assertNull(session.getUserId());
         assertNull(session.getUsername());
@@ -82,15 +83,19 @@ public class SessionManagerTest {
 
         UserSession session = sessionManager.getCurrentSession();
 
-        assertTrue(sessionManager.hasActiveSession());
+        assertTrue(sessionManager.isLoggedIn());
         assertFalse(session.isGuest());
         assertEquals(Long.valueOf(42L), session.getUserId());
         assertEquals("TestGuy", session.getUsername());
     }
 
     @Test
-    public void startUserSession_PersistsValues() {
-        sessionManager.startUserSession(123L, "MyUser");
+    public void startRegisteredSession_PersistsValues() {
+        UserAccount account = new UserAccount();
+        account.setUserId(123L);
+        account.setUsername("MyUser");
+
+        sessionManager.startRegisteredSession(account);
 
         verify(mockEditor).putBoolean("has_session", true);
         verify(mockEditor).putBoolean("is_guest", false);
@@ -117,4 +122,3 @@ public class SessionManagerTest {
         verify(mockEditor).apply();
     }
 }
-

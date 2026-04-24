@@ -3,6 +3,7 @@ package com.fitnessproject.core.session;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.fitnessproject.core.data.model.UserAccount;
 import com.fitnessproject.core.data.model.UserSession;
 
 /**
@@ -41,7 +42,7 @@ public class SessionManager {
      * Restores the session stored locally if any. Returns a Guest on freshly cleared state.
      */
     public UserSession getCurrentSession() {
-        if (!hasActiveSession()) {
+        if (!isLoggedIn()) {
             return null; // Signals we need login
         }
 
@@ -62,13 +63,14 @@ public class SessionManager {
 
     /**
      * Persist strong user context when they login securely or register freshly.
+     * Maps the offline UserAccount directly to preferences cleanly.
      */
-    public void startUserSession(Long userId, String username) {
+    public void startRegisteredSession(UserAccount account) {
         prefs.edit()
             .putBoolean(KEY_HAS_SESSION, true)
             .putBoolean(KEY_IS_GUEST, false)
-            .putLong(KEY_USER_ID, userId)
-            .putString(KEY_USERNAME, username)
+            .putLong(KEY_USER_ID, account.getUserId())
+            .putString(KEY_USERNAME, account.getUsername())
             .apply();
     }
 
@@ -85,10 +87,25 @@ public class SessionManager {
     }
 
     /**
-     * Checks if there is any active session (user or guest).
+     * Checks if the user is currently verified either as a guest or a fully registered user.
      */
-    public boolean hasActiveSession() {
+    public boolean isLoggedIn() {
         return prefs.getBoolean(KEY_HAS_SESSION, false);
+    }
+
+    /**
+     * Identifies natively whether the active session belongs to a guest user.
+     */
+    public boolean isGuest() {
+        return isLoggedIn() && prefs.getBoolean(KEY_IS_GUEST, true);
+    }
+
+    /**
+     * Removes the active session locally triggering a return to the auth screen,
+     * maintaining the underlying registered data naturally in SQLite.
+     */
+    public void logout() {
+        clearSession();
     }
 
     /**
