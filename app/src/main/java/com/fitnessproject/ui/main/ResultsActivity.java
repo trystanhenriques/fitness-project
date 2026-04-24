@@ -3,6 +3,9 @@ package com.fitnessproject.ui.main;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Button;
+import android.content.Intent;
+import com.fitnessproject.ui.formcheck.FormCheckStartActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,6 +46,22 @@ public class ResultsActivity extends AppCompatActivity {
 
         updateTierProgress();
         displayNextSteps();
+
+        Button btnAnotherExercise = findViewById(R.id.btnAnotherExercise);
+        btnAnotherExercise.setOnClickListener(v -> {
+            Intent intent = new Intent(ResultsActivity.this, FormCheckStartActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+        });
+
+        Button btnBackToMain = findViewById(R.id.btnBackToMain);
+        btnBackToMain.setOnClickListener(v -> {
+            Intent intent = new Intent(ResultsActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+        });
     }
 
     private void updateTierProgress() {

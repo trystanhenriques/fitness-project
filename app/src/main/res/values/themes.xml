@@ -1,12 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.MyApplication" parent="Theme.Material3.Dark">
         <item name="android:windowBackground">@color/fitness_bg_navy</item>
         <item name="android:textColorPrimary">@color/fitness_text_primary</item>
         <item name="android:textColorSecondary">@color/fitness_text_secondary</item>
         <item name="colorPrimary">@color/fitness_primary_orange</item>
+
+        <!-- Seamless Action Bar -->
+        <item name="actionBarStyle">@style/Widget.Fitness.ActionBar</item>
+        <item name="windowActionBarOverlay">false</item>
+        <item name="android:statusBarColor">@color/fitness_bg_navy</item>
+    </style>
+
+    <style name="Widget.Fitness.ActionBar" parent="Widget.Material3.ActionBar.Solid">
+        <item name="background">@color/fitness_bg_navy</item>
+        <item name="elevation">0dp</item>
+        <item name="titleTextColor">@color/fitness_text_primary</item>
     </style>
 
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />

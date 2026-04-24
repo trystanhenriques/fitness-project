@@ -36,10 +36,10 @@ public class ProgressActivity extends AppCompatActivity {
         List<String> exerciseList = DataLoader.getExerciseNames(this);
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
                 this,
-                android.R.layout.simple_spinner_item,
+                R.layout.item_spinner,
                 exerciseList
         );
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAdapter.setDropDownViewResource(R.layout.item_spinner_dropdown);
         spinner.setAdapter(spinnerAdapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -62,12 +62,12 @@ public class ProgressActivity extends AppCompatActivity {
 
         if (progress.isEmpty()) {
             txtLastTime.setText("No data yet for " + exercise);
-            listRecent.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new String[]{"No recent sets"}));
+            listRecent.setAdapter(new ArrayAdapter<>(this, R.layout.item_list, new String[]{"No recent sets"}));
         } else {
             txtLastTime.setText("Last set: " + progress.get(0));
             ArrayAdapter<String> listAdapter = new ArrayAdapter<>(
                     this,
-                    android.R.layout.simple_list_item_1,
+                    R.layout.item_list,
                     progress
             );
             listRecent.setAdapter(listAdapter);

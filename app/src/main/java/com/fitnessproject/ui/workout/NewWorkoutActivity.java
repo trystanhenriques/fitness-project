@@ -31,10 +31,10 @@ public class NewWorkoutActivity extends AppCompatActivity {
         List<String> exerciseList = DataLoader.getExerciseNames(this);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
-                android.R.layout.simple_spinner_item,
+                R.layout.item_spinner,
                 exerciseList
         );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.item_spinner_dropdown);
         spinner.setAdapter(adapter);
 
         btnSave.setOnClickListener(v -> {

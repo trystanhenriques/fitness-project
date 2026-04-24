@@ -49,7 +49,7 @@
                 <!-- Colored Icon Container -->
                 <FrameLayout
                     android:layout_width="56dp"
-                    android:layout_height="56dp"
+                    android:layout_height="56dp" android:popupBackground="@color/fitness_surface_navy"
                     android:background="@drawable/bg_icon_container_blue"
                     android:layout_marginRight="@dimen/spacing_medium">
                     <!-- Placeholder for icon, currently just a colored block -->
@@ -104,7 +104,7 @@
                 <!-- Colored Icon Container -->
                 <FrameLayout
                     android:layout_width="56dp"
-                    android:layout_height="56dp"
+                    android:layout_height="56dp" android:popupBackground="@color/fitness_surface_navy"
                     android:background="@drawable/bg_icon_container_orange"
                     android:layout_marginRight="@dimen/spacing_medium">
                 </FrameLayout>
@@ -158,7 +158,7 @@
                 <!-- Colored Icon Container -->
                 <FrameLayout
                     android:layout_width="56dp"
-                    android:layout_height="56dp"
+                    android:layout_height="56dp" android:popupBackground="@color/fitness_surface_navy"
                     android:background="@drawable/bg_icon_container_green"
                     android:layout_marginRight="@dimen/spacing_medium">
                 </FrameLayout>

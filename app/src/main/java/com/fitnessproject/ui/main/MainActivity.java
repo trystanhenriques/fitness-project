@@ -16,6 +16,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Hide action bar for the dashboard only
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         // Use your Home layout
         setContentView(R.layout.activity_home);
 
