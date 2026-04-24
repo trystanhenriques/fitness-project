@@ -1,12 +1,14 @@
 package com.fitnessproject.ui.main;
 
 import android.os.Bundle;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fitnessproject.R;
 
+import com.fitnessproject.core.data.DatabaseHelper;
 import com.fitnessproject.core.data.DataLoader;
 
 import org.json.JSONArray;
@@ -39,7 +41,34 @@ public class ResultsActivity extends AppCompatActivity {
         }
         txtCues.setText(sb.toString());
 
+        updateTierProgress();
         displayNextSteps();
+    }
+
+    private void updateTierProgress() {
+        DatabaseHelper db = new DatabaseHelper(this);
+        int workoutCount = db.getWorkoutCount();
+        
+        ProgressBar pb = findViewById(R.id.progressTier);
+        TextView txtTierName = findViewById(R.id.txtTierName);
+        TextView txtTierProgress = findViewById(R.id.txtTierProgress);
+        
+        if (workoutCount < 5) {
+            txtTierName.setText("Tier: Beginner Foundation");
+            pb.setMax(5);
+            pb.setProgress(workoutCount);
+            txtTierProgress.setText((5 - workoutCount) + " workouts until Intermediate");
+        } else if (workoutCount < 20) {
+            txtTierName.setText("Tier: Intermediate Strength");
+            pb.setMax(20);
+            pb.setProgress(workoutCount);
+            txtTierProgress.setText((20 - workoutCount) + " workouts until Advanced Performance");
+        } else {
+            txtTierName.setText("Tier: Advanced Performance");
+            pb.setMax(100);
+            pb.setProgress(100);
+            txtTierProgress.setText("Top Tier Reached! Keep pushing your limits.");
+        }
     }
 
     private void displayNextSteps() {
@@ -67,10 +96,27 @@ public class ResultsActivity extends AppCompatActivity {
                 }
             }
 
-            // 2. Beginner Plan
-            JSONObject beginnerPlan = nextStepsData.getJSONObject("beginner_plan");
-            sb.append(beginnerPlan.getString("title")).append(":\n");
-            sb.append(beginnerPlan.getString("description")).append("\n");
+            // 2. Dynamic Plan based on Progress
+            DatabaseHelper db = new DatabaseHelper(this);
+            int workoutCount = db.getWorkoutCount();
+            
+            JSONObject plans = nextStepsData.getJSONObject("plans");
+            JSONObject selectedPlan;
+            
+            if (workoutCount < 5) {
+                selectedPlan = plans.getJSONObject("beginner");
+            } else if (workoutCount < 20) {
+                selectedPlan = plans.getJSONObject("intermediate");
+            } else {
+                selectedPlan = plans.getJSONObject("advanced");
+            }
+
+            sb.append(selectedPlan.getString("title")).append(":\n");
+            sb.append(selectedPlan.getString("description")).append("\n");
+            JSONArray planItems = selectedPlan.getJSONArray("items");
+            for (int i = 0; i < planItems.length(); i++) {
+                sb.append("- ").append(planItems.getString(i)).append("\n");
+            }
 
             txtNextSteps.setText(sb.toString());
 
