@@ -79,6 +79,15 @@ public class WorkoutQuestionsActivity extends AppCompatActivity {
                     RadioButton selectedRb = findViewById(checkedId);
                     choiceId = (String) selectedRb.getTag();
                     answers.add(new Answer(questionId, choiceId));
+                } else if (!userDescription.isEmpty()) {
+                    // Fallback to keyword-based choiceId if user only typed text
+                    String desc = userDescription.toLowerCase();
+                    if (desc.contains("back")) choiceId = "lower_back";
+                    else if (desc.contains("knee")) choiceId = "knees";
+                    else if (desc.contains("shoulder")) choiceId = "shoulders";
+                    else if (desc.contains("wrist")) choiceId = "wrists";
+                    else if (desc.contains("grip")) choiceId = "grip";
+                    else if (desc.contains("elbow")) choiceId = "elbows";
                 }
 
                 FormCheckEngine engine = new FormCheckEngine();
