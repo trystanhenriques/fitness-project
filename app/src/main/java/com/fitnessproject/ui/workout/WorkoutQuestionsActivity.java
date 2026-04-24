@@ -3,6 +3,7 @@ package com.fitnessproject.ui.workout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -64,19 +65,28 @@ public class WorkoutQuestionsActivity extends AppCompatActivity {
 
             btnComplete.setOnClickListener(v -> {
                 int checkedId = rg.getCheckedRadioButtonId();
-                if (checkedId == -1) {
-                    Toast.makeText(this, "Please select an option.", Toast.LENGTH_SHORT).show();
+                EditText etDescription = findViewById(R.id.etUserDescription);
+                String userDescription = etDescription.getText().toString().trim();
+
+                if (checkedId == -1 && userDescription.isEmpty()) {
+                    Toast.makeText(this, "Please select an option or describe how your set felt.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                RadioButton selectedRb = findViewById(checkedId);
-                String choiceId = (String) selectedRb.getTag();
+                String choiceId = null;
+                List<Answer> answers = new ArrayList<>();
+                if (checkedId != -1) {
+                    RadioButton selectedRb = findViewById(checkedId);
+                    choiceId = (String) selectedRb.getTag();
+                    answers.add(new Answer(questionId, choiceId));
+                }
 
                 FormCheckEngine engine = new FormCheckEngine();
                 EvaluationResult result = engine.evaluate(
                         this,
                         exerciseId,
-                        Arrays.asList(new Answer(questionId, choiceId))
+                        answers,
+                        userDescription
                 );
 
                 Intent i = new Intent(WorkoutQuestionsActivity.this, ResultsActivity.class);
