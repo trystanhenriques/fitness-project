@@ -96,8 +96,9 @@ public class AuthRepository {
         }
 
         // Update login info correctly tracked securely.
-        storedAccount.setLastLoginAt(System.currentTimeMillis());
-        userDao.updateUser(storedAccount);
+        long now = System.currentTimeMillis();
+        storedAccount.setLastLoginAt(now);
+        userDao.updateLastLogin(storedAccount.getUserId(), now);
 
         sessionManager.startRegisteredSession(storedAccount);
         return AuthResult.success(sessionManager.getCurrentSession());
