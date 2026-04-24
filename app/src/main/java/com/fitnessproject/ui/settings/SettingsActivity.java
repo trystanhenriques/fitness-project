@@ -1,75 +1,77 @@
 package com.fitnessproject.ui.settings;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.CheckBox;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.fitnessproject.R;
-import com.fitnessproject.ui.auth.AuthActivity;
+import com.fitnessproject.core.data.DatabaseHelper;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private SettingsViewModel viewModel;
+    private static final String PREFS_NAME = "FitnessPrefs";
+    private static final String KEY_DISCLAIMER_ACCEPTED = "disclaimer_accepted";
+    private static final String KEY_TEXT_SIZE = "text_size";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        // Map UI components safely
-        TextView txtAccountStatus = findViewById(R.id.txtAccountStatus);
-        TextView txtRegisteredExplanation = findViewById(R.id.txtRegisteredExplanation);
-        TextView txtGuestExplanation = findViewById(R.id.txtGuestExplanation);
-        Button btnLogOut = findViewById(R.id.btnLogOut);
-        Button btnLoginRegister = findViewById(R.id.btnLoginRegister);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Settings & Disclaimer");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
-        // Bind the manual factory since this architecture doesn't use Dagger/Hilt
-        SettingsViewModelFactory factory = new SettingsViewModelFactory(this);
-        viewModel = new ViewModelProvider(this, factory).get(SettingsViewModel.class);
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
-        // Observe the current text identifier outputted natively by the view model
-        viewModel.getAccountStatusText().observe(this, txtAccountStatus::setText);
-
-        // Swap visual elements perfectly according to MVVM states (no logic needed intrinsically)
-        viewModel.getIsGuestUser().observe(this, isGuest -> {
-            if (isGuest != null) {
-                if (isGuest) {
-                    btnLogOut.setVisibility(View.GONE);
-                    txtRegisteredExplanation.setVisibility(View.GONE);
-
-                    btnLoginRegister.setVisibility(View.VISIBLE);
-                    txtGuestExplanation.setVisibility(View.VISIBLE);
-                } else {
-                    btnLoginRegister.setVisibility(View.GONE);
-                    txtGuestExplanation.setVisibility(View.GONE);
-
-                    btnLogOut.setVisibility(View.VISIBLE);
-                    txtRegisteredExplanation.setVisibility(View.VISIBLE);
-                }
-            }
+        // Disclaimer Checkbox
+        CheckBox cbDisclaimer = findViewById(R.id.cbDisclaimer);
+        cbDisclaimer.setChecked(prefs.getBoolean(KEY_DISCLAIMER_ACCEPTED, false));
+        cbDisclaimer.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            prefs.edit().putBoolean(KEY_DISCLAIMER_ACCEPTED, isChecked).apply();
         });
 
-        // Clear the App backstack preventing floating memory bugs post-logout
-        viewModel.getNavigateToAuthEvent().observe(this, navigate -> {
-            if (navigate != null && navigate) {
-                Intent returnIntent = new Intent(this, AuthActivity.class);
-                returnIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(returnIntent);
+        // Text Size RadioGroup
+        RadioGroup rgTextSize = findViewById(R.id.rgTextSize);
+        int savedTextSize = prefs.getInt(KEY_TEXT_SIZE, 1); // 0: Small, 1: Normal, 2: Large
+        if (savedTextSize == 0) rgTextSize.check(R.id.rbSmall);
+        else if (savedTextSize == 2) rgTextSize.check(R.id.rbLarge);
+        else rgTextSize.check(R.id.rbMedium);
 
-                // Clear the event flag and destroy Settings view
-                viewModel.onNavigatedToAuth();
-                finish();
-            }
+        rgTextSize.setOnCheckedChangeListener((group, checkedId) -> {
+            int size = 1;
+            if (checkedId == R.id.rbSmall) size = 0;
+            else if (checkedId == R.id.rbLarge) size = 2;
+            prefs.edit().putInt(KEY_TEXT_SIZE, size).apply();
+            Toast.makeText(this, "Text size preference saved. Restart app to apply fully.", Toast.LENGTH_SHORT).show();
         });
 
-        // Delegate routing seamlessly to viewmodel functions
-        btnLogOut.setOnClickListener(v -> viewModel.onLogoutClicked());
-        btnLoginRegister.setOnClickListener(v -> viewModel.onLoginRegisterClicked());
+        // Delete History
+        Button btnDeleteHistory = findViewById(R.id.btnDeleteHistory);
+        btnDeleteHistory.setOnClickListener(v -> {
+            new AlertDialog.Builder(this)
+                    .setTitle("Delete History")
+                    .setMessage("Are you sure you want to delete all workout history? This cannot be undone.")
+                    .setPositiveButton("Delete", (dialog, which) -> {
+                        DatabaseHelper db = new DatabaseHelper(this);
+                        db.deleteAllWorkouts();
+                        Toast.makeText(this, "All history deleted.", Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }
-

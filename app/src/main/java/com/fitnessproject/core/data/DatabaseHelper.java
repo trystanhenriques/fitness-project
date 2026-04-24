@@ -93,6 +93,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
+    public void deleteAllWorkouts() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_WORKOUTS, null, null);
+        db.close();
+    }
+
     public int getWorkoutCount() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_WORKOUTS, null);
