@@ -29,7 +29,6 @@
             android:layout_marginBottom="@dimen/spacing_xlarge"
             android:text="Choose what you want to do today" />
 
-        <!-- Form Check Feature Card -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,14 +42,11 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/spacing_large">
 
-                <!-- Colored Icon Container -->
                 <FrameLayout
                     android:layout_width="@dimen/feature_icon_size"
                     android:layout_height="@dimen/feature_icon_size"
-                    android:background="@drawable/bg_icon_container_blue"
-                    android:layout_marginEnd="@dimen/spacing_medium">
-                    <!-- Placeholder for icon, currently just a colored block -->
-                </FrameLayout>
+                    android:layout_marginEnd="@dimen/spacing_medium"
+                    android:background="@drawable/bg_icon_container_blue" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -78,11 +74,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:text=""
-                android:stateListAnimator="@null" />
+                android:stateListAnimator="@null"
+                android:text="" />
         </FrameLayout>
 
-        <!-- Workout Tracking Feature Card -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,13 +91,11 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/spacing_large">
 
-                <!-- Colored Icon Container -->
                 <FrameLayout
                     android:layout_width="@dimen/feature_icon_size"
                     android:layout_height="@dimen/feature_icon_size"
-                    android:background="@drawable/bg_icon_container_orange"
-                    android:layout_marginEnd="@dimen/spacing_medium">
-                </FrameLayout>
+                    android:layout_marginEnd="@dimen/spacing_medium"
+                    android:background="@drawable/bg_icon_container_orange" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -130,11 +123,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:text=""
-                android:stateListAnimator="@null" />
+                android:stateListAnimator="@null"
+                android:text="" />
         </FrameLayout>
 
-        <!-- Settings Feature Card -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -148,13 +140,60 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/spacing_large">
 
-                <!-- Colored Icon Container -->
                 <FrameLayout
                     android:layout_width="@dimen/feature_icon_size"
                     android:layout_height="@dimen/feature_icon_size"
-                    android:background="@drawable/bg_icon_container_green"
-                    android:layout_marginEnd="@dimen/spacing_medium">
-                </FrameLayout>
+                    android:layout_marginEnd="@dimen/spacing_medium"
+                    android:background="@drawable/bg_icon_container_yellow" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCardTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Weekly Plan Builder" />
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCaption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xsmall"
+                        android:text="Build a structured weekly training plan"
+                        android:textColor="@color/fitness_text_secondary" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnPlanBuilder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:stateListAnimator="@null"
+                android:text="" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_large">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_large">
+
+                <FrameLayout
+                    android:layout_width="@dimen/feature_icon_size"
+                    android:layout_height="@dimen/feature_icon_size"
+                    android:layout_marginEnd="@dimen/spacing_medium"
+                    android:background="@drawable/bg_icon_container_green" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -182,8 +221,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:text=""
-                android:stateListAnimator="@null" />
+                android:stateListAnimator="@null"
+                android:text="" />
         </FrameLayout>
 
     </LinearLayout>

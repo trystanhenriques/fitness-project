@@ -63,6 +63,19 @@
             android:parentActivityName=".ui.main.MainActivity" />
 
         <activity
+            android:name=".ui.planner.PlanBuilderActivity"
+            android:exported="false"
+            android:label="Plan Builder"
+            android:windowSoftInputMode="adjustResize"
+            android:parentActivityName=".ui.main.MainActivity" />
+
+        <activity
+            android:name=".ui.planner.PlanDisplayActivity"
+            android:exported="false"
+            android:label="Your Weekly Plan"
+            android:parentActivityName=".ui.planner.PlanBuilderActivity" />
+
+        <activity
             android:name=".ui.main.MainActivity"
             android:exported="false">
         </activity>

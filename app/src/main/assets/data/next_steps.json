@@ -3,23 +3,152 @@
     "beginner": {
       "title": "Beginner Foundation",
       "description": "Focus on learning the movements and building consistency.",
-      "items": ["Squat: 3x5", "Bench Press: 3x5", "Deadlift: 1x5"]
+      "variations": [
+        {
+          "condition": "none",
+          "title": "Beginner: Momentum",
+          "description": "Great work! Keep refining your form with these key movements.",
+          "items": ["Squat: 3x5", "Bench Press: 3x5", "Deadlift: 1x5", "Plank: 2x30s"]
+        },
+        {
+          "condition": "shoulders",
+          "title": "Beginner: Shoulder Health",
+          "description": "We noticed shoulder feedback. Adjusting your foundation to protect your joints while you learn.",
+          "items": ["Light DB Bench: 2x15", "Shoulder Mobility: 5 mins", "Face Pulls: 2x20"]
+        },
+        {
+          "condition": "lower_back",
+          "title": "Beginner: Core Stability",
+          "description": "Focusing on bracing and back safety to build a stronger foundation.",
+          "items": ["Bird-Dogs: 3x10", "Reduce load by 20%", "Focus on bracing"]
+        },
+        {
+          "condition": "knees",
+          "title": "Beginner: Knee Focus",
+          "description": "Adjusting squats to help you learn better knee tracking and stability.",
+          "items": ["Box Squats: 3x10", "Terminal Knee Extensions: 2x20", "Check stance width"]
+        },
+        {
+          "condition": "wrists",
+          "title": "Beginner: Grip & Wrist",
+          "description": "Building wrist resilience to support your heavy lifts.",
+          "items": ["Check grip width", "Wrist Mobility", "Dumbbell Press instead"]
+        },
+        {
+          "condition": "grip",
+          "title": "Beginner: Grip Strength",
+          "description": "Focusing on holding strength to ensure you can finish your sets.",
+          "items": ["Use straps for heavy sets", "Farmer Walks: 2x30s", "Static Bar Hang: 1 min"]
+        },
+        {
+          "condition": "elbows",
+          "title": "Beginner: Arm Health",
+          "description": "Tending to your elbows while keeping the movement patterns consistent.",
+          "items": ["High rep Hammer Curls: 2x20", "Check elbow tuck", "Ice and Rest"]
+        }
+      ]
     },
     "intermediate": {
       "title": "Intermediate Strength",
-      "description": "Increase volume and add accessory movements for plateau breaking.",
-      "items": ["Weighted Dips: 3x8", "Paused Squats: 3x5", "Lat Pulldowns: 3x10"]
+      "description": "Increase volume and add accessory movements.",
+      "variations": [
+        {
+          "condition": "none",
+          "title": "Intermediate: Progress",
+          "description": "Consistency is key. Pushing the volume to break through plateaus.",
+          "items": ["Weighted Dips: 3x8", "Paused Squats: 3x5", "Lat Pulldowns: 3x10"]
+        },
+        {
+          "condition": "shoulders",
+          "title": "Intermediate: Shoulder Support",
+          "description": "Managing shoulder load while maintaining high intensity.",
+          "items": ["Landmine Press: 3x10", "Band Pull-aparts: 3x20", "Limit pressing volume"]
+        },
+        {
+          "condition": "lower_back",
+          "title": "Intermediate: Back Recovery",
+          "description": "Swapping variations to allow the lower back to recover without missing a beat.",
+          "items": ["Good Mornings: 3x10", "Switch to Barbell Rows", "Stretching: 10 mins"]
+        },
+        {
+          "condition": "knees",
+          "title": "Intermediate: Knee Tracking",
+          "description": "Building unilateral strength to fix imbalances affecting your knees.",
+          "items": ["Bulgarian Split Squats: 2x12", "Step-ups: 2x10", "Slow down the descent"]
+        },
+        {
+          "condition": "wrists",
+          "title": "Intermediate: Wrist Support",
+          "description": "Optimizing grip and support for heavier loads.",
+          "items": ["Wrist Straps for Bench", "Check forearm strength", "Avoid heavy wrist loading"]
+        },
+        {
+          "condition": "grip",
+          "title": "Intermediate: Grip Mastery",
+          "description": "Advanced grip techniques to ensure your back fails before your hands.",
+          "items": ["Mixed Grip practice", "Chalk Usage", "Towel Pull-ups: 2xMax"]
+        },
+        {
+          "condition": "elbows",
+          "title": "Intermediate: Elbow Care",
+          "description": "Refining mechanics to reduce joint stress during heavy pulling/pushing.",
+          "items": ["Tricep Extensions: 3x15", "Check Row pathing", "Reduce elbow flare"]
+        }
+      ]
     },
     "advanced": {
       "title": "Advanced Performance",
-      "description": "High intensity with specialized variations and low reps.",
-      "items": ["Deficit Deadlifts: 3x3", "Pin Press: 3x3", "Box Squats: 5x2"]
+      "description": "High intensity with specialized variations.",
+      "variations": [
+        {
+          "condition": "none",
+          "title": "Advanced: Peak Performance",
+          "description": "Optimizing every rep for maximum strength and power output.",
+          "items": ["Deficit Deadlifts: 3x3", "Pin Press: 3x3", "Box Squats: 5x2"]
+        },
+        {
+          "condition": "shoulders",
+          "title": "Advanced: Joint Longevity",
+          "description": "Strategic deloading and prehab to maintain elite performance.",
+          "items": ["Stability Ball Y-Raises", "Rotator Cuff focus", "Max Effort deload"]
+        },
+        {
+          "condition": "lower_back",
+          "title": "Advanced: Posterior Chain",
+          "description": "Strengthening the posterior chain while managing central nervous system fatigue.",
+          "items": ["Reverse Hyper: 3x15", "Evaluate bar path strictly", "GHD Situps: 3x10"]
+        },
+        {
+          "condition": "knees",
+          "title": "Advanced: Knee Resilience",
+          "description": "Extreme stability work to protect your joints under maximal loads.",
+          "items": ["Spanish Squats: 3x45s hold", "VMO focus work", "Sled Drags: 5 mins"]
+        },
+        {
+          "condition": "wrists",
+          "title": "Advanced: Precision Grip",
+          "description": "Specialized drills to ensure a rock-solid connection to the bar.",
+          "items": ["Custom rehab routine", "Grip adjustment drills", "Thick bar work"]
+        },
+        {
+          "condition": "grip",
+          "title": "Advanced: Hand Strength",
+          "description": "Maximal effort grip work for deadlifts and carries.",
+          "items": ["Fat Gripz training", "Timed holds: 90% Max", "Plate Pinches"]
+        },
+        {
+          "condition": "elbows",
+          "title": "Advanced: Tendon Health",
+          "description": "Eccentric training to build bulletproof tendons for heavy pressing.",
+          "items": ["BFR training (Blood Flow Restriction)", "Eccentric focus work", "Rest 48h extra"]
+        }
+      ]
     }
   },
   "suggestions": {
     "bench": {
       "shoulders": ["Face Pulls: 3x12", "Incline DB Bench: 3x10"],
-      "wrists": ["Wrist Curls: 3x15", "Farmer Walks: 3 sets of 30s"],
+      "wrists": ["Wrist Curls: 3x15", "Farmer Walks: 3x30s"],
       "none": ["Paused Bench: 3x3", "Dips: 3xMax"]
     },
     "squat": {
@@ -29,7 +158,7 @@
     },
     "deadlift": {
       "lower_back": ["Good Mornings: 3x10", "Hyperextensions: 3x12"],
-      "grip": ["Hang from Bar: 3 sets of 30s", "DB Shrugs: 3x12"],
+      "grip": ["Hang from Bar: 3x30s", "DB Shrugs: 3x12"],
       "none": ["Deficit Deadlifts: 3x3", "Rack Pulls: 3x5"]
     },
     "ohp": {

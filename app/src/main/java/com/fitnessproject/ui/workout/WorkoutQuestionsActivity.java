@@ -82,6 +82,17 @@ public class WorkoutQuestionsActivity extends AppCompatActivity {
                     answers.add(new Answer(questionId, choiceId));
                 }
 
+                // Keyword scanning: prioritize text-based keywords
+                if (!userDescription.isEmpty()) {
+                    String desc = userDescription.toLowerCase();
+                    if (desc.contains("back") || desc.contains("spine")) choiceId = "lower_back";
+                    else if (desc.contains("knee")) choiceId = "knees";
+                    else if (desc.contains("shoulder")) choiceId = "shoulders";
+                    else if (desc.contains("wrist")) choiceId = "wrists";
+                    else if (desc.contains("grip")) choiceId = "grip";
+                    else if (desc.contains("elbow")) choiceId = "elbows";
+                }
+
                 FormCheckEngine engine = new FormCheckEngine();
                 EvaluationResult result = engine.evaluate(
                         this,
