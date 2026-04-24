@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.fitnessproject.R;
 import com.fitnessproject.ui.formcheck.FormCheckStartActivity;
+import com.fitnessproject.ui.settings.SettingsActivity;
 import com.fitnessproject.ui.workout.WorkoutTrackerActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,5 +27,9 @@ public class MainActivity extends AppCompatActivity {
         Button btnWorkoutTracking = findViewById(R.id.btnWorkoutTracking);
         btnWorkoutTracking.setOnClickListener(v ->
                 startActivity(new Intent(this, WorkoutTrackerActivity.class)));
+
+        Button btnSettings = findViewById(R.id.btnSettings);
+        btnSettings.setOnClickListener(v ->
+                startActivity(new Intent(this, SettingsActivity.class)));
     }
 }

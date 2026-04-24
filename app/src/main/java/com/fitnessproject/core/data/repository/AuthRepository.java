@@ -60,7 +60,8 @@ public class AuthRepository {
 
         try {
             long generatedUserId = userDao.insertUser(newAccount);
-            sessionManager.startUserSession(generatedUserId, username);
+            newAccount.setUserId(generatedUserId);
+            sessionManager.startRegisteredSession(newAccount);
             return AuthResult.success(sessionManager.getCurrentSession());
         } catch (SQLiteConstraintException e) {
             // Failsafe for double constraint insertion collisions cleanly
@@ -95,9 +96,11 @@ public class AuthRepository {
         }
 
         // Update login info correctly tracked securely.
-        userDao.updateLastLogin(storedAccount.getUserId(), System.currentTimeMillis());
+        long now = System.currentTimeMillis();
+        storedAccount.setLastLoginAt(now);
+        userDao.updateLastLogin(storedAccount.getUserId(), now);
 
-        sessionManager.startUserSession(storedAccount.getUserId(), storedAccount.getUsername());
+        sessionManager.startRegisteredSession(storedAccount);
         return AuthResult.success(sessionManager.getCurrentSession());
     }
 
@@ -116,6 +119,7 @@ public class AuthRepository {
     }
 
     /**
+     * Logout clears the active session but preserves saved account data.
      * Reverts app globally clearing user state completely safely offline.
      */
     public void logout() {

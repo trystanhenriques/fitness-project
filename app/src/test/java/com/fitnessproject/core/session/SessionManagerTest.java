@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.fitnessproject.core.data.model.UserSession;
+import com.fitnessproject.core.data.model.UserAccount;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +37,7 @@ public class SessionManagerTest {
 
     @Before
     public void setUp() {
-        MockitoAnnotations.openInMocks(this);
+        MockitoAnnotations.initMocks(this);
 
         when(mockContext.getApplicationContext()).thenReturn(mockContext);
         when(mockContext.getSharedPreferences(anyString(), eq(Context.MODE_PRIVATE))).thenReturn(mockPrefs);
@@ -48,26 +49,27 @@ public class SessionManagerTest {
         when(mockEditor.remove(anyString())).thenReturn(mockEditor);
         when(mockEditor.clear()).thenReturn(mockEditor);
 
+        SessionManager.clearInstanceForTest();
         sessionManager = SessionManager.getInstance(mockContext);
     }
 
     @Test
     public void getCurrentSession_WhenNoSession_ReturnsNull() {
-        when(mockPrefs.getBoolean("has_session", false)).thenReturn(false);
+        when(mockPrefs.getBoolean(eq("has_session"), anyBoolean())).thenReturn(false);
 
         UserSession session = sessionManager.getCurrentSession();
         assertNull("Session should be null when no active session flag is set", session);
-        assertFalse(sessionManager.hasActiveSession());
+        assertFalse(sessionManager.isLoggedIn());
     }
 
     @Test
     public void getCurrentSession_WhenGuestSession_ReturnsGuest() {
-        when(mockPrefs.getBoolean("has_session", false)).thenReturn(true);
-        when(mockPrefs.getBoolean("is_guest", true)).thenReturn(true);
+        when(mockPrefs.getBoolean(eq("has_session"), anyBoolean())).thenReturn(true);
+        when(mockPrefs.getBoolean(eq("is_guest"), anyBoolean())).thenReturn(true);
 
         UserSession session = sessionManager.getCurrentSession();
 
-        assertTrue(sessionManager.hasActiveSession());
+        assertTrue(sessionManager.isLoggedIn());
         assertTrue(session.isGuest());
         assertNull(session.getUserId());
         assertNull(session.getUsername());
@@ -75,22 +77,26 @@ public class SessionManagerTest {
 
     @Test
     public void getCurrentSession_WhenUserSession_ReturnsUser() {
-        when(mockPrefs.getBoolean("has_session", false)).thenReturn(true);
-        when(mockPrefs.getBoolean("is_guest", true)).thenReturn(false);
-        when(mockPrefs.getLong("user_id", -1)).thenReturn(42L);
+        when(mockPrefs.getBoolean(eq("has_session"), anyBoolean())).thenReturn(true);
+        when(mockPrefs.getBoolean(eq("is_guest"), anyBoolean())).thenReturn(false);
+        when(mockPrefs.getLong(eq("user_id"), anyLong())).thenReturn(42L);
         when(mockPrefs.getString(eq("username"), anyString())).thenReturn("TestGuy");
 
         UserSession session = sessionManager.getCurrentSession();
 
-        assertTrue(sessionManager.hasActiveSession());
+        assertTrue(sessionManager.isLoggedIn());
         assertFalse(session.isGuest());
         assertEquals(Long.valueOf(42L), session.getUserId());
         assertEquals("TestGuy", session.getUsername());
     }
 
     @Test
-    public void startUserSession_PersistsValues() {
-        sessionManager.startUserSession(123L, "MyUser");
+    public void startRegisteredSession_PersistsValues() {
+        UserAccount account = new UserAccount();
+        account.setUserId(123L);
+        account.setUsername("MyUser");
+
+        sessionManager.startRegisteredSession(account);
 
         verify(mockEditor).putBoolean("has_session", true);
         verify(mockEditor).putBoolean("is_guest", false);
@@ -111,10 +117,18 @@ public class SessionManagerTest {
     }
 
     @Test
+    public void logout_ClearsActiveSessionOnly() {
+        sessionManager.logout();
+
+        // Assert it clears the shared preferences (the session)
+        verify(mockEditor).clear();
+        verify(mockEditor).apply();
+    }
+
+    @Test
     public void clearSession_WipesAllPrefs() {
         sessionManager.clearSession();
         verify(mockEditor).clear();
         verify(mockEditor).apply();
     }
 }
-

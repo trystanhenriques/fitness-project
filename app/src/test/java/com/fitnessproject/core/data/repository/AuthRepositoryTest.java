@@ -10,10 +10,12 @@ import com.fitnessproject.core.session.SessionManager;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -81,7 +83,7 @@ public class AuthRepositoryTest {
         AuthResult<UserSession> result = authRepository.register(creds);
 
         assertTrue(result.isSuccess());
-        verify(mockSessionManager).startUserSession(1L, testUser);
+        verify(mockSessionManager).startRegisteredSession(any(UserAccount.class));
     }
 
     @Test
@@ -112,7 +114,7 @@ public class AuthRepositoryTest {
 
         assertTrue("Login should succeed with correct password", result.isSuccess());
         verify(mockUserDao).updateLastLogin(anyLong(), anyLong());
-        verify(mockSessionManager).startUserSession(99L, testUser);
+        verify(mockSessionManager).startRegisteredSession(any(UserAccount.class));
     }
 
     @Test
@@ -133,7 +135,7 @@ public class AuthRepositoryTest {
 
         assertFalse("Login should fail with wrong password", result.isSuccess());
         assertEquals("Invalid username or password", result.getErrorMessage());
-        verify(mockSessionManager, never()).startUserSession(anyLong(), anyString());
+        verify(mockSessionManager, never()).startRegisteredSession(any(UserAccount.class));
     }
 
     @Test
@@ -142,4 +144,3 @@ public class AuthRepositoryTest {
         verify(mockSessionManager).startGuestSession();
     }
 }
-

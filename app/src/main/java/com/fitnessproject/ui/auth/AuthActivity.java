@@ -31,7 +31,7 @@ public class AuthActivity extends AppCompatActivity {
         // If a session (guest or user) exists, immediately route to main.
         com.fitnessproject.core.session.SessionManager sessionManager =
             com.fitnessproject.core.session.SessionManager.getInstance(getApplicationContext());
-        if (sessionManager.hasActiveSession()) {
+        if (sessionManager.isLoggedIn()) {
             goToMain();
             return;
         }
