@@ -115,4 +115,12 @@ public class SessionManager {
     public void clearSession() {
         prefs.edit().clear().apply();
     }
+
+    /**
+     * Testing utility ONLY. Resets the singleton instance between test runs
+     * to prevent corrupted mock contexts from bleeding across isolated tests.
+     */
+    static void clearInstanceForTest() {
+        instance = null;
+    }
 }

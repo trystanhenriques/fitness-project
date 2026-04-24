@@ -37,7 +37,7 @@ public class SessionManagerTest {
 
     @Before
     public void setUp() {
-        MockitoAnnotations.openInMocks(this);
+        MockitoAnnotations.initMocks(this);
 
         when(mockContext.getApplicationContext()).thenReturn(mockContext);
         when(mockContext.getSharedPreferences(anyString(), eq(Context.MODE_PRIVATE))).thenReturn(mockPrefs);
@@ -49,12 +49,13 @@ public class SessionManagerTest {
         when(mockEditor.remove(anyString())).thenReturn(mockEditor);
         when(mockEditor.clear()).thenReturn(mockEditor);
 
+        SessionManager.clearInstanceForTest();
         sessionManager = SessionManager.getInstance(mockContext);
     }
 
     @Test
     public void getCurrentSession_WhenNoSession_ReturnsNull() {
-        when(mockPrefs.getBoolean("has_session", false)).thenReturn(false);
+        when(mockPrefs.getBoolean(eq("has_session"), anyBoolean())).thenReturn(false);
 
         UserSession session = sessionManager.getCurrentSession();
         assertNull("Session should be null when no active session flag is set", session);
@@ -63,8 +64,8 @@ public class SessionManagerTest {
 
     @Test
     public void getCurrentSession_WhenGuestSession_ReturnsGuest() {
-        when(mockPrefs.getBoolean("has_session", false)).thenReturn(true);
-        when(mockPrefs.getBoolean("is_guest", true)).thenReturn(true);
+        when(mockPrefs.getBoolean(eq("has_session"), anyBoolean())).thenReturn(true);
+        when(mockPrefs.getBoolean(eq("is_guest"), anyBoolean())).thenReturn(true);
 
         UserSession session = sessionManager.getCurrentSession();
 
@@ -76,9 +77,9 @@ public class SessionManagerTest {
 
     @Test
     public void getCurrentSession_WhenUserSession_ReturnsUser() {
-        when(mockPrefs.getBoolean("has_session", false)).thenReturn(true);
-        when(mockPrefs.getBoolean("is_guest", true)).thenReturn(false);
-        when(mockPrefs.getLong("user_id", -1)).thenReturn(42L);
+        when(mockPrefs.getBoolean(eq("has_session"), anyBoolean())).thenReturn(true);
+        when(mockPrefs.getBoolean(eq("is_guest"), anyBoolean())).thenReturn(false);
+        when(mockPrefs.getLong(eq("user_id"), anyLong())).thenReturn(42L);
         when(mockPrefs.getString(eq("username"), anyString())).thenReturn("TestGuy");
 
         UserSession session = sessionManager.getCurrentSession();

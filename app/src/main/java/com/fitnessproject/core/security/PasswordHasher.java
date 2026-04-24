@@ -3,8 +3,8 @@ package com.fitnessproject.core.security;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
+import java.util.Base64;
 import java.security.spec.KeySpec;
-import android.util.Base64;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
@@ -23,9 +23,9 @@ public class PasswordHasher {
      */
     public static String generateSalt() {
         SecureRandom random = new SecureRandom();
-        byte[] salt = new byte[16];
-        random.nextBytes(salt);
-        return Base64.encodeToString(salt, Base64.NO_WRAP);
+        byte[] saltBytes = new byte[16];
+        random.nextBytes(saltBytes);
+        return Base64.getEncoder().encodeToString(saltBytes);
     }
 
     /**
@@ -36,14 +36,13 @@ public class PasswordHasher {
      */
     public static String hashPassword(String password, String salt) {
         try {
-            byte[] saltBytes = Base64.decode(salt, Base64.NO_WRAP);
+            byte[] saltBytes = Base64.getDecoder().decode(salt);
             KeySpec spec = new PBEKeySpec(password.toCharArray(), saltBytes, ITERATIONS, KEY_LENGTH);
             SecretKeyFactory factory = SecretKeyFactory.getInstance(ALGORITHM);
             byte[] hash = factory.generateSecret(spec).getEncoded();
-            return Base64.encodeToString(hash, Base64.NO_WRAP);
+            return Base64.getEncoder().encodeToString(hash);
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             throw new RuntimeException("Error hashing password", e);
         }
     }
 }
-

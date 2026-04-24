@@ -1,11 +1,13 @@
 package com.fitnessproject.ui.settings;
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.Observer;
 
 import com.fitnessproject.core.data.model.UserSession;
 import com.fitnessproject.core.session.SessionManager;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -21,6 +23,9 @@ import static org.mockito.Mockito.when;
  * Validates UI presentation text and intent events from the SettingsViewModel statically
  */
 public class SettingsViewModelTest {
+
+    @Rule
+    public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
     @Mock
     private SessionManager mockSessionManager;
@@ -90,5 +95,3 @@ public class SettingsViewModelTest {
         assertTrue(viewModel.getNavigateToAuthEvent().getValue());
     }
 }
-
-
