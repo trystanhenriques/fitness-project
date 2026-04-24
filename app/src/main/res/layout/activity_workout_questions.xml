@@ -61,11 +61,12 @@
                 android:id="@+id/etUserDescription"
                 style="@style/Widget.Fitness.EditText"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/text_area_height"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
                 android:gravity="top|start"
                 android:hint="e.g. My lower back feels tight when I go low in the squat."
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:minHeight="@dimen/text_area_height" />
         </LinearLayout>
 
         <Button
