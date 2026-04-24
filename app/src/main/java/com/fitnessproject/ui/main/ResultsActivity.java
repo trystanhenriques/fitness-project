@@ -15,6 +15,10 @@ public class ResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         ArrayList<String> cues = getIntent().getStringArrayListExtra("cues");
 
         TextView txtCues = findViewById(R.id.txtCues);
