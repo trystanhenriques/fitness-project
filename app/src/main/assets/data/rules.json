@@ -1,37 +1,97 @@
 {
   "bench": {
     "bench_q1_discomfort_location": {
-      "shoulders": "Tuck elbows (about 45°) and keep shoulders set back.",
-      "wrists": "Stack wrists over elbows and keep knuckles up.",
-      "none": "Form looks solid. Focus on driving through your feet."
+      "shoulders": [
+        "Tuck elbows (about 45°) and keep shoulders set back.",
+        "Ensure your feet are driven firmly into the ground.",
+        "Lower the bar to your lower chest/sternum, not your neck."
+      ],
+      "wrists": [
+        "Stack wrists over elbows and keep knuckles up.",
+        "Squeeze the bar as hard as possible to stabilize the joint.",
+        "Check that your thumb is wrapped around the bar for safety."
+      ],
+      "none": [
+        "Form looks solid. Focus on driving through your feet.",
+        "Keep your shoulder blades retracted throughout the set.",
+        "Maintain a slight arch in your lower back while keeping glutes on the bench."
+      ]
     }
   },
   "squat": {
     "squat_q1_discomfort_location": {
-      "lower_back": "Brace your core harder and avoid 'butt wink' at the bottom.",
-      "knees": "Push your knees out and keep your weight on your mid-foot.",
-      "none": "Great depth. Maintain a proud chest throughout the lift."
+      "lower_back": [
+        "Brace your core harder and avoid 'butt wink' at the bottom.",
+        "Ensure your chest stays up and doesn't tip forward.",
+        "Check if your stance is too narrow, which can force back arching."
+      ],
+      "knees": [
+        "Push your knees out and keep your weight on your mid-foot.",
+        "Avoid letting your knees cave inward during the ascent.",
+        "Try to sit back into the squat rather than just dropping down."
+      ],
+      "none": [
+        "Great depth. Maintain a proud chest throughout the lift.",
+        "Continue to drive through the mid-foot.",
+        "Keep your neck neutral by looking at a spot on the floor 5 feet ahead."
+      ]
     }
   },
   "deadlift": {
     "deadlift_q1_discomfort_location": {
-      "lower_back": "Hinge at the hips and keep the bar close to your shins.",
-      "grip": "Try using chalk or a mixed grip for heavier sets.",
-      "none": "Solid lockout. Keep pulling through the heels."
+      "lower_back": [
+        "Hinge at the hips and keep the bar close to your shins.",
+        "Engage your lats by trying to 'protect your armpits' before lifting.",
+        "Ensure your hips don't rise too fast at the start of the pull."
+      ],
+      "grip": [
+        "Try using chalk or a mixed grip for heavier sets.",
+        "Hold the bar in your fingers rather than deep in your palm to avoid tears.",
+        "Focus on 'crushing' the bar with your grip before the lift begins."
+      ],
+      "none": [
+        "Solid lockout. Keep pulling through the heels.",
+        "Maintain a neutral spine from head to hips.",
+        "Take a big 'belly breath' and brace before each rep."
+      ]
     }
   },
   "ohp": {
     "ohp_q1_discomfort_location": {
-      "shoulders": "Keep your core tight and avoid shrugging your shoulders at the start.",
-      "lower_back": "Avoid excessive arching; squeeze your glutes to stabilize your spine.",
-      "none": "Strong overhead position. Keep the bar path vertical."
+      "shoulders": [
+        "Keep your core tight and avoid shrugging your shoulders at the start.",
+        "Keep your elbows slightly tucked in front of the bar.",
+        "Press the bar up and slightly back to finish over your mid-foot."
+      ],
+      "lower_back": [
+        "Avoid excessive arching; squeeze your glutes to stabilize your spine.",
+        "Take a smaller step or keep feet shoulder-width for better balance.",
+        "Keep your ribs pulled down towards your pelvis."
+      ],
+      "none": [
+        "Strong overhead position. Keep the bar path vertical.",
+        "Squeeze the bar hard to maintain tension.",
+        "Full lockout at the top with a 'shrug' to engage upper traps."
+      ]
     }
   },
   "row": {
     "row_q1_discomfort_location": {
-      "lower_back": "Maintain a flat back and pull the bar towards your lower stomach.",
-      "elbows": "Lead the pull with your elbows and avoid 'flailing' them out.",
-      "none": "Good squeeze at the top. Keep your neck in a neutral position."
+      "lower_back": [
+        "Maintain a flat back and pull the bar towards your lower stomach.",
+        "Slightly bend your knees to take tension off the hamstrings.",
+        "Avoid using momentum or 'jerking' the weight up."
+      ],
+      "elbows": [
+        "Lead the pull with your elbows and avoid 'flailing' them out.",
+        "Squeeze your shoulder blades together at the top of the movement.",
+        "Keep your wrists straight; avoid curling them at the end of the rep."
+      ],
+      "none": [
+        "Good squeeze at the top. Keep your neck in a neutral position.",
+        "Focus on pulling with your back, not just your arms.",
+        "Control the weight on the way down for better muscle engagement."
+      ]
     }
   }
 }

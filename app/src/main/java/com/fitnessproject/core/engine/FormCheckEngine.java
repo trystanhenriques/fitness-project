@@ -4,6 +4,7 @@ import android.content.Context;
 import com.fitnessproject.core.data.DataLoader;
 import com.fitnessproject.core.model.Answer;
 import com.fitnessproject.core.model.EvaluationResult;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,15 @@ public class FormCheckEngine {
                     if (exerciseRules.has(a.getQuestionId())) {
                         JSONObject questionRules = exerciseRules.getJSONObject(a.getQuestionId());
                         if (questionRules.has(a.getChoiceId())) {
-                            cues.add(questionRules.getString(a.getChoiceId()));
+                            Object rule = questionRules.get(a.getChoiceId());
+                            if (rule instanceof JSONArray) {
+                                JSONArray array = (JSONArray) rule;
+                                for (int i = 0; i < array.length(); i++) {
+                                    cues.add(array.getString(i));
+                                }
+                            } else {
+                                cues.add(rule.toString());
+                            }
                         }
                     }
                 }
