@@ -57,6 +57,12 @@
         </activity>
 
         <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:exported="false"
+            android:label="Settings"
+            android:parentActivityName=".ui.main.MainActivity" />
+
+        <activity
             android:name=".ui.main.MainActivity"
             android:exported="false">
         </activity>
