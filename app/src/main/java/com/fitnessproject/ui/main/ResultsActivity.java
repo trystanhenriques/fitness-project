@@ -1,6 +1,7 @@
 package com.fitnessproject.ui.main;
 
 import android.os.Bundle;
+import com.fitnessproject.core.engine.RecommendationEngine;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -72,57 +73,21 @@ public class ResultsActivity extends AppCompatActivity {
     }
 
     private void displayNextSteps() {
-        TextView txtNextSteps = findViewById(R.id.txtNextSteps);
         String exerciseId = getIntent().getStringExtra("exerciseId");
-        String choiceId = getIntent().getStringExtra("choiceId"); // Need to pass this from engine
+        String choiceId = getIntent().getStringExtra("choiceId");
 
-        try {
-            JSONObject nextStepsData = DataLoader.getNextSteps(this);
-            StringBuilder sb = new StringBuilder();
+        RecommendationEngine engine = new RecommendationEngine();
+        RecommendationEngine.Recommendation rec = engine.getRecommendation(this, exerciseId, choiceId);
 
-            // 1. Suggesed Exercises based on errors
-            if (exerciseId != null && choiceId != null) {
-                JSONObject suggestions = nextStepsData.getJSONObject("suggestions");
-                if (suggestions.has(exerciseId)) {
-                    JSONObject exerciseSuggestions = suggestions.getJSONObject(exerciseId);
-                    if (exerciseSuggestions.has(choiceId)) {
-                        JSONArray items = exerciseSuggestions.getJSONArray(choiceId);
-                        sb.append("Corrective Exercises:\n");
-                        for (int i = 0; i < items.length(); i++) {
-                            sb.append("- ").append(items.getString(i)).append("\n");
-                        }
-                        sb.append("\n");
-                    }
-                }
-            }
-
-            // 2. Dynamic Plan based on Progress
-            DatabaseHelper db = new DatabaseHelper(this);
-            int workoutCount = db.getWorkoutCount();
-            
-            JSONObject plans = nextStepsData.getJSONObject("plans");
-            JSONObject selectedPlan;
-            
-            if (workoutCount < 5) {
-                selectedPlan = plans.getJSONObject("beginner");
-            } else if (workoutCount < 20) {
-                selectedPlan = plans.getJSONObject("intermediate");
-            } else {
-                selectedPlan = plans.getJSONObject("advanced");
-            }
-
-            sb.append(selectedPlan.getString("title")).append(":\n");
-            sb.append(selectedPlan.getString("description")).append("\n");
-            JSONArray planItems = selectedPlan.getJSONArray("items");
-            for (int i = 0; i < planItems.length(); i++) {
-                sb.append("- ").append(planItems.getString(i)).append("\n");
-            }
-
-            txtNextSteps.setText(sb.toString());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            txtNextSteps.setText("Keep consistent with your current routine!");
+        TextView txtNextSteps = findViewById(R.id.txtNextSteps);
+        StringBuilder sb = new StringBuilder();
+        sb.append(rec.title).append("\n");
+        sb.append(rec.description).append("\n\n");
+        
+        for (String item : rec.items) {
+            sb.append("• ").append(item).append("\n");
         }
+
+        txtNextSteps.setText(sb.toString());
     }
 }
