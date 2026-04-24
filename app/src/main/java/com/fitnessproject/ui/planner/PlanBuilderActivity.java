@@ -31,8 +31,8 @@ public class PlanBuilderActivity extends AppCompatActivity {
 
         Spinner spinnerGoal = findViewById(R.id.spinnerGoal);
         String[] goals = {"Strength", "Hypertrophy", "Endurance", "Custom (Use Description)"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, goals);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_spinner, goals);
+        adapter.setDropDownViewResource(R.layout.item_spinner_dropdown);
         spinnerGoal.setAdapter(adapter);
 
         RadioGroup rgDays = findViewById(R.id.rgDays);
