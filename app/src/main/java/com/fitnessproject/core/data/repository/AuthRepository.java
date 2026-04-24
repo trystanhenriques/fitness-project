@@ -118,6 +118,7 @@ public class AuthRepository {
     }
 
     /**
+     * Logout clears the active session but preserves saved account data.
      * Reverts app globally clearing user state completely safely offline.
      */
     public void logout() {

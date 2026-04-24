@@ -101,6 +101,7 @@ public class SessionManager {
     }
 
     /**
+     * Logout clears the active session but preserves saved account data.
      * Removes the active session locally triggering a return to the auth screen,
      * maintaining the underlying registered data naturally in SQLite.
      */
