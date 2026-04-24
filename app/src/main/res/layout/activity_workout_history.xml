@@ -2,20 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/fitness_bg_navy"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="@dimen/screen_padding">
 
     <TextView
+        style="@style/TextAppearanceFitnessScreenTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Workout History"
-        android:textSize="26sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="@dimen/spacing_large"
+        android:text="Workout History" />
+
+    <TextView
+        style="@style/TextAppearanceFitnessScreenSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_marginBottom="@dimen/spacing_xlarge"
+        android:text="A log of your previous fitness sessions" />
 
     <ListView
         android:id="@+id/listHistory"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="16dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@color/fitness_surface_navy"
+        android:dividerHeight="@dimen/list_divider_height" />
 
 </LinearLayout>

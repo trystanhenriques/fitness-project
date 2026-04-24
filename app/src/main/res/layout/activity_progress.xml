@@ -2,58 +2,78 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/fitness_bg_navy"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="@dimen/screen_padding">
 
     <TextView
+        style="@style/TextAppearanceFitnessScreenTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My Progress"
-        android:textSize="26sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="@dimen/spacing_large"
+        android:text="My Progress" />
 
     <TextView
+        style="@style/TextAppearanceFitnessScreenSubtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Select Exercise"
-        android:textSize="16sp" />
+        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:text="Visualize your strength gains" />
 
-    <Spinner
-        android:id="@+id/spinnerProgressExercise"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp" />
+        android:background="@drawable/bg_rounded_card"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_large"
+        android:layout_marginBottom="@dimen/spacing_medium">
+
+        <TextView
+            style="@style/TextAppearanceFitnessSectionLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Exercise" />
+
+        <Spinner
+            android:id="@+id/spinnerProgressExercise"
+            style="@style/WidgetFitnessSpinner"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/TextAppearanceFitnessSectionLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:text="Last time log:" />
+
+        <TextView
+            android:id="@+id/txtLastTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:text="—"
+            android:textColor="@color/fitness_primary_orange"
+            android:textSize="@dimen/text_size_body"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <TextView
+        style="@style/TextAppearanceFitnessCardTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Last time:"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/txtLastTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="—"
-        android:textSize="16sp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Recent entries:"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="Recent entries:" />
 
     <ListView
         android:id="@+id/listRecent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_small"
         android:layout_weight="1"
-        android:layout_marginTop="10dp" />
+        android:divider="@color/fitness_surface_navy"
+        android:dividerHeight="@dimen/list_divider_height" />
 
 </LinearLayout>

@@ -58,6 +58,7 @@ public class WorkoutQuestionsActivity extends AppCompatActivity {
                 JSONObject option = options.getJSONObject(i);
                 RadioButton rb = new RadioButton(this);
                 rb.setText(option.getString("text"));
+                rb.setTextColor(getResources().getColor(R.color.fitness_text_primary));
                 rb.setTag(option.getString("id"));
                 rb.setId(i + 100); // Unique IDs
                 rg.addView(rb);
@@ -112,4 +113,3 @@ public class WorkoutQuestionsActivity extends AppCompatActivity {
         }
     }
 }
-

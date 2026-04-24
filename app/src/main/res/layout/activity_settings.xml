@@ -2,110 +2,182 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:background="@color/fitness_bg_navy"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/screen_padding">
 
         <TextView
+            style="@style/TextAppearanceFitnessScreenTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Settings &amp; Disclaimer"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="@dimen/spacing_large"
+            android:text="Settings &amp; Profile" />
+
+        <TextView
+            style="@style/TextAppearanceFitnessScreenSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginBottom="@dimen/spacing_xlarge"
+            android:text="Manage your account and preferences" />
+
+        <!-- Account Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_rounded_card"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_large"
+            android:layout_marginBottom="@dimen/spacing_large">
+
+            <TextView
+                style="@style/TextAppearanceFitnessCardTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account Details" />
+
+            <TextView
+                android:id="@+id/txtAccountStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:textColor="@color/fitness_text_secondary"
+                android:textSize="@dimen/text_size_body" />
+
+            <Button
+                android:id="@+id/btnSignOut"
+                style="@style/Widget.Fitness.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:text="Sign Out" />
+        </LinearLayout>
+
+        <!-- UI Preferences Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_rounded_card"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_large"
+            android:layout_marginBottom="@dimen/spacing_large">
+
+            <TextView
+                style="@style/TextAppearanceFitnessCardTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UI Preferences" />
+
+            <TextView
+                style="@style/TextAppearanceFitnessSectionLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:text="Text Size" />
+
+            <RadioGroup
+                android:id="@+id/rgTextSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/fitness_text_primary"
+                    android:text="Small" />
+
+                <RadioButton
+                    android:id="@+id/rbMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:textColor="@color/fitness_text_primary"
+                    android:text="Normal" />
+
+                <RadioButton
+                    android:id="@+id/rbLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/fitness_text_primary"
+                    android:text="Large" />
+            </RadioGroup>
+        </LinearLayout>
 
         <!-- Disclaimer Section -->
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Medical Disclaimer"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:background="@drawable/bg_rounded_card"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_large"
+            android:layout_marginBottom="@dimen/spacing_large">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="This application is a tool for general fitness guidance only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Stop exercising immediately if you feel pain, dizziness, or shortness of breath."
-            android:textSize="14sp" />
-
-        <CheckBox
-            android:id="@+id/cbDisclaimer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="I acknowledge the medical disclaimer" />
-
-        <!-- UI Preferences -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="UI Preferences"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Text Size"
-            android:textSize="16sp" />
-
-        <RadioGroup
-            android:id="@+id/rgTextSize"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rbSmall"
-                android:layout_width="wrap_content"
+            <TextView
+                style="@style/TextAppearanceFitnessCardTitle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Small" />
+                android:text="Medical Disclaimer" />
 
-            <RadioButton
-                android:id="@+id/rbMedium"
-                android:layout_width="wrap_content"
+            <TextView
+                style="@style/TextAppearanceFitnessCaption"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Normal" />
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="This application is a tool for general fitness guidance only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Stop exercising immediately if you feel pain, dizziness, or shortness of breath."
+                android:textColor="@color/fitness_text_secondary" />
 
-            <RadioButton
-                android:id="@+id/rbLarge"
-                android:layout_width="wrap_content"
+            <CheckBox
+                android:id="@+id/cbDisclaimer"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Large" />
-        </RadioGroup>
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:textColor="@color/fitness_text_primary"
+                android:text="I acknowledge the medical disclaimer" />
+        </LinearLayout>
 
-        <!-- Data Management -->
-        <TextView
+        <!-- Data Management Section -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Data Management"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:background="@drawable/bg_rounded_card"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_large"
+            android:layout_marginBottom="@dimen/spacing_xlarge">
 
-        <Button
-            android:id="@+id/btnDeleteHistory"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Delete All Session History"
-            android:textColor="#FF0000" />
+            <TextView
+                style="@style/TextAppearanceFitnessCardTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data Management" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Warning: This action cannot be undone."
-            android:textAlignment="center"
-            android:textSize="12sp" />
+            <TextView
+                style="@style/TextAppearanceFitnessCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="Clear device history completely. Warning: This action cannot be undone."
+                android:textColor="@color/fitness_text_secondary" />
+
+            <Button
+                android:id="@+id/btnDeleteHistory"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:minHeight="@dimen/control_height"
+                android:text="Delete All Session History"
+                android:textColor="@color/fitness_error"
+                android:textSize="@dimen/text_size_body" />
+
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

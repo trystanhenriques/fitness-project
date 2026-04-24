@@ -2,4 +2,28 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Fitness App Dark Navy UI Colors -->
+    <color name="fitness_bg_navy">#0B101E</color>
+    <color name="fitness_surface_navy">#151C2C</color>
+    <color name="fitness_border_blue_gray">#2A344A</color>
+
+    <!-- Accents -->
+    <color name="fitness_primary_orange">#FF7043</color>
+    <color name="fitness_primary_orange_pressed">#E64A19</color>
+    <color name="fitness_accent_green">#26A69A</color>
+    <color name="fitness_accent_blue">#42A5F5</color>
+    <color name="fitness_accent_yellow">#FFCA28</color>
+    <color name="fitness_accent_green_container">#2626A69A</color>
+    <color name="fitness_accent_blue_container">#2642A5F5</color>
+    <color name="fitness_accent_orange_container">#26FF7043</color>
+    <color name="fitness_accent_yellow_container">#26FFCA28</color>
+
+    <!-- Texts -->
+    <color name="fitness_text_primary">#F8F9FA</color>
+    <color name="fitness_text_secondary">#9CA3AF</color>
+
+    <!-- Other -->
+    <color name="fitness_input_bg">#182134</color>
+    <color name="fitness_error">#EF5350</color>
 </resources>

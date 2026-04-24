@@ -1,36 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:background="@color/fitness_bg_navy"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/screen_padding">
 
     <TextView
+        style="@style/TextAppearanceFitnessScreenTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Form Check"
-        android:textSize="26sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="@dimen/spacing_large"
+        android:text="Form Check" />
 
     <TextView
+        style="@style/TextAppearanceFitnessScreenSubtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Select Exercise"
-        android:textSize="16sp" />
+        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_marginBottom="@dimen/spacing_xlarge"
+        android:text="Ensure your technique is solid" />
 
-    <Spinner
-        android:id="@+id/spinnerExercise"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp" />
+        android:background="@drawable/bg_rounded_card"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_large"
+        android:layout_marginBottom="@dimen/spacing_xlarge">
 
-    <Button
-        android:id="@+id/btnContinue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Continue"
-        android:textSize="18sp" />
+        <TextView
+            style="@style/TextAppearanceFitnessSectionLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Exercise" />
 
-</LinearLayout>
+        <Spinner
+            android:id="@+id/spinnerExercise"
+            style="@style/WidgetFitnessSpinner"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+        <Button
+            android:id="@+id/btnContinue"
+            style="@style/Widget.Fitness.Button.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continue" />
+
+    </LinearLayout>
+</ScrollView>

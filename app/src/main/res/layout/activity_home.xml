@@ -1,57 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/homeRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:background="@color/fitness_bg_navy"
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/txtTitle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Home"
-        android:textSize="26sp"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:padding="@dimen/screen_padding">
 
-    <TextView
-        android:id="@+id/txtSubtitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Choose what you want to do:"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/txtTitle"
+            style="@style/TextAppearanceFitnessScreenTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:text="Dashboard" />
 
-    <Button
-        android:id="@+id/btnFormCheck"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Form Check"
-        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/txtSubtitle"
+            style="@style/TextAppearanceFitnessScreenSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginBottom="@dimen/spacing_xlarge"
+            android:text="Choose what you want to do today" />
 
-    <Button
-        android:id="@+id/btnWorkoutTracking"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Workout Tracking"
-        android:textSize="18sp" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_large">
 
-    <Button
-        android:id="@+id/btnPlanBuilder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Weekly Plan Builder"
-        android:textSize="18sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_large">
 
-    <Button
-        android:id="@+id/btnSettings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Settings / Disclaimer"
-        android:textSize="18sp" />
+                <FrameLayout
+                    android:layout_width="@dimen/feature_icon_size"
+                    android:layout_height="@dimen/feature_icon_size"
+                    android:layout_marginEnd="@dimen/spacing_medium"
+                    android:background="@drawable/bg_icon_container_blue" />
 
-</LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCardTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Form Check" />
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCaption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xsmall"
+                        android:text="AI-powered technique analysis"
+                        android:textColor="@color/fitness_text_secondary" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnFormCheck"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:stateListAnimator="@null"
+                android:text="" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_large">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_large">
+
+                <FrameLayout
+                    android:layout_width="@dimen/feature_icon_size"
+                    android:layout_height="@dimen/feature_icon_size"
+                    android:layout_marginEnd="@dimen/spacing_medium"
+                    android:background="@drawable/bg_icon_container_orange" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCardTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Workout Tracking" />
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCaption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xsmall"
+                        android:text="Log your sets, reps, and progress"
+                        android:textColor="@color/fitness_text_secondary" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnWorkoutTracking"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:stateListAnimator="@null"
+                android:text="" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_large">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_large">
+
+                <FrameLayout
+                    android:layout_width="@dimen/feature_icon_size"
+                    android:layout_height="@dimen/feature_icon_size"
+                    android:layout_marginEnd="@dimen/spacing_medium"
+                    android:background="@drawable/bg_icon_container_yellow" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCardTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Weekly Plan Builder" />
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCaption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xsmall"
+                        android:text="Build a structured weekly training plan"
+                        android:textColor="@color/fitness_text_secondary" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnPlanBuilder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:stateListAnimator="@null"
+                android:text="" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_large">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_large">
+
+                <FrameLayout
+                    android:layout_width="@dimen/feature_icon_size"
+                    android:layout_height="@dimen/feature_icon_size"
+                    android:layout_marginEnd="@dimen/spacing_medium"
+                    android:background="@drawable/bg_icon_container_green" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCardTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Settings / Disclaimer" />
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCaption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xsmall"
+                        android:text="Manage account, app preferences"
+                        android:textColor="@color/fitness_text_secondary" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSettings"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:stateListAnimator="@null"
+                android:text="" />
+        </FrameLayout>
+
+    </LinearLayout>
+</ScrollView>

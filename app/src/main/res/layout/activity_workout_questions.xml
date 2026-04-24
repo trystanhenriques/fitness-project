@@ -1,58 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:background="@color/fitness_bg_navy"
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/txtTitle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Workout Questions"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:padding="@dimen/screen_padding">
 
-    <TextView
-        android:id="@+id/txtPrompt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Where do you feel discomfort?"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/txtTitle"
+            style="@style/TextAppearanceFitnessScreenTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:text="Workout Feedback" />
 
-    <RadioGroup
-        android:id="@+id/rgChoices"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp" />
+        <TextView
+            style="@style/TextAppearanceFitnessScreenSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginBottom="@dimen/spacing_xlarge"
+            android:text="Help us understand your fatigue and pain levels" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Describe how your set felt:"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_rounded_card"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_large"
+            android:layout_marginBottom="@dimen/spacing_xlarge">
 
-    <EditText
-        android:id="@+id/etUserDescription"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:drawable/editbox_background"
-        android:gravity="top|start"
-        android:hint="e.g. My lower back feels tight when I go low in the squat."
-        android:inputType="textMultiLine"
-        android:padding="8dp" />
+            <TextView
+                android:id="@+id/txtPrompt"
+                style="@style/TextAppearanceFitnessBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Where do you feel discomfort?"
+                android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnComplete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Complete"
-        android:textSize="18sp" />
+            <RadioGroup
+                android:id="@+id/rgChoices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small" />
 
-</LinearLayout>
+            <TextView
+                style="@style/TextAppearanceFitnessBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xlarge"
+                android:text="Describe how your set felt:"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etUserDescription"
+                style="@style/Widget.Fitness.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="top|start"
+                android:hint="e.g. My lower back feels tight when I go low in the squat."
+                android:inputType="textMultiLine"
+                android:minHeight="@dimen/text_area_height" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnComplete"
+            style="@style/Widget.Fitness.Button.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Complete" />
+
+    </LinearLayout>
+</ScrollView>
