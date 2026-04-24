@@ -81,4 +81,15 @@ public class DataLoader {
             return new JSONObject();
         }
     }
+
+    public static JSONObject getNextSteps(Context context) {
+        try {
+            String json = loadJSONFromAsset(context, "next_steps.json");
+            if (json == null) return new JSONObject();
+            return new JSONObject(json);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return new JSONObject();
+        }
+    }
 }

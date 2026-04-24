@@ -81,6 +81,8 @@ public class WorkoutQuestionsActivity extends AppCompatActivity {
 
                 Intent i = new Intent(WorkoutQuestionsActivity.this, ResultsActivity.class);
                 i.putStringArrayListExtra("cues", new ArrayList<>(result.getCueIds()));
+                i.putExtra("exerciseId", exerciseId);
+                i.putExtra("choiceId", choiceId);
                 startActivity(i);
             });
         } catch (JSONException e) {
