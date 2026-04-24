@@ -40,20 +40,43 @@ public class FormCheckEngine {
             e.printStackTrace();
         }
 
-        // 2. Process Free-text Description (Simple Keyword Matching for MVP)
+        // 2. Process Free-text Description (Enhanced Keyword Matching)
         if (userDescription != null && !userDescription.isEmpty()) {
             String desc = userDescription.toLowerCase();
-            if (desc.contains("back") || desc.contains("spine")) {
-                cues.add("Your description mentions your back. Ensure you are bracing your core and keeping a neutral spine.");
+            boolean matched = false;
+
+            if (desc.contains("back") || desc.contains("spine") || desc.contains("arch")) {
+                cues.add("Back Feedback: Maintain a neutral spine. If you feel tightness, focus on core bracing and checking your hip hinge.");
+                matched = true;
             }
-            if (desc.contains("knee") || desc.contains("joint")) {
-                cues.add("You mentioned knee discomfort. Check your foot positioning and ensure your knees aren't caving in.");
+            if (desc.contains("knee") || desc.contains("joint") || desc.contains("cave")) {
+                cues.add("Knee Feedback: Ensure your knees are tracking over your toes. Avoid letting them cave inward during the lift.");
+                matched = true;
             }
-            if (desc.contains("heavy") || desc.contains("struggle")) {
-                cues.add("If the weight feels too heavy to maintain form, don't be afraid to lower it by 5-10%.");
+            if (desc.contains("shoulder") || desc.contains("neck") || desc.contains("trap")) {
+                cues.add("Shoulder/Neck Feedback: Keep your shoulders set back and down. Avoid shrugging or excessive neck tension.");
+                matched = true;
             }
-            if (desc.contains("pain") || desc.contains("hurt")) {
-                cues.add("IMPORTANT: If you feel sharp pain, stop immediately and consult a professional.");
+            if (desc.contains("wrist") || desc.contains("grip") || desc.contains("hand")) {
+                cues.add("Grip/Wrist Feedback: Keep your wrists 'stacked' and straight. Squeeze the bar hard to stabilize the joint.");
+                matched = true;
+            }
+            if (desc.contains("elbow") || desc.contains("arm")) {
+                cues.add("Elbow Feedback: Lead the movement with your elbows and ensure they aren't flaring out excessively.");
+                matched = true;
+            }
+            if (desc.contains("heavy") || desc.contains("struggle") || desc.contains("stuck")) {
+                cues.add("Intensity Feedback: If you are struggling with form, consider reducing the weight by 10% to master the movement.");
+                matched = true;
+            }
+            
+            if (desc.contains("pain") || desc.contains("hurt") || desc.contains("sharp")) {
+                cues.add("CRITICAL SAFETY: You mentioned pain. Stop this exercise immediately. Sharp pain is a sign of injury; consult a professional.");
+                matched = true;
+            }
+
+            if (!matched) {
+                cues.add("Analysis: We've noted your feedback. Focus on a controlled tempo (2 seconds down, 1 second up) to improve stability.");
             }
         }
 

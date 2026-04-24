@@ -66,7 +66,8 @@ public class RecommendationEngine {
                 for (int i = 0; i < variations.length(); i++) {
                     JSONObject v = variations.getJSONObject(i);
                     String condition = v.getString("condition");
-                    if (choiceId.contains(condition)) {
+                    // Check if choiceId matches or contains the condition
+                    if (choiceId.equalsIgnoreCase(condition) || (condition.length() > 2 && choiceId.contains(condition))) {
                         selectedVariation = v;
                         break;
                     }
