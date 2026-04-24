@@ -2,58 +2,88 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/fitness_bg_navy"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="@dimen/screen_padding">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_large"
         android:text="My Progress"
-        android:textSize="26sp"
+        android:textColor="@color/fitness_text_primary"
+        android:textSize="@dimen/text_size_h1"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Select Exercise"
-        android:textSize="16sp" />
+        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:text="Visualize your strength gains"
+        android:textColor="@color/fitness_text_secondary"
+        android:textSize="@dimen/text_size_body" />
 
-    <Spinner
-        android:id="@+id/spinnerProgressExercise"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp" />
+        android:background="@drawable/bg_rounded_card"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_large"
+        android:layout_marginBottom="@dimen/spacing_medium">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Exercise"
+            android:textColor="@color/fitness_text_secondary"
+            android:textSize="@dimen/text_size_caption"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinnerProgressExercise"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@drawable/bg_input_field"
+            android:padding="@dimen/spacing_small" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:text="Last time log:"
+            android:textColor="@color/fitness_text_secondary"
+            android:textSize="@dimen/text_size_caption"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtLastTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:text="—"
+            android:textColor="@color/fitness_primary_orange"
+            android:textSize="@dimen/text_size_body"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Last time:"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/txtLastTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="—"
-        android:textSize="16sp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/spacing_medium"
         android:text="Recent entries:"
-        android:textSize="16sp"
+        android:textColor="@color/fitness_text_primary"
+        android:textSize="@dimen/text_size_h2"
         android:textStyle="bold" />
 
     <ListView
         android:id="@+id/listRecent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_small"
         android:layout_weight="1"
-        android:layout_marginTop="10dp" />
+        android:divider="@color/fitness_surface_navy"
+        android:dividerHeight="8dp" />
 
 </LinearLayout>

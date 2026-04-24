@@ -2,38 +2,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/fitness_bg_navy"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="@dimen/screen_padding">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_large"
         android:text="Workout Tracker"
-        android:textSize="26sp"
+        android:textColor="@color/fitness_text_primary"
+        android:textSize="@dimen/text_size_h1"
         android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_marginBottom="@dimen/spacing_xlarge"
+        android:text="Track your lifting progress"
+        android:textColor="@color/fitness_text_secondary"
+        android:textSize="@dimen/text_size_body" />
 
     <Button
         android:id="@+id/btnStartNewWorkout"
+        style="@style/Widget.Fitness.Button.Primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Start New Workout"
-        android:textSize="18sp" />
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:text="Start New Workout" />
 
     <Button
         android:id="@+id/btnViewProgress"
+        style="@style/Widget.Fitness.Button.Secondary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="View My Progress"
-        android:textSize="18sp" />
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:text="View My Progress" />
 
     <Button
         android:id="@+id/btnWorkoutHistory"
+        style="@style/Widget.Fitness.Button.Secondary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Workout History"
-        android:textSize="18sp" />
+        android:text="Workout History" />
 
 </LinearLayout>
