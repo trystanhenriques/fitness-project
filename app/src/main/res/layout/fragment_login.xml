@@ -14,8 +14,8 @@
 
         <!-- App Logo/Icon Area -->
         <FrameLayout
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/auth_icon_size"
+            android:layout_height="@dimen/auth_icon_size"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/spacing_large"
             android:background="@drawable/bg_icon_container_orange">
@@ -23,23 +23,20 @@
         </FrameLayout>
 
         <TextView
+            style="@style/TextAppearanceFitnessScreenTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginBottom="@dimen/spacing_small"
-            android:text="Welcome Back"
-            android:textColor="@color/fitness_text_primary"
-            android:textSize="@dimen/text_size_h1"
-            android:textStyle="bold" />
+            android:text="Welcome Back" />
 
         <TextView
+            style="@style/TextAppearanceFitnessScreenSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginBottom="@dimen/spacing_xlarge"
-            android:text="Log in to continue your fitness journey"
-            android:textColor="@color/fitness_text_secondary"
-            android:textSize="@dimen/text_size_body" />
+            android:text="Log in to continue your fitness journey" />
 
         <TextView
             android:id="@+id/textError"
@@ -98,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_small"
-            android:minHeight="56dp"
+            android:minHeight="@dimen/control_height"
             android:text="Don't have an account? Register"
             android:textColor="@color/fitness_text_secondary"
             android:textSize="@dimen/text_size_body" />

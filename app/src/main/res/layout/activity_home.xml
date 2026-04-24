@@ -14,23 +14,20 @@
 
         <TextView
             android:id="@+id/txtTitle"
+            style="@style/TextAppearanceFitnessScreenTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
-            android:text="Dashboard"
-            android:textColor="@color/fitness_text_primary"
-            android:textSize="@dimen/text_size_h1"
-            android:textStyle="bold" />
+            android:text="Dashboard" />
 
         <TextView
             android:id="@+id/txtSubtitle"
+            style="@style/TextAppearanceFitnessScreenSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_small"
             android:layout_marginBottom="@dimen/spacing_xlarge"
-            android:text="Choose what you want to do today"
-            android:textColor="@color/fitness_text_secondary"
-            android:textSize="@dimen/text_size_body" />
+            android:text="Choose what you want to do today" />
 
         <!-- Form Check Feature Card -->
         <FrameLayout
@@ -48,10 +45,10 @@
 
                 <!-- Colored Icon Container -->
                 <FrameLayout
-                    android:layout_width="56dp"
-                    android:layout_height="56dp" android:popupBackground="@color/fitness_surface_navy"
+                    android:layout_width="@dimen/feature_icon_size"
+                    android:layout_height="@dimen/feature_icon_size"
                     android:background="@drawable/bg_icon_container_blue"
-                    android:layout_marginRight="@dimen/spacing_medium">
+                    android:layout_marginEnd="@dimen/spacing_medium">
                     <!-- Placeholder for icon, currently just a colored block -->
                 </FrameLayout>
 
@@ -61,20 +58,18 @@
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/TextAppearanceFitnessCardTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Form Check"
-                        android:textColor="@color/fitness_text_primary"
-                        android:textSize="@dimen/text_size_h2"
-                        android:textStyle="bold" />
+                        android:text="Form Check" />
 
                     <TextView
+                        style="@style/TextAppearanceFitnessCaption"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="@dimen/spacing_xsmall"
                         android:text="AI-powered technique analysis"
-                        android:textColor="@color/fitness_text_secondary"
-                        android:textSize="@dimen/text_size_caption" />
+                        android:textColor="@color/fitness_text_secondary" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -103,10 +98,10 @@
 
                 <!-- Colored Icon Container -->
                 <FrameLayout
-                    android:layout_width="56dp"
-                    android:layout_height="56dp" android:popupBackground="@color/fitness_surface_navy"
+                    android:layout_width="@dimen/feature_icon_size"
+                    android:layout_height="@dimen/feature_icon_size"
                     android:background="@drawable/bg_icon_container_orange"
-                    android:layout_marginRight="@dimen/spacing_medium">
+                    android:layout_marginEnd="@dimen/spacing_medium">
                 </FrameLayout>
 
                 <LinearLayout
@@ -115,20 +110,18 @@
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/TextAppearanceFitnessCardTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Workout Tracking"
-                        android:textColor="@color/fitness_text_primary"
-                        android:textSize="@dimen/text_size_h2"
-                        android:textStyle="bold" />
+                        android:text="Workout Tracking" />
 
                     <TextView
+                        style="@style/TextAppearanceFitnessCaption"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="@dimen/spacing_xsmall"
                         android:text="Log your sets, reps, and progress"
-                        android:textColor="@color/fitness_text_secondary"
-                        android:textSize="@dimen/text_size_caption" />
+                        android:textColor="@color/fitness_text_secondary" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -157,10 +150,10 @@
 
                 <!-- Colored Icon Container -->
                 <FrameLayout
-                    android:layout_width="56dp"
-                    android:layout_height="56dp" android:popupBackground="@color/fitness_surface_navy"
+                    android:layout_width="@dimen/feature_icon_size"
+                    android:layout_height="@dimen/feature_icon_size"
                     android:background="@drawable/bg_icon_container_green"
-                    android:layout_marginRight="@dimen/spacing_medium">
+                    android:layout_marginEnd="@dimen/spacing_medium">
                 </FrameLayout>
 
                 <LinearLayout
@@ -169,20 +162,18 @@
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/TextAppearanceFitnessCardTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Settings / Disclaimer"
-                        android:textColor="@color/fitness_text_primary"
-                        android:textSize="@dimen/text_size_h2"
-                        android:textStyle="bold" />
+                        android:text="Settings / Disclaimer" />
 
                     <TextView
+                        style="@style/TextAppearanceFitnessCaption"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="@dimen/spacing_xsmall"
                         android:text="Manage account, app preferences"
-                        android:textColor="@color/fitness_text_secondary"
-                        android:textSize="@dimen/text_size_caption" />
+                        android:textColor="@color/fitness_text_secondary" />
                 </LinearLayout>
             </LinearLayout>
 

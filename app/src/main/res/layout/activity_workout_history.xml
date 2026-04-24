@@ -7,28 +7,25 @@
     android:padding="@dimen/screen_padding">
 
     <TextView
+        style="@style/TextAppearanceFitnessScreenTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_large"
-        android:text="Workout History"
-        android:textColor="@color/fitness_text_primary"
-        android:textSize="@dimen/text_size_h1"
-        android:textStyle="bold" />
+        android:text="Workout History" />
 
     <TextView
+        style="@style/TextAppearanceFitnessScreenSubtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_small"
         android:layout_marginBottom="@dimen/spacing_xlarge"
-        android:text="A log of your previous fitness sessions"
-        android:textColor="@color/fitness_text_secondary"
-        android:textSize="@dimen/text_size_body" />
+        android:text="A log of your previous fitness sessions" />
 
     <ListView
         android:id="@+id/listHistory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@color/fitness_surface_navy"
-        android:dividerHeight="8dp" />
+        android:dividerHeight="@dimen/list_divider_height" />
 
 </LinearLayout>

@@ -12,22 +12,19 @@
         android:padding="@dimen/screen_padding">
 
         <TextView
+            style="@style/TextAppearanceFitnessScreenTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
-            android:text="Settings &amp; Profile"
-            android:textColor="@color/fitness_text_primary"
-            android:textSize="@dimen/text_size_h1"
-            android:textStyle="bold" />
+            android:text="Settings &amp; Profile" />
 
         <TextView
+            style="@style/TextAppearanceFitnessScreenSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_small"
             android:layout_marginBottom="@dimen/spacing_xlarge"
-            android:text="Manage your account and preferences"
-            android:textColor="@color/fitness_text_secondary"
-            android:textSize="@dimen/text_size_body" />
+            android:text="Manage your account and preferences" />
 
         <!-- Account Section -->
         <LinearLayout
@@ -39,12 +36,10 @@
             android:layout_marginBottom="@dimen/spacing_large">
 
             <TextView
+                style="@style/TextAppearanceFitnessCardTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Account Details"
-                android:textColor="@color/fitness_text_primary"
-                android:textSize="@dimen/text_size_h2"
-                android:textStyle="bold" />
+                android:text="Account Details" />
 
             <TextView
                 android:id="@+id/txtAccountStatus"
@@ -73,21 +68,17 @@
             android:layout_marginBottom="@dimen/spacing_large">
 
             <TextView
+                style="@style/TextAppearanceFitnessCardTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="UI Preferences"
-                android:textColor="@color/fitness_text_primary"
-                android:textSize="@dimen/text_size_h2"
-                android:textStyle="bold" />
+                android:text="UI Preferences" />
 
             <TextView
+                style="@style/TextAppearanceFitnessSectionLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_medium"
-                android:text="Text Size"
-                android:textColor="@color/fitness_text_secondary"
-                android:textSize="@dimen/text_size_caption"
-                android:textStyle="bold" />
+                android:text="Text Size" />
 
             <RadioGroup
                 android:id="@+id/rgTextSize"
@@ -130,20 +121,18 @@
             android:layout_marginBottom="@dimen/spacing_large">
 
             <TextView
+                style="@style/TextAppearanceFitnessCardTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Medical Disclaimer"
-                android:textColor="@color/fitness_text_primary"
-                android:textSize="@dimen/text_size_h2"
-                android:textStyle="bold" />
+                android:text="Medical Disclaimer" />
 
             <TextView
+                style="@style/TextAppearanceFitnessCaption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
                 android:text="This application is a tool for general fitness guidance only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Stop exercising immediately if you feel pain, dizziness, or shortness of breath."
-                android:textColor="@color/fitness_text_secondary"
-                android:textSize="@dimen/text_size_caption" />
+                android:textColor="@color/fitness_text_secondary" />
 
             <CheckBox
                 android:id="@+id/cbDisclaimer"
@@ -164,20 +153,18 @@
             android:layout_marginBottom="@dimen/spacing_xlarge">
 
             <TextView
+                style="@style/TextAppearanceFitnessCardTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Data Management"
-                android:textColor="@color/fitness_text_primary"
-                android:textSize="@dimen/text_size_h2"
-                android:textStyle="bold" />
+                android:text="Data Management" />
 
             <TextView
+                style="@style/TextAppearanceFitnessCaption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
                 android:text="Clear device history completely. Warning: This action cannot be undone."
-                android:textColor="@color/fitness_text_secondary"
-                android:textSize="@dimen/text_size_caption" />
+                android:textColor="@color/fitness_text_secondary" />
 
             <Button
                 android:id="@+id/btnDeleteHistory"
@@ -185,9 +172,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_medium"
-                android:minHeight="56dp"
+                android:minHeight="@dimen/control_height"
                 android:text="Delete All Session History"
-                android:textColor="@color/fitness_error" />
+                android:textColor="@color/fitness_error"
+                android:textSize="@dimen/text_size_body" />
 
         </LinearLayout>
 

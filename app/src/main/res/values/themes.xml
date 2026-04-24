@@ -27,7 +27,7 @@
         <item name="android:textSize">@dimen/text_size_body</item>
         <item name="android:textStyle">bold</item>
         <item name="android:padding">@dimen/spacing_medium</item>
-        <item name="android:minHeight">56dp</item>
+        <item name="android:minHeight">@dimen/control_height</item>
     </style>
 
     <style name="Widget.Fitness.Button.Secondary" parent="Widget.Material3.Button">
@@ -36,7 +36,7 @@
         <item name="android:textSize">@dimen/text_size_body</item>
         <item name="android:textStyle">bold</item>
         <item name="android:padding">@dimen/spacing_medium</item>
-        <item name="android:minHeight">56dp</item>
+        <item name="android:minHeight">@dimen/control_height</item>
     </style>
 
     <style name="Widget.Fitness.EditText" parent="Widget.AppCompat.EditText">
@@ -45,10 +45,50 @@
         <item name="android:textColor">@color/fitness_text_primary</item>
         <item name="android:textColorHint">@color/fitness_text_secondary</item>
         <item name="android:textSize">@dimen/text_size_body</item>
-        <item name="android:minHeight">56dp</item>
+        <item name="android:minHeight">@dimen/control_height</item>
     </style>
 
     <style name="Widget.Fitness.Card" parent="Widget.Material3.CardView.Elevated">
         <item name="android:background">@drawable/bg_rounded_card</item>
+    </style>
+
+    <style name="WidgetFitnessSpinner">
+        <item name="android:layout_height">@dimen/control_height</item>
+        <item name="android:background">@drawable/bg_input_field</item>
+        <item name="android:padding">@dimen/spacing_small</item>
+        <item name="android:popupBackground">@color/fitness_surface_navy</item>
+    </style>
+
+    <style name="TextAppearanceFitnessScreenTitle">
+        <item name="android:textColor">@color/fitness_text_primary</item>
+        <item name="android:textSize">@dimen/text_size_h1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearanceFitnessScreenSubtitle">
+        <item name="android:textColor">@color/fitness_text_secondary</item>
+        <item name="android:textSize">@dimen/text_size_body</item>
+    </style>
+
+    <style name="TextAppearanceFitnessCardTitle">
+        <item name="android:textColor">@color/fitness_text_primary</item>
+        <item name="android:textSize">@dimen/text_size_h2</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearanceFitnessSectionLabel">
+        <item name="android:textColor">@color/fitness_text_secondary</item>
+        <item name="android:textSize">@dimen/text_size_caption</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearanceFitnessBody">
+        <item name="android:textColor">@color/fitness_text_primary</item>
+        <item name="android:textSize">@dimen/text_size_body</item>
+    </style>
+
+    <style name="TextAppearanceFitnessCaption">
+        <item name="android:textColor">@color/fitness_text_secondary</item>
+        <item name="android:textSize">@dimen/text_size_caption</item>
     </style>
 </resources>

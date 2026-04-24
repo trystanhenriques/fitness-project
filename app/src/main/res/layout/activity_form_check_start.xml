@@ -7,22 +7,19 @@
     android:padding="@dimen/screen_padding">
 
     <TextView
+        style="@style/TextAppearanceFitnessScreenTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_large"
-        android:text="Form Check"
-        android:textColor="@color/fitness_text_primary"
-        android:textSize="@dimen/text_size_h1"
-        android:textStyle="bold" />
+        android:text="Form Check" />
 
     <TextView
+        style="@style/TextAppearanceFitnessScreenSubtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_small"
         android:layout_marginBottom="@dimen/spacing_xlarge"
-        android:text="Ensure your technique is solid"
-        android:textColor="@color/fitness_text_secondary"
-        android:textSize="@dimen/text_size_body" />
+        android:text="Ensure your technique is solid" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,20 +30,17 @@
         android:layout_marginBottom="@dimen/spacing_xlarge">
 
         <TextView
+            style="@style/TextAppearanceFitnessSectionLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select Exercise"
-            android:textColor="@color/fitness_text_secondary"
-            android:textSize="@dimen/text_size_caption"
-            android:textStyle="bold" />
+            android:text="Select Exercise" />
 
         <Spinner
             android:id="@+id/spinnerExercise"
+            style="@style/WidgetFitnessSpinner"
             android:layout_width="match_parent"
-            android:layout_height="56dp" android:popupBackground="@color/fitness_surface_navy"
             android:layout_marginTop="@dimen/spacing_small"
-            android:background="@drawable/bg_input_field"
-            android:padding="@dimen/spacing_small" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <Button

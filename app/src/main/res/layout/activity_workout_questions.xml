@@ -13,22 +13,19 @@
 
         <TextView
             android:id="@+id/txtTitle"
+            style="@style/TextAppearanceFitnessScreenTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
-            android:text="Workout Feedback"
-            android:textColor="@color/fitness_text_primary"
-            android:textSize="@dimen/text_size_h1"
-            android:textStyle="bold" />
+            android:text="Workout Feedback" />
 
         <TextView
+            style="@style/TextAppearanceFitnessScreenSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_small"
             android:layout_marginBottom="@dimen/spacing_xlarge"
-            android:text="Help us understand your fatigue and pain levels"
-            android:textColor="@color/fitness_text_secondary"
-            android:textSize="@dimen/text_size_body" />
+            android:text="Help us understand your fatigue and pain levels" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,11 +37,10 @@
 
             <TextView
                 android:id="@+id/txtPrompt"
+                style="@style/TextAppearanceFitnessBody"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Where do you feel discomfort?"
-                android:textColor="@color/fitness_text_primary"
-                android:textSize="@dimen/text_size_body"
                 android:textStyle="bold" />
 
             <RadioGroup
@@ -54,19 +50,18 @@
                 android:layout_marginTop="@dimen/spacing_small" />
 
             <TextView
+                style="@style/TextAppearanceFitnessBody"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_xlarge"
                 android:text="Describe how your set felt:"
-                android:textColor="@color/fitness_text_primary"
-                android:textSize="@dimen/text_size_body"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etUserDescription"
                 style="@style/Widget.Fitness.EditText"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="@dimen/text_area_height"
                 android:layout_marginTop="@dimen/spacing_small"
                 android:gravity="top|start"
                 android:hint="e.g. My lower back feels tight when I go low in the squat."

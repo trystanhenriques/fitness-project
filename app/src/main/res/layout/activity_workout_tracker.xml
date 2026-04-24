@@ -7,22 +7,19 @@
     android:padding="@dimen/screen_padding">
 
     <TextView
+        style="@style/TextAppearanceFitnessScreenTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_large"
-        android:text="Workout Tracker"
-        android:textColor="@color/fitness_text_primary"
-        android:textSize="@dimen/text_size_h1"
-        android:textStyle="bold" />
+        android:text="Workout Tracker" />
 
     <TextView
+        style="@style/TextAppearanceFitnessScreenSubtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_small"
         android:layout_marginBottom="@dimen/spacing_xlarge"
-        android:text="Track your lifting progress"
-        android:textColor="@color/fitness_text_secondary"
-        android:textSize="@dimen/text_size_body" />
+        android:text="Track your lifting progress" />
 
     <Button
         android:id="@+id/btnStartNewWorkout"

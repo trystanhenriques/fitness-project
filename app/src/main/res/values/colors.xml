@@ -14,6 +14,10 @@
     <color name="fitness_accent_green">#26A69A</color>
     <color name="fitness_accent_blue">#42A5F5</color>
     <color name="fitness_accent_yellow">#FFCA28</color>
+    <color name="fitness_accent_green_container">#2626A69A</color>
+    <color name="fitness_accent_blue_container">#2642A5F5</color>
+    <color name="fitness_accent_orange_container">#26FF7043</color>
+    <color name="fitness_accent_yellow_container">#26FFCA28</color>
 
     <!-- Texts -->
     <color name="fitness_text_primary">#F8F9FA</color>
