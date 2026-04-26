@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.fitnessproject.R;
 import com.fitnessproject.core.data.DatabaseHelper;
+import com.fitnessproject.core.data.model.UserSession;
 import com.fitnessproject.core.session.SessionManager;
 import com.fitnessproject.ui.auth.AuthActivity;
 
@@ -40,6 +41,8 @@ public class SettingsActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this, new SettingsViewModelFactory(this)).get(SettingsViewModel.class);
 
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String scopedDisclaimerKey = getScopedKey(KEY_DISCLAIMER_ACCEPTED);
+        String scopedTextSizeKey = getScopedKey(KEY_TEXT_SIZE);
 
         // Account UI Bindings
         TextView txtAccountStatus = findViewById(R.id.txtAccountStatus);
@@ -70,14 +73,14 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Disclaimer Checkbox
         CheckBox cbDisclaimer = findViewById(R.id.cbDisclaimer);
-        cbDisclaimer.setChecked(prefs.getBoolean(KEY_DISCLAIMER_ACCEPTED, false));
+        cbDisclaimer.setChecked(prefs.getBoolean(scopedDisclaimerKey, false));
         cbDisclaimer.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            prefs.edit().putBoolean(KEY_DISCLAIMER_ACCEPTED, isChecked).apply();
+            prefs.edit().putBoolean(scopedDisclaimerKey, isChecked).apply();
         });
 
         // Text Size RadioGroup
         RadioGroup rgTextSize = findViewById(R.id.rgTextSize);
-        int savedTextSize = prefs.getInt(KEY_TEXT_SIZE, 1); // 0: Small, 1: Normal, 2: Large
+        int savedTextSize = prefs.getInt(scopedTextSizeKey, 1); // 0: Small, 1: Normal, 2: Large
         if (savedTextSize == 0) rgTextSize.check(R.id.rbSmall);
         else if (savedTextSize == 2) rgTextSize.check(R.id.rbLarge);
         else rgTextSize.check(R.id.rbMedium);
@@ -86,7 +89,7 @@ public class SettingsActivity extends AppCompatActivity {
             int size = 1;
             if (checkedId == R.id.rbSmall) size = 0;
             else if (checkedId == R.id.rbLarge) size = 2;
-            prefs.edit().putInt(KEY_TEXT_SIZE, size).apply();
+            prefs.edit().putInt(scopedTextSizeKey, size).apply();
             Toast.makeText(this, "Text size preference saved. Restart app to apply fully.", Toast.LENGTH_SHORT).show();
         });
 
@@ -99,7 +102,7 @@ public class SettingsActivity extends AppCompatActivity {
                     .setPositiveButton("Delete", (dialog, which) -> {
                         DatabaseHelper db = new DatabaseHelper(this);
                         db.deleteAllWorkouts();
-                        Toast.makeText(this, "All history deleted.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Workout history deleted for this account.", Toast.LENGTH_SHORT).show();
                     })
                     .setNegativeButton("Cancel", null)
                     .show();
@@ -110,5 +113,13 @@ public class SettingsActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         finish();
         return true;
+    }
+
+    private String getScopedKey(String baseKey) {
+        UserSession session = SessionManager.getInstance(this).getCurrentSession();
+        if (session != null && !session.isGuest() && session.getUserId() != null) {
+            return baseKey + "_user_" + session.getUserId();
+        }
+        return baseKey + "_guest";
     }
 }
