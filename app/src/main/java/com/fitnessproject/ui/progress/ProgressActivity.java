@@ -14,7 +14,10 @@ import com.fitnessproject.R;
 import com.fitnessproject.core.data.DataLoader;
 import com.fitnessproject.core.data.DatabaseHelper;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProgressActivity extends AppCompatActivity {
 
@@ -33,7 +36,7 @@ public class ProgressActivity extends AppCompatActivity {
         txtLastTime = findViewById(R.id.txtLastTime);
         listRecent = findViewById(R.id.listRecent);
 
-        List<String> exerciseList = DataLoader.getExerciseNames(this);
+        List<String> exerciseList = buildExerciseListForCurrentSession();
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
                 this,
                 R.layout.item_spinner,
@@ -55,6 +58,31 @@ public class ProgressActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    private List<String> buildExerciseListForCurrentSession() {
+        List<String> presetExercises = DataLoader.getExerciseNames(this);
+        List<String> trackedExercises = db.getTrackedExerciseNames();
+        Map<String, String> normalizedToDisplay = new LinkedHashMap<>();
+
+        for (String name : presetExercises) {
+            if (name == null) continue;
+            String trimmed = name.trim();
+            if (trimmed.isEmpty()) continue;
+            normalizedToDisplay.put(trimmed.toLowerCase(), trimmed);
+        }
+
+        for (String name : trackedExercises) {
+            if (name == null) continue;
+            String trimmed = name.trim();
+            if (trimmed.isEmpty()) continue;
+            String key = trimmed.toLowerCase();
+            if (!normalizedToDisplay.containsKey(key)) {
+                normalizedToDisplay.put(key, trimmed);
+            }
+        }
+
+        return new ArrayList<>(normalizedToDisplay.values());
     }
 
     private void updateProgress(String exercise) {

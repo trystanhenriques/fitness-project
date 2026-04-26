@@ -48,6 +48,25 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:id="@+id/txtCustomExerciseLabel"
+                style="@style/TextAppearanceFitnessSectionLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:text="Custom Exercise"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/etCustomExercise"
+                style="@style/Widget.Fitness.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:hint="e.g., Bulgarian Split Squat"
+                android:inputType="textCapWords"
+                android:visibility="gone" />
+
+            <TextView
                 style="@style/TextAppearanceFitnessSectionLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

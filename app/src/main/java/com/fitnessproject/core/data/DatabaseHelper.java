@@ -182,6 +182,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
+    public List<String> getTrackedExerciseNames() {
+        List<String> names = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor;
+
+        Long currentUserId = getCurrentUserIdOrNull();
+        if (currentUserId == null) {
+            cursor = db.rawQuery(
+                    "SELECT DISTINCT " + COLUMN_EXERCISE + " FROM " + TABLE_WORKOUTS +
+                            " WHERE " + COLUMN_USER_ID + " IS NULL ORDER BY " + COLUMN_EXERCISE + " COLLATE NOCASE ASC",
+                    null
+            );
+        } else {
+            cursor = db.rawQuery(
+                    "SELECT DISTINCT " + COLUMN_EXERCISE + " FROM " + TABLE_WORKOUTS +
+                            " WHERE " + COLUMN_USER_ID + " = ? ORDER BY " + COLUMN_EXERCISE + " COLLATE NOCASE ASC",
+                    new String[]{String.valueOf(currentUserId)}
+            );
+        }
+
+        if (cursor.moveToFirst()) {
+            do {
+                String name = cursor.getString(0);
+                if (name != null && !name.trim().isEmpty()) {
+                    names.add(name);
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return names;
+    }
+
     private Long getCurrentUserIdOrNull() {
         UserSession session = SessionManager.getInstance(appContext).getCurrentSession();
         if (session != null && !session.isGuest()) {
