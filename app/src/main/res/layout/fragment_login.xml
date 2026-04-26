@@ -19,7 +19,14 @@
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/spacing_large"
             android:background="@drawable/bg_icon_container_orange">
-            <!-- Icon/Logo content could go here, currently just an orange colored block placeholder -->
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:contentDescription="Login icon"
+                android:src="@android:drawable/ic_lock_lock"
+                android:tint="@color/fitness_text_primary" />
         </FrameLayout>
 
         <TextView

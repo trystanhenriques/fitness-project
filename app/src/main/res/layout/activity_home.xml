@@ -46,7 +46,16 @@
                     android:layout_width="@dimen/feature_icon_size"
                     android:layout_height="@dimen/feature_icon_size"
                     android:layout_marginEnd="@dimen/spacing_medium"
-                    android:background="@drawable/bg_icon_container_blue" />
+                    android:background="@drawable/bg_icon_container_blue">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="Form check"
+                        android:src="@android:drawable/ic_menu_info_details"
+                        android:tint="@color/fitness_text_primary" />
+                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -95,7 +104,16 @@
                     android:layout_width="@dimen/feature_icon_size"
                     android:layout_height="@dimen/feature_icon_size"
                     android:layout_marginEnd="@dimen/spacing_medium"
-                    android:background="@drawable/bg_icon_container_orange" />
+                    android:background="@drawable/bg_icon_container_orange">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="Workout tracking"
+                        android:src="@android:drawable/ic_menu_sort_by_size"
+                        android:tint="@color/fitness_text_primary" />
+                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -144,7 +162,16 @@
                     android:layout_width="@dimen/feature_icon_size"
                     android:layout_height="@dimen/feature_icon_size"
                     android:layout_marginEnd="@dimen/spacing_medium"
-                    android:background="@drawable/bg_icon_container_yellow" />
+                    android:background="@drawable/bg_icon_container_yellow">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="Weekly plan builder"
+                        android:src="@android:drawable/ic_menu_agenda"
+                        android:tint="@color/fitness_text_primary" />
+                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -193,7 +220,16 @@
                     android:layout_width="@dimen/feature_icon_size"
                     android:layout_height="@dimen/feature_icon_size"
                     android:layout_marginEnd="@dimen/spacing_medium"
-                    android:background="@drawable/bg_icon_container_green" />
+                    android:background="@drawable/bg_icon_container_green">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="Settings"
+                        android:src="@android:drawable/ic_menu_manage"
+                        android:tint="@color/fitness_text_primary" />
+                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
