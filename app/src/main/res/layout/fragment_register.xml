@@ -19,6 +19,14 @@
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/spacing_large"
             android:background="@drawable/bg_icon_container_orange">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:contentDescription="Register icon"
+                android:src="@android:drawable/ic_menu_edit"
+                android:tint="@color/fitness_text_primary" />
         </FrameLayout>
 
         <TextView
