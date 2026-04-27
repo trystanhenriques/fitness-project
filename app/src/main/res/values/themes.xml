@@ -115,4 +115,10 @@
         <item name="android:textSize">@dimen/text_size_body</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="TextAppearanceFitnessStatValue">
+        <item name="android:textColor">@color/fitness_text_primary</item>
+        <item name="android:textSize">@dimen/text_size_stat_value</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

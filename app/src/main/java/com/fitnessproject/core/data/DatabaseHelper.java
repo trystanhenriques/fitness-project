@@ -14,8 +14,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.TimeZone;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String GROUP_HEADER_PREFIX = "__HEADER__:";
@@ -405,12 +410,235 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return entries;
     }
 
+    public UserStatsSummary getUserStatsSummary() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor;
+
+        Long currentUserId = getCurrentUserIdOrNull();
+        if (currentUserId == null) {
+            cursor = db.rawQuery(
+                    "SELECT * FROM " + TABLE_WORKOUTS + " WHERE " + COLUMN_USER_ID + " IS NULL ORDER BY " +
+                            COLUMN_DATE + " DESC, " + COLUMN_ID + " DESC",
+                    null
+            );
+        } else {
+            cursor = db.rawQuery(
+                    "SELECT * FROM " + TABLE_WORKOUTS + " WHERE " + COLUMN_USER_ID + " = ? ORDER BY " +
+                            COLUMN_DATE + " DESC, " + COLUMN_ID + " DESC",
+                    new String[]{String.valueOf(currentUserId)}
+            );
+        }
+
+        UserStatsSummary summary = new UserStatsSummary();
+        Map<String, Integer> exerciseCounts = new LinkedHashMap<>();
+        Map<String, Integer> categoryCounts = new LinkedHashMap<>();
+        Set<String> activeDateKeys = new LinkedHashSet<>();
+
+        Calendar now = Calendar.getInstance();
+        Date newestWorkoutDate = null;
+        Date oldestWorkoutDate = null;
+        double heaviestWeight = Double.NEGATIVE_INFINITY;
+        String heaviestExercise = null;
+        int heaviestReps = 0;
+        int heaviestSets = 0;
+
+        if (cursor.moveToFirst()) {
+            do {
+                summary.totalWorkouts++;
+
+                String exercise = valueOrEmpty(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXERCISE)));
+                String weightRaw = valueOrEmpty(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_WEIGHT)));
+                String repsRaw = valueOrEmpty(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_REPS)));
+                String setsRaw = valueOrEmpty(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_SETS)));
+                String exerciseGroup = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXERCISE_GROUP));
+                String dateText = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE));
+
+                Date parsedDate = parseDatabaseDate(dateText);
+                if (parsedDate != null) {
+                    if (newestWorkoutDate == null || parsedDate.after(newestWorkoutDate)) {
+                        newestWorkoutDate = parsedDate;
+                    }
+                    if (oldestWorkoutDate == null || parsedDate.before(oldestWorkoutDate)) {
+                        oldestWorkoutDate = parsedDate;
+                    }
+
+                    if (isWithinLastDays(parsedDate, now, 7)) {
+                        summary.workoutsLast7Days++;
+                    }
+                    if (isWithinLastDays(parsedDate, now, 30)) {
+                        summary.workoutsLast30Days++;
+                    }
+                    if (isSameMonth(parsedDate, now)) {
+                        activeDateKeys.add(new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(parsedDate));
+                    }
+                }
+
+                if (!exercise.isEmpty()) {
+                    incrementCount(exerciseCounts, exercise);
+                }
+
+                int reps = parseIntegerSafely(repsRaw);
+                int sets = parseIntegerSafely(setsRaw);
+                summary.totalSets += Math.max(sets, 0);
+                if (reps > 0 && sets > 0) {
+                    summary.totalReps += reps * sets;
+                }
+
+                double weight = parseDoubleSafely(weightRaw);
+                if (weight > heaviestWeight) {
+                    heaviestWeight = weight;
+                    heaviestExercise = exercise;
+                    heaviestReps = reps;
+                    heaviestSets = sets;
+                }
+
+                List<String> categories = DataLoader.parseCategoryCsv(exerciseGroup);
+                if ((exerciseGroup == null || exerciseGroup.trim().isEmpty()) && !exercise.isEmpty()) {
+                    categories = DataLoader.getExerciseCategories(appContext, exercise);
+                }
+                for (String category : categories) {
+                    incrementCount(categoryCounts, category);
+                }
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        summary.distinctExercises = exerciseCounts.size();
+        summary.activeDaysThisMonth = activeDateKeys.size();
+        summary.lastWorkoutDateLabel = newestWorkoutDate == null
+                ? "No workouts yet"
+                : formatDateTimeText(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(newestWorkoutDate));
+        summary.lastWorkoutDayLabel = newestWorkoutDate == null ? "No recent session" : formatDateHeader(
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(newestWorkoutDate)
+        );
+        summary.averageWorkoutsPerWeek = calculateAveragePerWeek(summary.totalWorkouts, oldestWorkoutDate, newestWorkoutDate);
+        summary.mostLoggedExerciseLabel = formatTopLabel(exerciseCounts, "No exercise data");
+        summary.favoriteCategoryLabel = formatTopLabel(categoryCounts, "No category data");
+        summary.heaviestSetLabel = formatHeaviestSetLabel(heaviestWeight, heaviestExercise, heaviestReps, heaviestSets);
+        summary.hasData = summary.totalWorkouts > 0;
+        return summary;
+    }
+
     private Long getCurrentUserIdOrNull() {
         UserSession session = SessionManager.getInstance(appContext).getCurrentSession();
         if (session != null && !session.isGuest()) {
             return session.getUserId();
         }
         return null;
+    }
+
+    private void incrementCount(Map<String, Integer> counts, String key) {
+        if (key == null || key.trim().isEmpty()) {
+            return;
+        }
+        Integer current = counts.get(key);
+        counts.put(key, current == null ? 1 : current + 1);
+    }
+
+    private int parseIntegerSafely(String raw) {
+        if (raw == null || raw.trim().isEmpty()) {
+            return 0;
+        }
+        try {
+            return Integer.parseInt(raw.trim());
+        } catch (NumberFormatException ignored) {
+            return 0;
+        }
+    }
+
+    private double parseDoubleSafely(String raw) {
+        if (raw == null || raw.trim().isEmpty()) {
+            return Double.NEGATIVE_INFINITY;
+        }
+        try {
+            return Double.parseDouble(raw.trim());
+        } catch (NumberFormatException ignored) {
+            return Double.NEGATIVE_INFINITY;
+        }
+    }
+
+    private String valueOrEmpty(String value) {
+        return value == null ? "" : value.trim();
+    }
+
+    private boolean isWithinLastDays(Date date, Calendar now, int days) {
+        Calendar threshold = (Calendar) now.clone();
+        threshold.add(Calendar.DAY_OF_YEAR, -(days - 1));
+        resetToStartOfDay(threshold);
+
+        Calendar target = Calendar.getInstance();
+        target.setTime(date);
+        return !target.before(threshold) && !target.after(now);
+    }
+
+    private boolean isSameMonth(Date date, Calendar reference) {
+        Calendar target = Calendar.getInstance();
+        target.setTime(date);
+        return target.get(Calendar.YEAR) == reference.get(Calendar.YEAR)
+                && target.get(Calendar.MONTH) == reference.get(Calendar.MONTH);
+    }
+
+    private void resetToStartOfDay(Calendar calendar) {
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+    }
+
+    private double calculateAveragePerWeek(int totalWorkouts, Date oldestWorkoutDate, Date newestWorkoutDate) {
+        if (totalWorkouts <= 0 || oldestWorkoutDate == null || newestWorkoutDate == null) {
+            return 0d;
+        }
+        long diffMillis = newestWorkoutDate.getTime() - oldestWorkoutDate.getTime();
+        double totalDays = Math.max(1d, (diffMillis / 86400000d) + 1d);
+        return (totalWorkouts / totalDays) * 7d;
+    }
+
+    private String formatTopLabel(Map<String, Integer> counts, String emptyLabel) {
+        String bestKey = null;
+        int bestCount = 0;
+        for (Map.Entry<String, Integer> entry : counts.entrySet()) {
+            if (entry.getValue() > bestCount) {
+                bestCount = entry.getValue();
+                bestKey = entry.getKey();
+            }
+        }
+        if (bestKey == null) {
+            return emptyLabel;
+        }
+        return bestKey + " • " + bestCount + (bestCount == 1 ? " session" : " sessions");
+    }
+
+    private String formatHeaviestSetLabel(double heaviestWeight, String exercise, int reps, int sets) {
+        if (heaviestExerciseMissing(heaviestWeight, exercise)) {
+            return "No weighted sets yet";
+        }
+
+        StringBuilder label = new StringBuilder();
+        label.append(formatWeightText(heaviestWeight)).append(" lbs");
+        if (!exercise.trim().isEmpty()) {
+            label.append(" • ").append(exercise.trim());
+        }
+        if (reps > 0) {
+            label.append(" x ").append(reps);
+        }
+        if (sets > 0) {
+            label.append(" (").append(sets).append(sets == 1 ? " set)" : " sets)");
+        }
+        return label.toString();
+    }
+
+    private boolean heaviestExerciseMissing(double heaviestWeight, String exercise) {
+        return heaviestWeight == Double.NEGATIVE_INFINITY || exercise == null || exercise.trim().isEmpty();
+    }
+
+    private String formatWeightText(double weight) {
+        if (weight == Math.rint(weight)) {
+            return String.valueOf((int) weight);
+        }
+        return String.format(Locale.US, "%.1f", weight);
     }
 
     private String formatDateHeader(String rawDate) {
@@ -455,7 +683,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return null;
         }
         try {
-            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).parse(rawDate);
+            SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+            parser.setTimeZone(TimeZone.getTimeZone("UTC"));
+            return parser.parse(rawDate);
         } catch (ParseException ignored) {
             return null;
         }
@@ -482,5 +712,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         public String getExerciseGroup() {
             return exerciseGroup;
         }
+    }
+
+    public static class UserStatsSummary {
+        public boolean hasData;
+        public int totalWorkouts;
+        public int totalSets;
+        public int totalReps;
+        public int distinctExercises;
+        public int workoutsLast7Days;
+        public int workoutsLast30Days;
+        public int activeDaysThisMonth;
+        public double averageWorkoutsPerWeek;
+        public String lastWorkoutDayLabel = "No recent session";
+        public String lastWorkoutDateLabel = "No workouts yet";
+        public String mostLoggedExerciseLabel = "No exercise data";
+        public String heaviestSetLabel = "No weighted sets yet";
+        public String favoriteCategoryLabel = "No category data";
     }
 }

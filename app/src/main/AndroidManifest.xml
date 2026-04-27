@@ -12,6 +12,11 @@
         android:theme="@style/Theme.MyApplication">
 
         <activity
+            android:name=".ui.stats.UserStatsActivity"
+            android:exported="false"
+            android:label="Your Stats"
+            android:parentActivityName=".ui.workout.WorkoutTrackerActivity" />
+        <activity
             android:name=".ui.progress.ProgressActivity"
             android:exported="false"
             android:label="Progress"

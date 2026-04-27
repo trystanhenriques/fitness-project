@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.fitnessproject.R;
 import com.fitnessproject.ui.history.WorkoutHistoryActivity;
 import com.fitnessproject.ui.progress.ProgressActivity;
+import com.fitnessproject.ui.stats.UserStatsActivity;
 
 public class WorkoutTrackerActivity extends AppCompatActivity {
     @Override
@@ -20,6 +21,7 @@ public class WorkoutTrackerActivity extends AppCompatActivity {
         Button btnStartNew = findViewById(R.id.btnStartNewWorkout);
         Button btnProgress = findViewById(R.id.btnViewProgress);
         Button btnHistory = findViewById(R.id.btnWorkoutHistory);
+        Button btnStats = findViewById(R.id.btnUserStats);
 
         btnStartNew.setOnClickListener(v ->
                 startActivity(new Intent(this, NewWorkoutActivity.class)));
@@ -29,5 +31,8 @@ public class WorkoutTrackerActivity extends AppCompatActivity {
 
         btnHistory.setOnClickListener(v ->
                 startActivity(new Intent(this, WorkoutHistoryActivity.class)));
+
+        btnStats.setOnClickListener(v ->
+                startActivity(new Intent(this, UserStatsActivity.class)));
     }
 }
