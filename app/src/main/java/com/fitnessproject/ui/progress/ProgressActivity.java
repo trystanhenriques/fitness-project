@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.fitnessproject.R;
 import com.fitnessproject.core.data.DataLoader;
 import com.fitnessproject.core.data.DatabaseHelper;
+import com.fitnessproject.ui.common.GroupedWorkoutListAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -188,13 +189,14 @@ public class ProgressActivity extends AppCompatActivity {
     }
 
     private void updateProgress(String exercise) {
-        List<String> progress = db.getProgressForExercise(exercise);
+        List<String> progress = db.getProgressForExerciseGroupedByDate(exercise);
+        String latestSet = db.getLatestSetSummaryForExercise(exercise);
         if (progress.isEmpty()) {
             txtLastTime.setText("No data yet for " + exercise);
             listRecent.setAdapter(new ArrayAdapter<>(this, R.layout.item_list, new String[]{"No recent sets"}));
         } else {
-            txtLastTime.setText("Last set: " + progress.get(0));
-            listRecent.setAdapter(new ArrayAdapter<>(this, R.layout.item_list, progress));
+            txtLastTime.setText(latestSet == null ? "—" : "Last set: " + latestSet);
+            listRecent.setAdapter(new GroupedWorkoutListAdapter(this, progress));
         }
     }
 
