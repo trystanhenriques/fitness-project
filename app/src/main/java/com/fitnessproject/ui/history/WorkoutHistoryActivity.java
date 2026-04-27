@@ -1,13 +1,13 @@
 package com.fitnessproject.ui.history;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fitnessproject.R;
 import com.fitnessproject.core.data.DatabaseHelper;
+import com.fitnessproject.ui.common.GroupedWorkoutListAdapter;
 
 import java.util.List;
 
@@ -20,17 +20,13 @@ public class WorkoutHistoryActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.listHistory);
 
         DatabaseHelper db = new DatabaseHelper(this);
-        List<String> items = db.getAllWorkouts();
+        List<String> items = db.getAllWorkoutsGroupedByDate();
 
         if (items.isEmpty()) {
             items.add("No workouts logged yet. Start training!");
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                R.layout.item_list,
-                items
-        );
+        GroupedWorkoutListAdapter adapter = new GroupedWorkoutListAdapter(this, items);
         listView.setAdapter(adapter);
 
         if (getSupportActionBar() != null) {

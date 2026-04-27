@@ -9,10 +9,16 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.fitnessproject.core.data.model.UserSession;
 import com.fitnessproject.core.session.SessionManager;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+    public static final String GROUP_HEADER_PREFIX = "__HEADER__:";
 
     private static final String DATABASE_NAME = "fitness_project.db";
     private static final int DATABASE_VERSION = 3;
@@ -155,6 +161,142 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
+    public List<String> getAllWorkoutsGroupedByDate() {
+        List<String> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor;
+
+        Long currentUserId = getCurrentUserIdOrNull();
+        if (currentUserId == null) {
+            cursor = db.rawQuery(
+                    "SELECT * FROM " + TABLE_WORKOUTS + " WHERE " + COLUMN_USER_ID + " IS NULL ORDER BY " +
+                            COLUMN_DATE + " DESC, " + COLUMN_ID + " DESC",
+                    null
+            );
+        } else {
+            cursor = db.rawQuery(
+                    "SELECT * FROM " + TABLE_WORKOUTS + " WHERE " + COLUMN_USER_ID + " = ? ORDER BY " +
+                            COLUMN_DATE + " DESC, " + COLUMN_ID + " DESC",
+                    new String[]{String.valueOf(currentUserId)}
+            );
+        }
+
+        String currentDateHeader = null;
+        if (cursor.moveToFirst()) {
+            do {
+                String dateText = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE));
+                String dateHeader = formatDateHeader(dateText);
+                if (!dateHeader.equals(currentDateHeader)) {
+                    list.add(GROUP_HEADER_PREFIX + dateHeader);
+                    currentDateHeader = dateHeader;
+                }
+
+                String entry = formatTimeText(dateText) + "  "
+                        + cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXERCISE)) + " - "
+                        + cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_WEIGHT)) + " lbs x "
+                        + cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_REPS)) + " reps ("
+                        + cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_SETS)) + " sets)";
+                list.add(entry);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return list;
+    }
+
+    public List<String> getProgressForExerciseGroupedByDate(String exercise) {
+        List<String> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor;
+
+        Long currentUserId = getCurrentUserIdOrNull();
+        if (currentUserId == null) {
+            cursor = db.query(
+                    TABLE_WORKOUTS,
+                    null,
+                    COLUMN_EXERCISE + "=? AND " + COLUMN_USER_ID + " IS NULL",
+                    new String[]{exercise},
+                    null,
+                    null,
+                    COLUMN_DATE + " DESC, " + COLUMN_ID + " DESC"
+            );
+        } else {
+            cursor = db.query(
+                    TABLE_WORKOUTS,
+                    null,
+                    COLUMN_EXERCISE + "=? AND " + COLUMN_USER_ID + "=?",
+                    new String[]{exercise, String.valueOf(currentUserId)},
+                    null,
+                    null,
+                    COLUMN_DATE + " DESC, " + COLUMN_ID + " DESC"
+            );
+        }
+
+        String currentDateHeader = null;
+        if (cursor.moveToFirst()) {
+            do {
+                String dateText = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE));
+                String dateHeader = formatDateHeader(dateText);
+                if (!dateHeader.equals(currentDateHeader)) {
+                    list.add(GROUP_HEADER_PREFIX + dateHeader);
+                    currentDateHeader = dateHeader;
+                }
+
+                String entry = formatTimeText(dateText) + "  "
+                        + cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_WEIGHT)) + " lbs x "
+                        + cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_REPS)) + " reps ("
+                        + cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_SETS)) + " sets)";
+                list.add(entry);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return list;
+    }
+
+    public String getLatestSetSummaryForExercise(String exercise) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor;
+
+        Long currentUserId = getCurrentUserIdOrNull();
+        if (currentUserId == null) {
+            cursor = db.query(
+                    TABLE_WORKOUTS,
+                    null,
+                    COLUMN_EXERCISE + "=? AND " + COLUMN_USER_ID + " IS NULL",
+                    new String[]{exercise},
+                    null,
+                    null,
+                    COLUMN_DATE + " DESC, " + COLUMN_ID + " DESC",
+                    "1"
+            );
+        } else {
+            cursor = db.query(
+                    TABLE_WORKOUTS,
+                    null,
+                    COLUMN_EXERCISE + "=? AND " + COLUMN_USER_ID + "=?",
+                    new String[]{exercise, String.valueOf(currentUserId)},
+                    null,
+                    null,
+                    COLUMN_DATE + " DESC, " + COLUMN_ID + " DESC",
+                    "1"
+            );
+        }
+
+        String latest = null;
+        if (cursor.moveToFirst()) {
+            String dateText = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE));
+            latest = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_WEIGHT)) + " lbs x "
+                    + cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_REPS)) + " reps ("
+                    + cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_SETS)) + " sets)"
+                    + " • " + formatDateTimeText(dateText);
+        }
+
+        cursor.close();
+        db.close();
+        return latest;
+    }
+
     public void deleteAllWorkouts() {
         SQLiteDatabase db = this.getWritableDatabase();
         Long currentUserId = getCurrentUserIdOrNull();
@@ -269,6 +411,59 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return session.getUserId();
         }
         return null;
+    }
+
+    private String formatDateHeader(String rawDate) {
+        Date parsed = parseDatabaseDate(rawDate);
+        if (parsed == null) {
+            return "Unknown Date";
+        }
+
+        Calendar today = Calendar.getInstance();
+        Calendar yesterday = Calendar.getInstance();
+        yesterday.add(Calendar.DAY_OF_YEAR, -1);
+        Calendar target = Calendar.getInstance();
+        target.setTime(parsed);
+
+        if (isSameDay(target, today)) {
+            return "Today";
+        }
+        if (isSameDay(target, yesterday)) {
+            return "Yesterday";
+        }
+        return new SimpleDateFormat("EEE, MMM d, yyyy", Locale.US).format(parsed);
+    }
+
+    private String formatTimeText(String rawDate) {
+        Date parsed = parseDatabaseDate(rawDate);
+        if (parsed == null) {
+            return "--:--";
+        }
+        return new SimpleDateFormat("h:mm a", Locale.US).format(parsed);
+    }
+
+    private String formatDateTimeText(String rawDate) {
+        Date parsed = parseDatabaseDate(rawDate);
+        if (parsed == null) {
+            return "Unknown time";
+        }
+        return new SimpleDateFormat("MMM d, yyyy h:mm a", Locale.US).format(parsed);
+    }
+
+    private Date parseDatabaseDate(String rawDate) {
+        if (rawDate == null || rawDate.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).parse(rawDate);
+        } catch (ParseException ignored) {
+            return null;
+        }
+    }
+
+    private boolean isSameDay(Calendar c1, Calendar c2) {
+        return c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR)
+                && c1.get(Calendar.DAY_OF_YEAR) == c2.get(Calendar.DAY_OF_YEAR);
     }
 
     public static class ExerciseGroupEntry {
