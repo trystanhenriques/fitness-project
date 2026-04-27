@@ -15,24 +15,77 @@
             style="@style/TextAppearanceFitnessScreenSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/header_top_spacing"
             android:layout_marginBottom="@dimen/spacing_large"
-            android:text="Your generated weekly schedule is below." />
+            android:text="Built around your selected goal and available training days." />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_xlarge"
+            android:layout_marginBottom="@dimen/spacing_large"
+            android:background="@drawable/bg_subtle_panel"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/card_padding_large">
+
+            <FrameLayout
+                android:layout_width="@dimen/hero_icon_size"
+                android:layout_height="@dimen/hero_icon_size"
+                android:layout_marginEnd="@dimen/spacing_medium"
+                android:background="@drawable/bg_icon_container_yellow">
+
+                <ImageView
+                    android:layout_width="@dimen/inline_icon_size"
+                    android:layout_height="@dimen/inline_icon_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="Generated weekly plan"
+                    android:src="@android:drawable/ic_menu_agenda"
+                    android:tint="@color/fitness_text_primary" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextAppearanceFitnessCardEyebrow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Generated Plan" />
+
+                <TextView
+                    style="@style/TextAppearanceFitnessBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xsmall"
+                    android:text="Use this as a starting point and adjust exercise choices to match your equipment or recovery."
+                    android:textColor="@color/fitness_text_tertiary" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_large"
             android:background="@drawable/bg_rounded_card"
             android:orientation="vertical"
-            android:padding="@dimen/spacing_large">
+            android:padding="@dimen/card_padding_large">
+
+            <TextView
+                style="@style/TextAppearanceFitnessCardEyebrow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weekly Schedule" />
 
             <TextView
                 android:id="@+id/txtPlanContent"
                 style="@style/TextAppearanceFitnessBody"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lineSpacingExtra="@dimen/spacing_xsmall"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:lineSpacingExtra="@dimen/line_spacing_body"
                 android:textColor="@color/fitness_text_primary"
                 android:textIsSelectable="true" />
         </LinearLayout>
@@ -42,6 +95,7 @@
             style="@style/Widget.Fitness.Button.Secondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_large"
             android:text="Back to Builder" />
 
     </LinearLayout>

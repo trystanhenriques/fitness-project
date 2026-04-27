@@ -15,7 +15,7 @@
         style="@style/TextAppearanceFitnessScreenTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/header_top_spacing"
         android:text="Form Check" />
 
     <TextView
@@ -23,21 +23,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_small"
-        android:layout_marginBottom="@dimen/spacing_xlarge"
-        android:text="Ensure your technique is solid" />
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:text="Choose an exercise to review your movement." />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_rounded_card"
         android:orientation="vertical"
-        android:padding="@dimen/spacing_large"
-        android:layout_marginBottom="@dimen/spacing_xlarge">
+        android:padding="@dimen/card_padding_large"
+        android:layout_marginBottom="@dimen/spacing_large">
+
+        <TextView
+            style="@style/TextAppearanceFitnessCardEyebrow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Form Check Setup" />
+
+        <TextView
+            style="@style/TextAppearanceFitnessCardTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xsmall"
+            android:text="Start with an exercise" />
 
         <TextView
             style="@style/TextAppearanceFitnessSectionLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
             android:text="Select Exercise" />
 
         <Spinner

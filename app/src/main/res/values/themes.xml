@@ -5,6 +5,8 @@
         <item name="android:textColorPrimary">@color/fitness_text_primary</item>
         <item name="android:textColorSecondary">@color/fitness_text_secondary</item>
         <item name="colorPrimary">@color/fitness_primary_orange</item>
+        <item name="colorControlActivated">@color/fitness_primary_orange</item>
+        <item name="android:colorControlActivated">@color/fitness_primary_orange</item>
 
         <!-- Seamless Action Bar -->
         <item name="actionBarStyle">@style/Widget.Fitness.ActionBar</item>
@@ -55,8 +57,16 @@
     <style name="WidgetFitnessSpinner">
         <item name="android:layout_height">@dimen/control_height</item>
         <item name="android:background">@drawable/bg_input_field</item>
-        <item name="android:padding">@dimen/spacing_small</item>
+        <item name="android:paddingStart">@dimen/spacing_medium</item>
+        <item name="android:paddingEnd">@dimen/spacing_medium</item>
         <item name="android:popupBackground">@color/fitness_surface_navy</item>
+    </style>
+
+    <style name="WidgetFitnessSelectionControl" parent="@android:style/Widget.CompoundButton">
+        <item name="android:minHeight">@dimen/control_height_compact</item>
+        <item name="android:textColor">@color/fitness_text_primary</item>
+        <item name="android:textSize">@dimen/text_size_body</item>
+        <item name="android:buttonTint">@color/fitness_primary_orange</item>
     </style>
 
     <style name="TextAppearanceFitnessScreenTitle">
@@ -76,6 +86,14 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextAppearanceFitnessCardEyebrow">
+        <item name="android:textColor">@color/fitness_primary_orange</item>
+        <item name="android:textSize">@dimen/text_size_caption</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
     <style name="TextAppearanceFitnessSectionLabel">
         <item name="android:textColor">@color/fitness_text_secondary</item>
         <item name="android:textSize">@dimen/text_size_caption</item>
@@ -90,5 +108,11 @@
     <style name="TextAppearanceFitnessCaption">
         <item name="android:textColor">@color/fitness_text_secondary</item>
         <item name="android:textSize">@dimen/text_size_caption</item>
+    </style>
+
+    <style name="TextAppearanceFitnessEmptyTitle">
+        <item name="android:textColor">@color/fitness_text_primary</item>
+        <item name="android:textSize">@dimen/text_size_body</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

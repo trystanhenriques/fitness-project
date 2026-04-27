@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginBottom="@dimen/spacing_xlarge"
-            android:text="Join to start tracking your workouts" />
+            android:text="Create an account to save your workouts and progress." />
 
         <TextView
             android:id="@+id/textError"

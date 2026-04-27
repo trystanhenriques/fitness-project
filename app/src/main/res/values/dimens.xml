@@ -10,6 +10,7 @@
     <dimen name="spacing_medium">16dp</dimen>
     <dimen name="spacing_large">24dp</dimen>
     <dimen name="spacing_xlarge">32dp</dimen>
+    <dimen name="spacing_xxlarge">40dp</dimen>
 
     <!-- Component Corner Radii -->
     <dimen name="corner_radius_small">12dp</dimen>
@@ -20,10 +21,17 @@
     <!-- Shared component sizes -->
     <dimen name="stroke_width_thin">1dp</dimen>
     <dimen name="control_height">56dp</dimen>
+    <dimen name="control_height_compact">48dp</dimen>
     <dimen name="auth_icon_size">80dp</dimen>
     <dimen name="feature_icon_size">56dp</dimen>
+    <dimen name="hero_icon_size">52dp</dimen>
+    <dimen name="inline_icon_size">22dp</dimen>
     <dimen name="text_area_height">120dp</dimen>
     <dimen name="list_divider_height">8dp</dimen>
+    <dimen name="list_group_gap">12dp</dimen>
+    <dimen name="card_padding_large">20dp</dimen>
+    <dimen name="header_top_spacing">20dp</dimen>
+    <dimen name="line_spacing_body">6dp</dimen>
 
     <!-- Typography -->
     <dimen name="text_size_h1">32sp</dimen>

@@ -6,7 +6,9 @@
     <!-- Fitness App Dark Navy UI Colors -->
     <color name="fitness_bg_navy">#0B101E</color>
     <color name="fitness_surface_navy">#151C2C</color>
+    <color name="fitness_surface_navy_elevated">#1A2436</color>
     <color name="fitness_border_blue_gray">#2A344A</color>
+    <color name="fitness_divider_soft">#223048</color>
 
     <!-- Accents -->
     <color name="fitness_primary_orange">#FF7043</color>
@@ -22,6 +24,7 @@
     <!-- Texts -->
     <color name="fitness_text_primary">#F8F9FA</color>
     <color name="fitness_text_secondary">#9CA3AF</color>
+    <color name="fitness_text_tertiary">#C9D1DB</color>
 
     <!-- Other -->
     <color name="fitness_input_bg">#182134</color>

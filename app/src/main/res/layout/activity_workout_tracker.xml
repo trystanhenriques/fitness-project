@@ -15,7 +15,7 @@
         style="@style/TextAppearanceFitnessScreenTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/header_top_spacing"
         android:text="Workout Tracker" />
 
     <TextView
@@ -23,31 +23,184 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_small"
-        android:layout_marginBottom="@dimen/spacing_xlarge"
-        android:text="Track your lifting progress" />
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:text="Log today’s training or review your recent work." />
 
-    <Button
-        android:id="@+id/btnStartNewWorkout"
-        style="@style/Widget.Fitness.Button.Primary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing_medium"
-        android:text="Start New Workout" />
-
-    <Button
-        android:id="@+id/btnViewProgress"
-        style="@style/Widget.Fitness.Button.Secondary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing_medium"
-        android:text="View My Progress" />
-
-        <Button
-            android:id="@+id/btnWorkoutHistory"
-            style="@style/Widget.Fitness.Button.Secondary"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Workout History" />
+            android:layout_marginBottom="@dimen/spacing_medium">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/card_padding_large">
+
+                <FrameLayout
+                    android:layout_width="@dimen/feature_icon_size"
+                    android:layout_height="@dimen/feature_icon_size"
+                    android:layout_marginEnd="@dimen/spacing_medium"
+                    android:background="@drawable/bg_icon_container_orange">
+
+                    <ImageView
+                        android:layout_width="@dimen/inline_icon_size"
+                        android:layout_height="@dimen/inline_icon_size"
+                        android:layout_gravity="center"
+                        android:contentDescription="Start a workout"
+                        android:src="@android:drawable/ic_input_add"
+                        android:tint="@color/fitness_text_primary" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCardTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Start New Workout" />
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCaption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xsmall"
+                        android:text="Log a fresh training session."
+                        android:textColor="@color/fitness_text_secondary" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnStartNewWorkout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:stateListAnimator="@null"
+                android:text="" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_medium">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/card_padding_large">
+
+                <FrameLayout
+                    android:layout_width="@dimen/feature_icon_size"
+                    android:layout_height="@dimen/feature_icon_size"
+                    android:layout_marginEnd="@dimen/spacing_medium"
+                    android:background="@drawable/bg_icon_container_blue">
+
+                    <ImageView
+                        android:layout_width="@dimen/inline_icon_size"
+                        android:layout_height="@dimen/inline_icon_size"
+                        android:layout_gravity="center"
+                        android:contentDescription="View progress"
+                        android:src="@android:drawable/ic_menu_recent_history"
+                        android:tint="@color/fitness_text_primary" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCardTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="View My Progress" />
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCaption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xsmall"
+                        android:text="Review recent sets and trends."
+                        android:textColor="@color/fitness_text_secondary" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnViewProgress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:stateListAnimator="@null"
+                android:text="" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/card_padding_large">
+
+                <FrameLayout
+                    android:layout_width="@dimen/feature_icon_size"
+                    android:layout_height="@dimen/feature_icon_size"
+                    android:layout_marginEnd="@dimen/spacing_medium"
+                    android:background="@drawable/bg_icon_container_green">
+
+                    <ImageView
+                        android:layout_width="@dimen/inline_icon_size"
+                        android:layout_height="@dimen/inline_icon_size"
+                        android:layout_gravity="center"
+                        android:contentDescription="Workout history"
+                        android:src="@android:drawable/ic_menu_agenda"
+                        android:tint="@color/fitness_text_primary" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCardTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Workout History" />
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCaption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xsmall"
+                        android:text="See every session in one timeline."
+                        android:textColor="@color/fitness_text_secondary" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnWorkoutHistory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:stateListAnimator="@null"
+                android:text="" />
+        </FrameLayout>
 
     </LinearLayout>
 </ScrollView>

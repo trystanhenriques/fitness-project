@@ -10,7 +10,7 @@
         style="@style/TextAppearanceFitnessScreenTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/header_top_spacing"
         android:text="Workout History" />
 
     <TextView
@@ -18,15 +18,73 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_small"
-        android:layout_marginBottom="@dimen/spacing_xlarge"
-        android:text="A log of your previous fitness sessions" />
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:text="See every session in one clean timeline." />
 
-    <ListView
-        android:id="@+id/listHistory"
+    <TextView
+        style="@style/TextAppearanceFitnessCardEyebrow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Session Timeline" />
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:divider="@color/fitness_surface_navy"
-        android:dividerHeight="@dimen/list_divider_height" />
+        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_weight="1">
+
+        <ListView
+            android:id="@+id/listHistory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="@dimen/list_divider_height"
+            android:listSelector="@android:color/transparent" />
+
+        <LinearLayout
+            android:id="@+id/emptyHistoryState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_subtle_panel"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/card_padding_large"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:layout_width="@dimen/hero_icon_size"
+                android:layout_height="@dimen/hero_icon_size"
+                android:background="@drawable/bg_icon_container_orange">
+
+                <ImageView
+                    android:layout_width="@dimen/inline_icon_size"
+                    android:layout_height="@dimen/inline_icon_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="No workout history"
+                    android:src="@android:drawable/ic_menu_agenda"
+                    android:tint="@color/fitness_text_primary" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/txtHistoryEmptyTitle"
+                style="@style/TextAppearanceFitnessEmptyTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:gravity="center"
+                android:text="No workouts logged" />
+
+            <TextView
+                android:id="@+id/txtHistoryEmptyMessage"
+                style="@style/TextAppearanceFitnessCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="Start a workout and your training history will appear here."
+                android:textColor="@color/fitness_text_secondary" />
+        </LinearLayout>
+    </FrameLayout>
 
 </LinearLayout>
