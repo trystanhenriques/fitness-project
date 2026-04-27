@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,6 +52,7 @@ public class UserStatsActivity extends AppCompatActivity {
 
         setText(R.id.txtStatsHeroValue, String.valueOf(stats.totalWorkouts));
         setText(R.id.txtStatsHeroLabel, stats.lastWorkoutDayLabel + " • " + stats.lastWorkoutDateLabel);
+        bindTierProgress(stats.totalWorkouts);
 
         setText(R.id.txtTotalWorkoutsValue, String.valueOf(stats.totalWorkouts));
         setText(R.id.txtTotalSetsValue, String.valueOf(stats.totalSets));
@@ -65,6 +67,29 @@ public class UserStatsActivity extends AppCompatActivity {
         setText(R.id.txtMostLoggedValue, stats.mostLoggedExerciseLabel);
         setText(R.id.txtHeaviestValue, stats.heaviestSetLabel);
         setText(R.id.txtFavoriteCategoryValue, stats.favoriteCategoryLabel);
+    }
+
+    private void bindTierProgress(int workoutCount) {
+        ProgressBar progressBar = findViewById(R.id.progressStatsTier);
+        TextView txtTierName = findViewById(R.id.txtStatsTierName);
+        TextView txtTierProgress = findViewById(R.id.txtStatsTierProgress);
+
+        if (workoutCount < 5) {
+            txtTierName.setText("Tier: Beginner Foundation");
+            progressBar.setMax(5);
+            progressBar.setProgress(workoutCount);
+            txtTierProgress.setText((5 - workoutCount) + " workouts until Intermediate");
+        } else if (workoutCount < 20) {
+            txtTierName.setText("Tier: Intermediate Strength");
+            progressBar.setMax(20);
+            progressBar.setProgress(workoutCount);
+            txtTierProgress.setText((20 - workoutCount) + " workouts until Advanced Performance");
+        } else {
+            txtTierName.setText("Tier: Advanced Performance");
+            progressBar.setMax(100);
+            progressBar.setProgress(100);
+            txtTierProgress.setText("Top Tier Reached! Keep pushing your limits.");
+        }
     }
 
     private void setText(int viewId, String value) {
