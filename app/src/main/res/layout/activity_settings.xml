@@ -15,7 +15,7 @@
             style="@style/TextAppearanceFitnessScreenTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/header_top_spacing"
             android:text="Settings &amp; Profile" />
 
         <TextView
@@ -23,8 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_small"
-            android:layout_marginBottom="@dimen/spacing_xlarge"
-            android:text="Manage your account and preferences" />
+            android:layout_marginBottom="@dimen/spacing_large"
+            android:text="Manage your account, preferences, and stored data." />
 
         <!-- Account Section -->
         <LinearLayout
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_rounded_card"
             android:orientation="vertical"
-            android:padding="@dimen/spacing_large"
+            android:padding="@dimen/card_padding_large"
             android:layout_marginBottom="@dimen/spacing_large">
 
             <TextView
@@ -89,24 +89,24 @@
 
                 <RadioButton
                     android:id="@+id/rbSmall"
+                    style="@style/WidgetFitnessSelectionControl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/fitness_text_primary"
                     android:text="Small" />
 
                 <RadioButton
                     android:id="@+id/rbMedium"
+                    style="@style/WidgetFitnessSelectionControl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:textColor="@color/fitness_text_primary"
                     android:text="Normal" />
 
                 <RadioButton
                     android:id="@+id/rbLarge"
+                    style="@style/WidgetFitnessSelectionControl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/fitness_text_primary"
                     android:text="Large" />
             </RadioGroup>
         </LinearLayout>
@@ -117,7 +117,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_rounded_card"
             android:orientation="vertical"
-            android:padding="@dimen/spacing_large"
+            android:padding="@dimen/card_padding_large"
             android:layout_marginBottom="@dimen/spacing_large">
 
             <TextView
@@ -136,10 +136,10 @@
 
             <CheckBox
                 android:id="@+id/cbDisclaimer"
+                style="@style/WidgetFitnessSelectionControl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_medium"
-                android:textColor="@color/fitness_text_primary"
                 android:text="I acknowledge the medical disclaimer" />
         </LinearLayout>
 
@@ -149,7 +149,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_rounded_card"
             android:orientation="vertical"
-            android:padding="@dimen/spacing_large"
+            android:padding="@dimen/card_padding_large"
             android:layout_marginBottom="@dimen/spacing_xlarge">
 
             <TextView

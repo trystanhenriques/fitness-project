@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/spacing_small"
+    android:layout_marginBottom="@dimen/list_group_gap"
     android:background="@drawable/bg_rounded_card"
     android:orientation="vertical"
-    android:padding="@dimen/spacing_medium">
+    android:padding="@dimen/card_padding_large">
 
     <TextView
         android:id="@+id/txtWorkoutTime"
@@ -15,11 +15,17 @@
         android:textSize="@dimen/text_size_caption"
         android:textStyle="bold" />
 
+    <View
+        android:layout_width="36dp"
+        android:layout_height="@dimen/stroke_width_thin"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:background="@color/fitness_divider_soft" />
+
     <TextView
         android:id="@+id/txtWorkoutDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_xsmall"
+        android:layout_marginTop="@dimen/spacing_small"
         android:textColor="@color/fitness_text_primary"
         android:textSize="@dimen/text_size_body" />
 </LinearLayout>

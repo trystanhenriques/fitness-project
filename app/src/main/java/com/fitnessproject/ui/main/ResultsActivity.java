@@ -1,6 +1,7 @@
 package com.fitnessproject.ui.main;
 
 import android.os.Bundle;
+import android.view.View;
 import com.fitnessproject.core.engine.RecommendationEngine;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -33,11 +34,24 @@ public class ResultsActivity extends AppCompatActivity {
         ArrayList<String> cues = getIntent().getStringArrayListExtra("cues");
 
         TextView txtCues = findViewById(R.id.txtCues);
+        View emptyResultsState = findViewById(R.id.emptyResultsState);
+        View feedbackCard = findViewById(R.id.cardFeedback);
+        View tierCard = findViewById(R.id.cardTier);
+        View nextStepsCard = findViewById(R.id.cardNextSteps);
+        setupButtons();
 
         if (cues == null || cues.isEmpty()) {
-            txtCues.setText("No cues available.");
+            emptyResultsState.setVisibility(View.VISIBLE);
+            feedbackCard.setVisibility(View.GONE);
+            tierCard.setVisibility(View.GONE);
+            nextStepsCard.setVisibility(View.GONE);
             return;
         }
+
+        emptyResultsState.setVisibility(View.GONE);
+        feedbackCard.setVisibility(View.VISIBLE);
+        tierCard.setVisibility(View.VISIBLE);
+        nextStepsCard.setVisibility(View.VISIBLE);
 
         StringBuilder sb = new StringBuilder();
         for (String cue : cues) {
@@ -47,7 +61,9 @@ public class ResultsActivity extends AppCompatActivity {
 
         updateTierProgress();
         displayNextSteps();
+    }
 
+    private void setupButtons() {
         Button btnAnotherExercise = findViewById(R.id.btnAnotherExercise);
         btnAnotherExercise.setOnClickListener(v -> {
             Intent intent = new Intent(ResultsActivity.this, FormCheckStartActivity.class);

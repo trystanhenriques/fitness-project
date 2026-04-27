@@ -12,25 +12,92 @@
         android:padding="@dimen/screen_padding">
 
         <TextView
+            style="@style/TextAppearanceFitnessScreenTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/header_top_spacing"
+            android:text="Build Your Week" />
+
+        <TextView
             style="@style/TextAppearanceFitnessScreenSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:layout_marginBottom="@dimen/spacing_xlarge"
-            android:text="Create a weekly training split around your current goal and available days." />
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginBottom="@dimen/spacing_large"
+            android:text="Build a clean weekly split around your goal and schedule." />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_xlarge"
+            android:layout_marginBottom="@dimen/spacing_large"
+            android:background="@drawable/bg_subtle_panel"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/card_padding_large">
+
+            <FrameLayout
+                android:layout_width="@dimen/hero_icon_size"
+                android:layout_height="@dimen/hero_icon_size"
+                android:layout_marginEnd="@dimen/spacing_medium"
+                android:background="@drawable/bg_icon_container_yellow">
+
+                <ImageView
+                    android:layout_width="@dimen/inline_icon_size"
+                    android:layout_height="@dimen/inline_icon_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="Weekly planner"
+                    android:src="@android:drawable/ic_menu_agenda"
+                    android:tint="@color/fitness_text_primary" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextAppearanceFitnessCardEyebrow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Weekly Structure" />
+
+                <TextView
+                    style="@style/TextAppearanceFitnessBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xsmall"
+                    android:text="Choose a focus, add any custom goals, and generate a draft schedule in seconds."
+                    android:textColor="@color/fitness_text_tertiary" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_large"
             android:background="@drawable/bg_rounded_card"
             android:orientation="vertical"
-            android:padding="@dimen/spacing_large">
+            android:padding="@dimen/card_padding_large">
+
+            <TextView
+                style="@style/TextAppearanceFitnessCardEyebrow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Plan Inputs" />
+
+            <TextView
+                style="@style/TextAppearanceFitnessCardTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xsmall"
+                android:text="Set up your training week" />
 
             <TextView
                 style="@style/TextAppearanceFitnessSectionLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_large"
                 android:text="Select Goal" />
 
             <Spinner
@@ -45,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_large"
-                android:text="Describe Your Specific Goals (Optional)" />
+                android:text="Specific Goal Notes (Optional)" />
 
             <EditText
                 android:id="@+id/etSpecificGoals"
@@ -54,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
                 android:gravity="top|start"
-                android:hint="e.g. Prepare for a 5k, build bench strength..."
+                android:hint="e.g. Prepare for a 5k or build bench strength"
                 android:inputType="textMultiLine"
                 android:minHeight="@dimen/text_area_height" />
 
@@ -79,36 +146,36 @@
 
                     <RadioButton
                         android:id="@+id/rb2"
+                        style="@style/WidgetFitnessSelectionControl"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="2"
-                        android:textColor="@color/fitness_text_primary" />
+                        android:text="2" />
 
                     <RadioButton
                         android:id="@+id/rb3"
+                        style="@style/WidgetFitnessSelectionControl"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:checked="true"
-                        android:text="3"
-                        android:textColor="@color/fitness_text_primary" />
+                        android:text="3" />
 
                     <RadioButton
                         android:id="@+id/rb4"
+                        style="@style/WidgetFitnessSelectionControl"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="4"
-                        android:textColor="@color/fitness_text_primary" />
+                        android:text="4" />
 
                     <RadioButton
                         android:id="@+id/rb5"
+                        style="@style/WidgetFitnessSelectionControl"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="5"
-                        android:textColor="@color/fitness_text_primary" />
+                        android:text="5" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -118,19 +185,19 @@
 
                     <RadioButton
                         android:id="@+id/rb6"
+                        style="@style/WidgetFitnessSelectionControl"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="6"
-                        android:textColor="@color/fitness_text_primary" />
+                        android:text="6" />
 
                     <RadioButton
                         android:id="@+id/rb7"
+                        style="@style/WidgetFitnessSelectionControl"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="7"
-                        android:textColor="@color/fitness_text_primary" />
+                        android:text="7" />
 
                     <View
                         android:layout_width="0dp"
@@ -145,6 +212,7 @@
             style="@style/Widget.Fitness.Button.Primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_medium"
             android:text="Generate Weekly Plan" />
 
         <TextView
@@ -154,7 +222,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
             android:textColor="@color/fitness_text_secondary"
-            android:textIsSelectable="true" />
+            android:textIsSelectable="true"
+            android:visibility="gone" />
 
     </LinearLayout>
 </ScrollView>

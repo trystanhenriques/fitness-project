@@ -10,7 +10,7 @@
         style="@style/TextAppearanceFitnessScreenTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/header_top_spacing"
         android:text="My Progress" />
 
     <TextView
@@ -18,21 +18,64 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_small"
-        android:layout_marginBottom="@dimen/spacing_medium"
-        android:text="Visualize your strength gains" />
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:text="Track your latest sets and strength trends." />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_medium"
         android:background="@drawable/bg_rounded_card"
         android:orientation="vertical"
-        android:padding="@dimen/spacing_large"
-        android:layout_marginBottom="@dimen/spacing_medium">
+        android:padding="@dimen/card_padding_large">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="@dimen/hero_icon_size"
+                android:layout_height="@dimen/hero_icon_size"
+                android:layout_marginEnd="@dimen/spacing_medium"
+                android:background="@drawable/bg_icon_container_blue">
+
+                <ImageView
+                    android:layout_width="@dimen/inline_icon_size"
+                    android:layout_height="@dimen/inline_icon_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="Progress overview"
+                    android:src="@android:drawable/ic_menu_recent_history"
+                    android:tint="@color/fitness_text_primary" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextAppearanceFitnessCardEyebrow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Progress Filter" />
+
+                <TextView
+                    style="@style/TextAppearanceFitnessCardTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xsmall"
+                    android:text="Choose what to review" />
+            </LinearLayout>
+        </LinearLayout>
 
         <TextView
             style="@style/TextAppearanceFitnessSectionLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
             android:text="Filter by Category" />
 
         <Spinner
@@ -61,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
-            android:text="Last time log:" />
+            android:text="Latest logged set" />
 
         <TextView
             android:id="@+id/txtLastTime"
@@ -75,19 +118,70 @@
     </LinearLayout>
 
     <TextView
-        style="@style/TextAppearanceFitnessCardTitle"
+        style="@style/TextAppearanceFitnessCardEyebrow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_medium"
-        android:text="Recent entries:" />
+        android:text="Recent Entries" />
 
-    <ListView
-        android:id="@+id/listRecent"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/spacing_small"
-        android:layout_weight="1"
-        android:divider="@color/fitness_surface_navy"
-        android:dividerHeight="@dimen/list_divider_height" />
+        android:layout_weight="1">
+
+        <ListView
+            android:id="@+id/listRecent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="@dimen/list_divider_height"
+            android:listSelector="@android:color/transparent" />
+
+        <LinearLayout
+            android:id="@+id/emptyProgressState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_subtle_panel"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/card_padding_large"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:layout_width="@dimen/hero_icon_size"
+                android:layout_height="@dimen/hero_icon_size"
+                android:background="@drawable/bg_icon_container_blue">
+
+                <ImageView
+                    android:layout_width="@dimen/inline_icon_size"
+                    android:layout_height="@dimen/inline_icon_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="No progress yet"
+                    android:src="@android:drawable/ic_menu_recent_history"
+                    android:tint="@color/fitness_text_primary" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/txtProgressEmptyTitle"
+                style="@style/TextAppearanceFitnessEmptyTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:gravity="center"
+                android:text="No progress yet" />
+
+            <TextView
+                android:id="@+id/txtProgressEmptyMessage"
+                style="@style/TextAppearanceFitnessCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="Log a workout to start seeing exercise history here."
+                android:textColor="@color/fitness_text_secondary" />
+        </LinearLayout>
+    </FrameLayout>
 
 </LinearLayout>

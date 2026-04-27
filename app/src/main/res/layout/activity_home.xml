@@ -17,7 +17,7 @@
             style="@style/TextAppearanceFitnessScreenTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/header_top_spacing"
             android:text="Dashboard" />
 
         <TextView
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_small"
             android:layout_marginBottom="@dimen/spacing_xlarge"
-            android:text="Choose what you want to do today" />
+            android:text="Choose the part of your training you want to work on." />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_xsmall"
-                        android:text="AI-powered technique analysis"
+                        android:text="Technique feedback for your lifting form"
                         android:textColor="@color/fitness_text_secondary" />
                 </LinearLayout>
             </LinearLayout>

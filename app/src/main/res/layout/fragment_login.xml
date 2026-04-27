@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginBottom="@dimen/spacing_xlarge"
-            android:text="Log in to continue your fitness journey" />
+            android:text="Log in to keep tracking your training." />
 
         <TextView
             android:id="@+id/textError"

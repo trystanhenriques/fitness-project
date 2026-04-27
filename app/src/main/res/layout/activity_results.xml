@@ -16,30 +16,115 @@
             style="@style/TextAppearanceFitnessScreenTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:text="Feedback" />
+            android:layout_marginTop="@dimen/header_top_spacing"
+            android:text="Form Feedback" />
 
         <TextView
-            android:id="@+id/txtCues"
+            android:id="@+id/txtResultsSubtitle"
             style="@style/TextAppearanceFitnessScreenSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_small"
-            android:layout_marginBottom="@dimen/spacing_medium" />
+            android:layout_marginBottom="@dimen/spacing_large"
+            android:text="Review your key cues, progression tier, and next best step." />
 
         <LinearLayout
+            android:id="@+id/emptyResultsState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_large"
+            android:background="@drawable/bg_subtle_panel"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/card_padding_large"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:layout_width="@dimen/hero_icon_size"
+                android:layout_height="@dimen/hero_icon_size"
+                android:background="@drawable/bg_icon_container_yellow">
+
+                <ImageView
+                    android:layout_width="@dimen/inline_icon_size"
+                    android:layout_height="@dimen/inline_icon_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="No feedback available"
+                    android:src="@android:drawable/ic_dialog_info"
+                    android:tint="@color/fitness_text_primary" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/txtResultsEmptyTitle"
+                style="@style/TextAppearanceFitnessEmptyTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:gravity="center"
+                android:text="No feedback available" />
+
+            <TextView
+                android:id="@+id/txtResultsEmptyMessage"
+                style="@style/TextAppearanceFitnessCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="Complete another check to generate fresh exercise guidance."
+                android:textColor="@color/fitness_text_secondary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cardFeedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/spacing_large"
             android:background="@drawable/bg_rounded_card"
             android:orientation="vertical"
-            android:padding="@dimen/spacing_large">
+            android:padding="@dimen/card_padding_large">
+
+            <TextView
+                style="@style/TextAppearanceFitnessCardEyebrow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Current Focus" />
 
             <TextView
                 style="@style/TextAppearanceFitnessCardTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Your Experience Tier" />
+                android:layout_marginTop="@dimen/spacing_xsmall"
+                android:text="Cues to focus on" />
+
+            <TextView
+                android:id="@+id/txtCues"
+                style="@style/TextAppearanceFitnessBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:lineSpacingExtra="@dimen/line_spacing_body" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cardTier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_large"
+            android:background="@drawable/bg_rounded_card"
+            android:orientation="vertical"
+            android:padding="@dimen/card_padding_large">
+
+            <TextView
+                style="@style/TextAppearanceFitnessCardEyebrow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Progression" />
+
+            <TextView
+                style="@style/TextAppearanceFitnessCardTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xsmall"
+                android:text="Your experience tier" />
 
             <TextView
                 android:id="@+id/txtTierName"
@@ -72,31 +157,40 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/cardNextSteps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_rounded_card"
             android:orientation="vertical"
-            android:padding="@dimen/spacing_large">
+            android:padding="@dimen/card_padding_large">
+
+            <TextView
+                style="@style/TextAppearanceFitnessCardEyebrow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recommendation" />
 
             <TextView
                 style="@style/TextAppearanceFitnessCardTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Next Steps" />
+                android:layout_marginTop="@dimen/spacing_xsmall"
+                android:text="Next step to try" />
 
             <TextView
                 android:id="@+id/txtNextSteps"
                 style="@style/TextAppearanceFitnessBody"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_small" />
+                android:layout_marginTop="@dimen/spacing_small"
+                android:lineSpacingExtra="@dimen/line_spacing_body" />
         </LinearLayout>
 
         <TextView
             style="@style/TextAppearanceFitnessCaption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_xlarge"
+            android:layout_marginTop="@dimen/spacing_large"
             android:gravity="center"
             android:text="Not medical advice. Stop if you feel sharp or worsening pain."
             android:textColor="@color/fitness_error" />

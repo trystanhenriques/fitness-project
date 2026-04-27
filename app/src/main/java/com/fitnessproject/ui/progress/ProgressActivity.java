@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -30,7 +31,10 @@ public class ProgressActivity extends AppCompatActivity {
 
     private DatabaseHelper db;
     private TextView txtLastTime;
+    private TextView txtEmptyTitle;
+    private TextView txtEmptyMessage;
     private ListView listRecent;
+    private LinearLayout emptyState;
     private Spinner categorySpinner;
     private Spinner exerciseSpinner;
 
@@ -49,6 +53,9 @@ public class ProgressActivity extends AppCompatActivity {
         exerciseSpinner = findViewById(R.id.spinnerProgressExercise);
         txtLastTime = findViewById(R.id.txtLastTime);
         listRecent = findViewById(R.id.listRecent);
+        emptyState = findViewById(R.id.emptyProgressState);
+        txtEmptyTitle = findViewById(R.id.txtProgressEmptyTitle);
+        txtEmptyMessage = findViewById(R.id.txtProgressEmptyMessage);
 
         buildExerciseCategoryIndex();
         setupCategorySpinner();
@@ -193,15 +200,28 @@ public class ProgressActivity extends AppCompatActivity {
         String latestSet = db.getLatestSetSummaryForExercise(exercise);
         if (progress.isEmpty()) {
             txtLastTime.setText("No data yet for " + exercise);
-            listRecent.setAdapter(new ArrayAdapter<>(this, R.layout.item_list, new String[]{"No recent sets"}));
+            showEmptyState(
+                    "No sets logged for " + exercise,
+                    "Save a workout for this exercise to start building a progress timeline."
+            );
         } else {
             txtLastTime.setText(latestSet == null ? "—" : "Last set: " + latestSet);
+            emptyState.setVisibility(View.GONE);
+            listRecent.setVisibility(View.VISIBLE);
             listRecent.setAdapter(new GroupedWorkoutListAdapter(this, progress));
         }
     }
 
     private void showNoDataState(String message) {
         txtLastTime.setText(message);
-        listRecent.setAdapter(new ArrayAdapter<>(this, R.layout.item_list, new String[]{"No recent sets"}));
+        showEmptyState("Nothing to show yet", message);
+    }
+
+    private void showEmptyState(String title, String message) {
+        txtEmptyTitle.setText(title);
+        txtEmptyMessage.setText(message);
+        emptyState.setVisibility(View.VISIBLE);
+        listRecent.setVisibility(View.GONE);
+        listRecent.setAdapter(null);
     }
 }
