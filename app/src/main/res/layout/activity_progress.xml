@@ -33,6 +33,20 @@
             style="@style/TextAppearanceFitnessSectionLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Filter by Category" />
+
+        <Spinner
+            android:id="@+id/spinnerProgressCategory"
+            style="@style/WidgetFitnessSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small" />
+
+        <TextView
+            style="@style/TextAppearanceFitnessSectionLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
             android:text="Select Exercise" />
 
         <Spinner

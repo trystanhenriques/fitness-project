@@ -1,7 +1,7 @@
 [
-  {"id": "bench", "name": "Bench Press"},
-  {"id": "squat", "name": "Squat"},
-  {"id": "deadlift", "name": "Deadlift"},
-  {"id": "ohp", "name": "Overhead Press"},
-  {"id": "row", "name": "Row"}
+  {"id": "bench", "name": "Bench Press", "groups": ["Chest", "Triceps", "Shoulders"]},
+  {"id": "squat", "name": "Squat", "groups": ["Legs"]},
+  {"id": "deadlift", "name": "Deadlift", "groups": ["Back", "Legs"]},
+  {"id": "ohp", "name": "Overhead Press", "groups": ["Shoulders", "Triceps"]},
+  {"id": "row", "name": "Row", "groups": ["Back", "Biceps"]}
 ]

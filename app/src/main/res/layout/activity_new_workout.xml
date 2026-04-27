@@ -71,6 +71,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_large"
+                android:text="Categories" />
+
+            <Button
+                android:id="@+id/btnSelectCategories"
+                style="@style/Widget.Fitness.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="Select Categories" />
+
+            <TextView
+                android:id="@+id/txtSelectedCategories"
+                style="@style/TextAppearanceFitnessCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="Selected: Other"
+                android:textColor="@color/fitness_text_secondary" />
+
+            <TextView
+                style="@style/TextAppearanceFitnessSectionLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_large"
                 android:text="Weight" />
 
             <EditText
