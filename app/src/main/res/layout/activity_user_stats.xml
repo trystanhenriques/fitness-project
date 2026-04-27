@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fitness_bg_navy"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/screen_padding">
+
+        <TextView
+            style="@style/TextAppearanceFitnessScreenTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/header_top_spacing"
+            android:text="Your Stats" />
+
+        <TextView
+            style="@style/TextAppearanceFitnessScreenSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginBottom="@dimen/spacing_large"
+            android:text="A clean overview of your training volume, consistency, and highlights." />
+
+        <LinearLayout
+            android:id="@+id/emptyStatsState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_subtle_panel"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/card_padding_large"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:layout_width="@dimen/hero_icon_size"
+                android:layout_height="@dimen/hero_icon_size"
+                android:background="@drawable/bg_icon_container_orange">
+
+                <ImageView
+                    android:layout_width="@dimen/inline_icon_size"
+                    android:layout_height="@dimen/inline_icon_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="No stats yet"
+                    android:src="@android:drawable/ic_menu_sort_by_size"
+                    android:tint="@color/fitness_text_primary" />
+            </FrameLayout>
+
+            <TextView
+                style="@style/TextAppearanceFitnessEmptyTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:gravity="center"
+                android:text="No stats yet" />
+
+            <TextView
+                style="@style/TextAppearanceFitnessCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="Log a workout to unlock your training snapshot, momentum, and personal highlights."
+                android:textColor="@color/fitness_text_secondary" />
+
+            <Button
+                android:id="@+id/btnStatsEmptyStart"
+                style="@style/Widget.Fitness.Button.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:text="Log Your First Workout" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/statsContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_large"
+                android:background="@drawable/bg_rounded_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/card_padding_large">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCardEyebrow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Training Snapshot" />
+
+                    <TextView
+                        android:id="@+id/txtStatsHeroValue"
+                        style="@style/TextAppearanceFitnessStatValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:text="0" />
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCardTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total workouts logged" />
+
+                    <TextView
+                        android:id="@+id/txtStatsHeroLabel"
+                        style="@style/TextAppearanceFitnessCaption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:text="No recent session"
+                        android:textColor="@color/fitness_text_secondary" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="@dimen/auth_icon_size"
+                    android:layout_height="@dimen/auth_icon_size"
+                    android:layout_marginStart="@dimen/spacing_medium"
+                    android:background="@drawable/bg_icon_container_blue">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="User stats overview"
+                        android:src="@android:drawable/ic_menu_myplaces"
+                        android:tint="@color/fitness_text_primary" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextAppearanceFitnessCardEyebrow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:text="Experience Tier" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_xlarge"
+                android:background="@drawable/bg_rounded_card"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding_large">
+
+                <TextView
+                    style="@style/TextAppearanceFitnessCardTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Your current training tier" />
+
+                <TextView
+                    android:id="@+id/txtStatsTierName"
+                    style="@style/TextAppearanceFitnessBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:text="Tier: Beginner Foundation"
+                    android:textColor="@color/fitness_primary_orange"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:id="@+id/progressStatsTier"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:max="20"
+                    android:progress="0"
+                    android:progressBackgroundTint="@color/fitness_input_bg"
+                    android:progressTint="@color/fitness_primary_orange" />
+
+                <TextView
+                    android:id="@+id/txtStatsTierProgress"
+                    style="@style/TextAppearanceFitnessCaption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:text="5 workouts until Intermediate" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextAppearanceFitnessCardEyebrow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Overview" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_subtle_panel"
+                    android:minHeight="@dimen/stat_tile_min_height"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_large">
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCaption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Workouts" />
+
+                    <TextView
+                        android:id="@+id/txtTotalWorkoutsValue"
+                        style="@style/TextAppearanceFitnessStatValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xsmall"
+                        android:text="0" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_subtle_panel"
+                    android:minHeight="@dimen/stat_tile_min_height"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_large">
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCaption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sets" />
+
+                    <TextView
+                        android:id="@+id/txtTotalSetsValue"
+                        style="@style/TextAppearanceFitnessStatValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xsmall"
+                        android:text="0" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_subtle_panel"
+                    android:minHeight="@dimen/stat_tile_min_height"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_large">
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCaption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Reps" />
+
+                    <TextView
+                        android:id="@+id/txtTotalRepsValue"
+                        style="@style/TextAppearanceFitnessStatValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xsmall"
+                        android:text="0" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_subtle_panel"
+                    android:minHeight="@dimen/stat_tile_min_height"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_large">
+
+                    <TextView
+                        style="@style/TextAppearanceFitnessCaption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Exercises" />
+
+                    <TextView
+                        android:id="@+id/txtDistinctExercisesValue"
+                        style="@style/TextAppearanceFitnessStatValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xsmall"
+                        android:text="0" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xlarge"
+                android:background="@drawable/bg_rounded_card"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding_large">
+
+                <TextView
+                    style="@style/TextAppearanceFitnessCardEyebrow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Momentum" />
+
+                <TextView
+                    style="@style/TextAppearanceFitnessCardTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xsmall"
+                    android:text="How consistent you’ve been lately" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_small"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_subtle_panel"
+                        android:minHeight="@dimen/stat_tile_min_height"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_large">
+
+                        <TextView
+                            style="@style/TextAppearanceFitnessCaption"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Last 7 days" />
+
+                        <TextView
+                            android:id="@+id/txtLast7Value"
+                            style="@style/TextAppearanceFitnessStatValue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_xsmall"
+                            android:text="0" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_subtle_panel"
+                        android:minHeight="@dimen/stat_tile_min_height"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_large">
+
+                        <TextView
+                            style="@style/TextAppearanceFitnessCaption"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Last 30 days" />
+
+                        <TextView
+                            android:id="@+id/txtLast30Value"
+                            style="@style/TextAppearanceFitnessStatValue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_xsmall"
+                            android:text="0" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_small"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_subtle_panel"
+                        android:minHeight="@dimen/stat_tile_min_height"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_large">
+
+                        <TextView
+                            style="@style/TextAppearanceFitnessCaption"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Avg / week" />
+
+                        <TextView
+                            android:id="@+id/txtAvgWeekValue"
+                            style="@style/TextAppearanceFitnessStatValue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_xsmall"
+                            android:text="0.0" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_subtle_panel"
+                        android:minHeight="@dimen/stat_tile_min_height"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_large">
+
+                        <TextView
+                            style="@style/TextAppearanceFitnessCaption"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Active days this month" />
+
+                        <TextView
+                            android:id="@+id/txtActiveDaysValue"
+                            style="@style/TextAppearanceFitnessStatValue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_xsmall"
+                            android:text="0" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xlarge"
+                android:layout_marginBottom="@dimen/spacing_xlarge"
+                android:background="@drawable/bg_rounded_card"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding_large">
+
+                <TextView
+                    style="@style/TextAppearanceFitnessCardEyebrow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Personal Highlights" />
+
+                <TextView
+                    style="@style/TextAppearanceFitnessCardTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xsmall"
+                    android:text="What stands out in your training" />
+
+                <TextView
+                    style="@style/TextAppearanceFitnessSectionLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:text="Most logged exercise" />
+
+                <TextView
+                    android:id="@+id/txtMostLoggedValue"
+                    style="@style/TextAppearanceFitnessBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xsmall"
+                    android:text="No exercise data"
+                    android:textColor="@color/fitness_text_primary" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/stroke_width_thin"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_marginBottom="@dimen/spacing_large"
+                    android:background="@color/fitness_divider_soft" />
+
+                <TextView
+                    style="@style/TextAppearanceFitnessSectionLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Heaviest logged set" />
+
+                <TextView
+                    android:id="@+id/txtHeaviestValue"
+                    style="@style/TextAppearanceFitnessBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xsmall"
+                    android:text="No weighted sets yet"
+                    android:textColor="@color/fitness_text_primary" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/stroke_width_thin"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_marginBottom="@dimen/spacing_large"
+                    android:background="@color/fitness_divider_soft" />
+
+                <TextView
+                    style="@style/TextAppearanceFitnessSectionLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Favorite training category" />
+
+                <TextView
+                    android:id="@+id/txtFavoriteCategoryValue"
+                    style="@style/TextAppearanceFitnessBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xsmall"
+                    android:text="No category data"
+                    android:textColor="@color/fitness_text_primary" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
