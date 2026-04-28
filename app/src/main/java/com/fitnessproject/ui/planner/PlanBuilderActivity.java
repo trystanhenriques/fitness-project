@@ -34,7 +34,7 @@ public class PlanBuilderActivity extends AppCompatActivity {
         }
 
         Spinner spinnerGoal = findViewById(R.id.spinnerGoal);
-        String[] goals = {"Strength", "Hypertrophy", "Endurance"};
+        String[] goals = {"Strength", "Hypertrophy", "Endurance", "Custom"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_spinner, goals);
         adapter.setDropDownViewResource(R.layout.item_spinner_dropdown);
         spinnerGoal.setAdapter(adapter);

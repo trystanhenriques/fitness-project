@@ -1,6 +1,7 @@
 package com.fitnessproject.core.planner;
 
 public enum GoalType {
+    CUSTOM("Custom"),
     STRENGTH("Strength"),
     HYPERTROPHY("Hypertrophy"),
     ENDURANCE("Endurance");

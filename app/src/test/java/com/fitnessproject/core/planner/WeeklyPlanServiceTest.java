@@ -38,6 +38,20 @@ public class WeeklyPlanServiceTest {
         assertTrue(formatted.contains("Goblet Squat"));
     }
 
+    @Test
+    public void customGoal_BuildsCustomTemplateFromNotes() {
+        WeeklyPlanService service = new WeeklyPlanService();
+
+        PlanTemplate customPlan = service.buildPlan(GoalType.CUSTOM, 4, "prep for a 5k with extra core and leg work");
+
+        assertEquals(GoalType.CUSTOM, customPlan.getGoalType());
+        assertTrue(customPlan.getSplitName().contains("Custom Focus"));
+        assertTrue(customPlan.getDescription().contains("endurance"));
+        assertTrue(customPlan.getDescription().contains("core"));
+        assertTrue(customPlan.getDescription().contains("legs"));
+        assertTrue(containsExercise(customPlan, "Plank") || containsExercise(customPlan, "Step-Up"));
+    }
+
     private boolean containsExercise(PlanTemplate template, String exerciseName) {
         for (PlanDay day : template.getDays()) {
             for (PlanExercise exercise : day.getExercises()) {
