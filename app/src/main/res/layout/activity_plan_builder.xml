@@ -67,7 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_xsmall"
-                    android:text="Choose a focus, add any custom goals, and generate a draft schedule in seconds."
+                    android:text="Choose a goal, or use Custom with notes to build a rule-based weekly plan."
                     android:textColor="@color/fitness_text_tertiary" />
             </LinearLayout>
         </LinearLayout>
@@ -112,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_large"
-                android:text="Specific Goal Notes (Optional)" />
+                android:text="Specific Focus Notes" />
 
             <EditText
                 android:id="@+id/etSpecificGoals"
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
                 android:gravity="top|start"
-                android:hint="e.g. Prepare for a 5k or build bench strength"
+                android:hint="e.g. build bench strength, extra chest work, prep for a 5k, stronger glutes"
                 android:inputType="textMultiLine"
                 android:minHeight="@dimen/text_area_height" />
 

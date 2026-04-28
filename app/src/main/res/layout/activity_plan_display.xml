@@ -80,11 +80,38 @@
                 android:text="Weekly Schedule" />
 
             <TextView
-                android:id="@+id/txtPlanContent"
+                android:id="@+id/txtPlanGoal"
+                style="@style/TextAppearanceFitnessCardTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xsmall"
+                android:text="Strength Plan" />
+
+            <TextView
+                android:id="@+id/txtPlanSplitName"
                 style="@style/TextAppearanceFitnessBody"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
+                android:text="Upper/Lower Strength"
+                android:textColor="@color/fitness_primary_orange"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtPlanDescription"
+                style="@style/TextAppearanceFitnessCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="Built around your goal and available training days."
+                android:textColor="@color/fitness_text_secondary" />
+
+            <TextView
+                android:id="@+id/txtPlanContent"
+                style="@style/TextAppearanceFitnessBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_large"
                 android:lineSpacingExtra="@dimen/line_spacing_body"
                 android:textColor="@color/fitness_text_primary"
                 android:textIsSelectable="true" />
