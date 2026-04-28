@@ -52,6 +52,23 @@ public class WeeklyPlanServiceTest {
         assertTrue(containsExercise(customPlan, "Plank") || containsExercise(customPlan, "Step-Up"));
     }
 
+    @Test
+    public void customGoal_RecognizesBroaderNaturalLanguageKeywords() {
+        WeeklyPlanService service = new WeeklyPlanService();
+
+        PlanTemplate customPlan = service.buildPlan(
+                GoalType.CUSTOM,
+                3,
+                "I want to get more athletic, improve work capacity, grow my upper chest, and bring up my glutes and obliques"
+        );
+
+        assertEquals(GoalType.CUSTOM, customPlan.getGoalType());
+        assertTrue(customPlan.getDescription().contains("conditioning"));
+        assertTrue(customPlan.getDescription().contains("chest"));
+        assertTrue(customPlan.getDescription().contains("legs"));
+        assertTrue(customPlan.getDescription().contains("core"));
+    }
+
     private boolean containsExercise(PlanTemplate template, String exerciseName) {
         for (PlanDay day : template.getDays()) {
             for (PlanExercise exercise : day.getExercises()) {

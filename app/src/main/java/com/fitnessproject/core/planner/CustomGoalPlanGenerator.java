@@ -3,6 +3,38 @@ package com.fitnessproject.core.planner;
 import java.util.Locale;
 
 public class CustomGoalPlanGenerator {
+    private static final String[] ENDURANCE_KEYWORDS = {
+            "5k", "10k", "half marathon", "marathon", "run", "running", "jog", "jogging",
+            "cardio", "conditioning", "stamina", "endurance", "engine", "aerobic",
+            "work capacity", "athletic", "fitness", "interval", "intervals", "speed",
+            "sprint", "sprints", "bike", "cycling", "row", "rowing", "trail", "race"
+    };
+    private static final String[] STRENGTH_KEYWORDS = {
+            "strength", "stronger", "power", "powerlifting", "heavy", "barbell", "compound",
+            "squat", "bench", "deadlift", "press", "overhead press", "ohp", "row",
+            "pull-up", "pull up", "chin-up", "chin up", "pr", "personal record", "1rm",
+            "top set", "performance", "explosive"
+    };
+    private static final String[] CHEST_KEYWORDS = {
+            "chest", "pec", "pecs", "bench", "push", "press", "upper chest", "incline"
+    };
+    private static final String[] BACK_KEYWORDS = {
+            "back", "lats", "lat", "upper back", "mid back", "row", "rows", "pull",
+            "pullup", "pull-up", "pull up", "chinup", "chin-up", "chin up", "rear delt"
+    };
+    private static final String[] LEGS_KEYWORDS = {
+            "leg", "legs", "quad", "quads", "hamstring", "hamstrings", "glute", "glutes",
+            "calf", "calves", "lower body", "squat", "lunge", "lunge", "deadlift"
+    };
+    private static final String[] ARMS_KEYWORDS = {
+            "arm", "arms", "bicep", "biceps", "tricep", "triceps", "forearm", "forearms",
+            "curl", "curls", "pushdown", "elbow flexor", "elbow extensor"
+    };
+    private static final String[] CORE_KEYWORDS = {
+            "core", "abs", "ab", "abdominal", "abdominals", "stomach", "midsection",
+            "waist", "oblique", "obliques", "trunk", "brace", "bracing"
+    };
+
     private final PlanTemplateProvider templateProvider;
     private final PlanPersonalizationEngine personalizationEngine;
 
@@ -41,10 +73,10 @@ public class CustomGoalPlanGenerator {
 
     private GoalType inferGoalType(String customNotes) {
         String normalized = normalize(customNotes);
-        if (mentionsAny(normalized, "5k", "run", "running", "cardio", "conditioning", "stamina", "endurance")) {
+        if (mentionsAny(normalized, ENDURANCE_KEYWORDS)) {
             return GoalType.ENDURANCE;
         }
-        if (mentionsAny(normalized, "strength", "stronger", "power", "heavy", "squat", "bench", "deadlift", "press")) {
+        if (mentionsAny(normalized, STRENGTH_KEYWORDS)) {
             return GoalType.STRENGTH;
         }
         return GoalType.HYPERTROPHY;
@@ -52,12 +84,12 @@ public class CustomGoalPlanGenerator {
 
     private String summarizeFocus(String normalizedNotes) {
         StringBuilder summary = new StringBuilder();
-        appendFocus(summary, normalizedNotes, "chest", "chest", "bench", "push");
-        appendFocus(summary, normalizedNotes, "back", "back", "row", "pull");
-        appendFocus(summary, normalizedNotes, "legs", "leg", "legs", "squat", "lower body", "glute");
-        appendFocus(summary, normalizedNotes, "arms", "arms", "bicep", "tricep");
-        appendFocus(summary, normalizedNotes, "core", "core", "abs", "stomach");
-        appendFocus(summary, normalizedNotes, "conditioning", "5k", "run", "cardio", "conditioning");
+        appendFocus(summary, normalizedNotes, "chest", CHEST_KEYWORDS);
+        appendFocus(summary, normalizedNotes, "back", BACK_KEYWORDS);
+        appendFocus(summary, normalizedNotes, "legs", LEGS_KEYWORDS);
+        appendFocus(summary, normalizedNotes, "arms", ARMS_KEYWORDS);
+        appendFocus(summary, normalizedNotes, "core", CORE_KEYWORDS);
+        appendFocus(summary, normalizedNotes, "conditioning", ENDURANCE_KEYWORDS);
 
         if (summary.length() == 0) {
             return "general performance";

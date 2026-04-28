@@ -5,6 +5,31 @@ import java.util.List;
 import java.util.Locale;
 
 public class PlanPersonalizationEngine {
+    private static final String[] PUSH_KEYWORDS = {
+            "bench", "chest", "pec", "pecs", "push", "press", "upper body", "upper chest",
+            "incline", "chest press", "pec deck"
+    };
+    private static final String[] PULL_KEYWORDS = {
+            "back", "lat", "lats", "row", "rows", "pull", "pullup", "pull-up", "pull up",
+            "chinup", "chin-up", "chin up", "rear delt", "upper back", "mid back"
+    };
+    private static final String[] LEGS_KEYWORDS = {
+            "leg", "legs", "quad", "quads", "hamstring", "hamstrings", "glute", "glutes",
+            "lower body", "squat", "lunge", "lunges", "deadlift", "calf", "calves"
+    };
+    private static final String[] ARMS_KEYWORDS = {
+            "arm", "arms", "bicep", "biceps", "tricep", "triceps", "forearm", "forearms",
+            "curl", "curls", "pushdown"
+    };
+    private static final String[] CORE_KEYWORDS = {
+            "core", "abs", "ab", "abdominal", "abdominals", "stomach", "midsection",
+            "waist", "oblique", "obliques", "trunk", "brace", "bracing"
+    };
+    private static final String[] CONDITIONING_KEYWORDS = {
+            "5k", "10k", "marathon", "run", "running", "jog", "jogging", "cardio",
+            "conditioning", "stamina", "endurance", "engine", "aerobic", "work capacity",
+            "athletic", "bike", "cycling", "row", "rowing", "interval", "intervals"
+    };
 
     /*
      * We keep personalization additive and deterministic.
@@ -21,22 +46,22 @@ public class PlanPersonalizationEngine {
         for (PlanDay day : template.getDays()) {
             List<PlanExercise> exercises = new ArrayList<>(day.getExercises());
 
-            if (mentionsAny(normalizedNotes, "bench", "chest", "push", "upper body")) {
+            if (mentionsAny(normalizedNotes, PUSH_KEYWORDS)) {
                 maybeAdd(exercises, accessoryForPush(template.getGoalType()));
             }
-            if (mentionsAny(normalizedNotes, "back", "row", "pull")) {
+            if (mentionsAny(normalizedNotes, PULL_KEYWORDS)) {
                 maybeAdd(exercises, accessoryForPull(template.getGoalType()));
             }
-            if (mentionsAny(normalizedNotes, "leg", "squat", "lower body")) {
+            if (mentionsAny(normalizedNotes, LEGS_KEYWORDS)) {
                 maybeAdd(exercises, accessoryForLegs(template.getGoalType()));
             }
-            if (mentionsAny(normalizedNotes, "arm", "bicep", "tricep")) {
+            if (mentionsAny(normalizedNotes, ARMS_KEYWORDS)) {
                 maybeAdd(exercises, accessoryForArms(template.getGoalType()));
             }
-            if (mentionsAny(normalizedNotes, "core", "abs", "stomach")) {
+            if (mentionsAny(normalizedNotes, CORE_KEYWORDS)) {
                 maybeAdd(exercises, accessoryForCore(template.getGoalType()));
             }
-            if (mentionsAny(normalizedNotes, "5k", "run", "cardio", "conditioning")) {
+            if (mentionsAny(normalizedNotes, CONDITIONING_KEYWORDS)) {
                 maybeAdd(exercises, accessoryForConditioning(template.getGoalType()));
             }
 
