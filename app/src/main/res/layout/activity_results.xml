@@ -105,6 +105,37 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/cardNextSteps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_large"
+            android:background="@drawable/bg_rounded_card"
+            android:orientation="vertical"
+            android:padding="@dimen/card_padding_large">
+
+            <TextView
+                style="@style/TextAppearanceFitnessCardEyebrow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recommendation" />
+
+            <TextView
+                style="@style/TextAppearanceFitnessCardTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xsmall"
+                android:text="Next step to try" />
+
+            <TextView
+                android:id="@+id/txtNextSteps"
+                style="@style/TextAppearanceFitnessBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:lineSpacingExtra="@dimen/line_spacing_body" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/cardTier"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -154,36 +185,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
                 android:text="5 workouts until Intermediate" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/cardNextSteps"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_rounded_card"
-            android:orientation="vertical"
-            android:padding="@dimen/card_padding_large">
-
-            <TextView
-                style="@style/TextAppearanceFitnessCardEyebrow"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Recommendation" />
-
-            <TextView
-                style="@style/TextAppearanceFitnessCardTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_xsmall"
-                android:text="Next step to try" />
-
-            <TextView
-                android:id="@+id/txtNextSteps"
-                style="@style/TextAppearanceFitnessBody"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_small"
-                android:lineSpacingExtra="@dimen/line_spacing_body" />
         </LinearLayout>
 
         <TextView
