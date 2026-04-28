@@ -21,7 +21,23 @@ public class PlanDisplayActivity extends AppCompatActivity {
         }
 
         String plan = getIntent().getStringExtra("plan_text");
+        String planGoal = getIntent().getStringExtra("plan_goal");
+        String planSplit = getIntent().getStringExtra("plan_split");
+        String planDescription = getIntent().getStringExtra("plan_description");
+
+        TextView txtPlanGoal = findViewById(R.id.txtPlanGoal);
+        TextView txtPlanSplit = findViewById(R.id.txtPlanSplitName);
+        TextView txtPlanDescription = findViewById(R.id.txtPlanDescription);
         TextView txtPlanContent = findViewById(R.id.txtPlanContent);
+        if (planGoal != null) {
+            txtPlanGoal.setText(planGoal + " Plan");
+        }
+        if (planSplit != null) {
+            txtPlanSplit.setText(planSplit);
+        }
+        if (planDescription != null) {
+            txtPlanDescription.setText(planDescription);
+        }
         if (plan != null) {
             txtPlanContent.setText(plan);
         }
