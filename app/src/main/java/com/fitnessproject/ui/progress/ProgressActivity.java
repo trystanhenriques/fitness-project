@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -31,10 +32,13 @@ public class ProgressActivity extends AppCompatActivity {
 
     private DatabaseHelper db;
     private TextView txtLastTime;
+    private TextView txtProgressSummary;
     private TextView txtEmptyTitle;
     private TextView txtEmptyMessage;
     private ListView listRecent;
     private LinearLayout emptyState;
+    private LinearLayout filtersLayout;
+    private Button toggleFiltersButton;
     private Spinner categorySpinner;
     private Spinner exerciseSpinner;
 
@@ -42,6 +46,10 @@ public class ProgressActivity extends AppCompatActivity {
     private final Map<String, String> normalizedExerciseKeyToDisplay = new LinkedHashMap<>();
     private final List<String> categoryList = new ArrayList<>();
     private final List<String> filteredExerciseList = new ArrayList<>();
+
+    private boolean filtersExpanded = false;
+    private String selectedCategory = CATEGORY_ALL;
+    private String selectedExercise = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,17 +60,34 @@ public class ProgressActivity extends AppCompatActivity {
         categorySpinner = findViewById(R.id.spinnerProgressCategory);
         exerciseSpinner = findViewById(R.id.spinnerProgressExercise);
         txtLastTime = findViewById(R.id.txtLastTime);
+        txtProgressSummary = findViewById(R.id.txtProgressSummary);
         listRecent = findViewById(R.id.listRecent);
         emptyState = findViewById(R.id.emptyProgressState);
+        filtersLayout = findViewById(R.id.layoutProgressFilters);
+        toggleFiltersButton = findViewById(R.id.btnToggleProgressFilters);
         txtEmptyTitle = findViewById(R.id.txtProgressEmptyTitle);
         txtEmptyMessage = findViewById(R.id.txtProgressEmptyMessage);
 
+        setupFilterToggle();
         buildExerciseCategoryIndex();
         setupCategorySpinner();
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    private void setupFilterToggle() {
+        toggleFiltersButton.setOnClickListener(v -> {
+            filtersExpanded = !filtersExpanded;
+            updateFilterVisibility();
+        });
+        updateFilterVisibility();
+    }
+
+    private void updateFilterVisibility() {
+        filtersLayout.setVisibility(filtersExpanded ? View.VISIBLE : View.GONE);
+        toggleFiltersButton.setText(filtersExpanded ? "Hide Filters" : "Show Filters");
     }
 
     private void buildExerciseCategoryIndex() {
@@ -140,15 +165,28 @@ public class ProgressActivity extends AppCompatActivity {
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedCategory = categoryList.get(position);
+                selectedCategory = categoryList.get(position);
                 refreshExerciseSpinnerForCategory(selectedCategory);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                selectedCategory = CATEGORY_ALL;
                 refreshExerciseSpinnerForCategory(CATEGORY_ALL);
             }
         });
+
+        if (categoryList.isEmpty()) {
+            selectedCategory = CATEGORY_ALL;
+            selectedExercise = null;
+            updateProgressSummary();
+            showNoDataState("No exercises available yet.");
+            return;
+        }
+
+        selectedCategory = categoryList.get(0);
+        categorySpinner.setSelection(0, false);
+        refreshExerciseSpinnerForCategory(selectedCategory);
     }
 
     private void refreshExerciseSpinnerForCategory(String selectedCategory) {
@@ -176,22 +214,32 @@ public class ProgressActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (filteredExerciseList.isEmpty()) {
+                    selectedExercise = null;
+                    updateProgressSummary();
                     showNoDataState("No exercises available for this category.");
                     return;
                 }
-                updateProgress(filteredExerciseList.get(position));
+                selectedExercise = filteredExerciseList.get(position);
+                updateProgressSummary();
+                updateProgress(selectedExercise);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                selectedExercise = null;
+                updateProgressSummary();
                 showNoDataState("Select an exercise to view progress.");
             }
         });
 
         if (filteredExerciseList.isEmpty()) {
+            selectedExercise = null;
+            updateProgressSummary();
             showNoDataState("No exercises available for this category.");
         } else {
-            updateProgress(filteredExerciseList.get(0));
+            selectedExercise = filteredExerciseList.get(0);
+            updateProgressSummary();
+            updateProgress(selectedExercise);
         }
     }
 
@@ -199,13 +247,13 @@ public class ProgressActivity extends AppCompatActivity {
         List<String> progress = db.getProgressForExerciseGroupedByDate(exercise);
         String latestSet = db.getLatestSetSummaryForExercise(exercise);
         if (progress.isEmpty()) {
-            txtLastTime.setText("No data yet for " + exercise);
+            txtLastTime.setText("Latest set: No data yet for " + exercise);
             showEmptyState(
                     "No sets logged for " + exercise,
                     "Save a workout for this exercise to start building a progress timeline."
             );
         } else {
-            txtLastTime.setText(latestSet == null ? "—" : "Last set: " + latestSet);
+            txtLastTime.setText(latestSet == null ? "Latest set: -" : "Latest set: " + latestSet);
             emptyState.setVisibility(View.GONE);
             listRecent.setVisibility(View.VISIBLE);
             listRecent.setAdapter(new GroupedWorkoutListAdapter(this, progress));
@@ -213,8 +261,13 @@ public class ProgressActivity extends AppCompatActivity {
     }
 
     private void showNoDataState(String message) {
-        txtLastTime.setText(message);
+        txtLastTime.setText("Latest set: -");
         showEmptyState("Nothing to show yet", message);
+    }
+
+    private void updateProgressSummary() {
+        String exerciseLabel = selectedExercise == null ? "Select Exercise" : selectedExercise;
+        txtProgressSummary.setText(selectedCategory + " \u2022 " + exerciseLabel);
     }
 
     private void showEmptyState(String title, String message) {

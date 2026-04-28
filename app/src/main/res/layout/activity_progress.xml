@@ -18,37 +18,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_small"
-        android:layout_marginBottom="@dimen/spacing_large"
+        android:layout_marginBottom="@dimen/spacing_medium"
         android:text="Track your latest sets and strength trends." />
 
     <LinearLayout
+        android:id="@+id/progressFilterCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing_medium"
+        android:layout_marginBottom="@dimen/spacing_small"
         android:background="@drawable/bg_rounded_card"
         android:orientation="vertical"
-        android:padding="@dimen/card_padding_large">
+        android:padding="@dimen/spacing_medium">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_width="@dimen/hero_icon_size"
-                android:layout_height="@dimen/hero_icon_size"
-                android:layout_marginEnd="@dimen/spacing_medium"
-                android:background="@drawable/bg_icon_container_blue">
-
-                <ImageView
-                    android:layout_width="@dimen/inline_icon_size"
-                    android:layout_height="@dimen/inline_icon_size"
-                    android:layout_gravity="center"
-                    android:contentDescription="Progress overview"
-                    android:src="@android:drawable/ic_menu_recent_history"
-                    android:tint="@color/fitness_text_primary" />
-            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -67,61 +53,83 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_xsmall"
-                    android:text="Choose what to review" />
+                    android:text="Current selection" />
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btnToggleProgressFilters"
+                style="@style/Widget.Fitness.Button.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:minHeight="40dp"
+                android:paddingLeft="@dimen/spacing_small_medium"
+                android:paddingTop="@dimen/spacing_small"
+                android:paddingRight="@dimen/spacing_small_medium"
+                android:paddingBottom="@dimen/spacing_small"
+                android:text="Show Filters"
+                android:textSize="@dimen/text_size_caption" />
         </LinearLayout>
 
         <TextView
-            style="@style/TextAppearanceFitnessSectionLabel"
+            android:id="@+id/txtProgressSummary"
+            style="@style/TextAppearanceFitnessBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:text="Filter by Category" />
-
-        <Spinner
-            android:id="@+id/spinnerProgressCategory"
-            style="@style/WidgetFitnessSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_small" />
-
-        <TextView
-            style="@style/TextAppearanceFitnessSectionLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:text="Select Exercise" />
-
-        <Spinner
-            android:id="@+id/spinnerProgressExercise"
-            style="@style/WidgetFitnessSpinner"
-            android:layout_width="match_parent"
             android:layout_marginTop="@dimen/spacing_small"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            style="@style/TextAppearanceFitnessSectionLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:text="Latest logged set" />
+            android:text="All Categories - Select Exercise"
+            android:textColor="@color/fitness_text_secondary" />
 
         <TextView
             android:id="@+id/txtLastTime"
+            style="@style/TextAppearanceFitnessSectionLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:text="—"
-            android:textColor="@color/fitness_primary_orange"
-            android:textSize="@dimen/text_size_body"
-            android:textStyle="bold" />
+            android:layout_marginTop="@dimen/spacing_xsmall"
+            android:text="Latest set: -" />
+
+        <LinearLayout
+            android:id="@+id/layoutProgressFilters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/TextAppearanceFitnessSectionLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Category" />
+
+            <Spinner
+                android:id="@+id/spinnerProgressCategory"
+                style="@style/WidgetFitnessSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small" />
+
+            <TextView
+                style="@style/TextAppearanceFitnessSectionLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:text="Exercise" />
+
+            <Spinner
+                android:id="@+id/spinnerProgressExercise"
+                style="@style/WidgetFitnessSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small" />
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
         style="@style/TextAppearanceFitnessCardEyebrow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_xsmall"
         android:text="Recent Entries" />
 
     <FrameLayout
